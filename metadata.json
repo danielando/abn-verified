@@ -1,0 +1,5 @@
+{
+  "name": "ABN Insight Dashboard",
+  "description": "A visual dashboard for analyzing Australian Business Numbers (ABN) from CSV uploads, featuring state distribution and status history.",
+  "requestFramePermissions": []
+}
