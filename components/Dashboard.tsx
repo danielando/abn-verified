@@ -5,7 +5,7 @@ import {
   Cell, PieChart, Pie, Legend
 } from 'recharts';
 import { AbnRecord, ChartDataState, UploadStatus, UploadProgress } from '../types';
-import { ArrowUpRight, Upload, Search, Download, Briefcase, Info, MapPin, ReceiptText, Eye, Heart, Building2, ChevronLeft, ChevronRight, Ban, FilterX, XCircle, Activity, Loader2, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, Upload, Download, Briefcase, Info, MapPin, ReceiptText, Eye, Heart, Building2, ChevronLeft, ChevronRight, Ban, FilterX, XCircle, Activity, Loader2, CheckCircle } from 'lucide-react';
 import EntityDetailsModal from './EntityDetailsModal';
 
 interface DashboardProps {
@@ -262,19 +262,14 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
           </div>
           <p className="text-gray-500 mt-1">Real-time ABR verification status</p>
         </div>
-        <div className="flex gap-3">
-          <button className="p-3 bg-white border border-gray-200 rounded-full text-gray-600 hover:bg-gray-50">
-            <Search size={20} />
-          </button>
-          <button 
-            onClick={onUploadClick}
-            disabled={uploadStatus === UploadStatus.PROCESSING}
-            className={`flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium transition-colors shadow-lg shadow-gray-200 ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}`}
-          >
-            <Upload size={18} />
-            {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
-          </button>
-        </div>
+        <button
+          onClick={onUploadClick}
+          disabled={uploadStatus === UploadStatus.PROCESSING}
+          className={`flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium transition-colors shadow-lg shadow-gray-200 ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}`}
+        >
+          <Upload size={18} />
+          {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
+        </button>
       </div>
 
       {/* Main Grid */}
