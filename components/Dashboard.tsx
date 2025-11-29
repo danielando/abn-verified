@@ -515,12 +515,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
             <thead className="bg-gray-50">
               <tr>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider w-16">Action</th>
+                 <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider w-32">ABN Status</th>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Identity</th>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">ABN & ACN</th>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Entity Type</th>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Location</th>
                  <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Tax Status</th>
-                 <th className="py-4 px-6 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">ABN Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -528,7 +528,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                 <tr key={record.id} className="hover:bg-gray-50 transition-colors group">
                   {/* Action */}
                   <td className="py-4 px-6">
-                      <button 
+                      <button
                         onClick={() => setSelectedRecord(record)}
                         className="p-2 bg-white border border-gray-200 rounded-lg text-gray-400 hover:text-purple-600 hover:border-purple-200 transition-colors shadow-sm"
                         title="View Full Details"
@@ -537,12 +537,26 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                       </button>
                   </td>
 
+                  {/* ABN Status */}
+                  <td className="py-4 px-6">
+                    <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                            {record.status === 'Active' ? (
+                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-600 w-fit">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active
+                                </span>
+                            ) : (
+                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-500 w-fit">
+                                <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Cancelled
+                                </span>
+                            )}
+                        </div>
+                        <span className="text-[10px] text-gray-400 ml-1">{record.statusDate}</span>
+                    </div>
+                  </td>
+
                   {/* Entity Name (Explicit LEGAL vs TRADING) */}
                   <td className="py-4 px-6">
-                    <div className="flex items-center gap-3">
-                       <div className="w-10 h-10 min-w-[2.5rem] rounded-full bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                          {(record.tradingName || record.entityName).charAt(0)}
-                       </div>
                        <div>
                            <div className="flex flex-col gap-1.5">
                                 {/* Scenario 1: Has Trading Name */}
@@ -571,9 +585,8 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                                     </div>
                                 )}
                            </div>
-                           <p className="text-[10px] text-gray-400 mt-1 pl-1">ID: {record.id.slice(0,6)}</p>
+                           <p className="text-[10px] text-gray-400 mt-1">ID: {record.id.slice(0,6)}</p>
                        </div>
-                    </div>
                   </td>
 
                   {/* ABN & ACN */}
@@ -637,24 +650,6 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                              </span>
                         )}
                      </div>
-                  </td>
-
-                  {/* Status */}
-                  <td className="py-4 px-6">
-                    <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2">
-                            {record.status === 'Active' ? (
-                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-600 w-fit">
-                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active
-                                </span>
-                            ) : (
-                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-500 w-fit">
-                                <span className="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Cancelled
-                                </span>
-                            )}
-                        </div>
-                        <span className="text-[10px] text-gray-400 ml-1">{record.statusDate}</span>
-                    </div>
                   </td>
                 </tr>
               ))}
