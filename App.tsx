@@ -8,9 +8,10 @@ import PricingPage from './components/PricingPage';
 import LandingPage from './components/LandingPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
+import VerificationHistory from './components/VerificationHistory';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X } from 'lucide-react';
+import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X, History } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 
 // Hardcoded Default GUID
@@ -31,7 +32,9 @@ const App: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [currentFileName, setCurrentFileName] = useState<string>('');
+
   // Upload State
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>(UploadStatus.IDLE);
   const [uploadProgress, setUploadProgress] = useState<UploadProgress>({ current: 0, total: 0 });
@@ -112,7 +115,7 @@ const App: React.FC = () => {
 
   const handleFileProcess = async (file: File) => {
     if (!user) return;
-    
+
     // Default to 0 credits if profile hasn't loaded yet
     const currentBalance = profile?.credits_balance ?? 0;
 
@@ -120,7 +123,7 @@ const App: React.FC = () => {
     // Rough estimate: Count lines in file to see if user has enough credits
     const text = await file.text();
     const lineCount = text.split(/\r\n|\n/).length - 1; // Minus header
-    
+
     if (currentBalance < lineCount) {
         alert(`Insufficient Credits. You have ${currentBalance} credits but this file has ${lineCount} rows.`);
         setIsModalOpen(false);
@@ -130,15 +133,19 @@ const App: React.FC = () => {
 
     // 1. Close Modal Immediately
     setIsModalOpen(false);
-    
+
     // 2. Set State to Processing
     setUploadStatus(UploadStatus.PROCESSING);
     setUploadProgress({ current: 0, total: lineCount }); // Approx total
-    setData([]); 
+    setData([]);
+    setCurrentFileName(file.name);
 
     // 3. Start Stream
     let actualRecordsProcessed = 0;
+    let allRecords: AbnRecord[] = [];
+
     processCsvStream(file, abnGuid, (newRecords, current, total) => {
+          allRecords = [...allRecords, ...newRecords];
           setData(prev => [...prev, ...newRecords]);
           setUploadProgress({ current, total });
           actualRecordsProcessed = current; // Track actual records processed
@@ -167,6 +174,25 @@ const App: React.FC = () => {
           }
 
           fetchProfile(user.id); // Refresh balance UI
+
+          // --- SAVE VERIFICATION RUN TO DATABASE ---
+          const successfulCount = allRecords.filter(r => r.status === 'Active').length;
+          const failedCount = allRecords.length - successfulCount;
+
+          try {
+            await supabase.from('verification_runs').insert({
+              user_id: user.id,
+              file_name: file.name,
+              total_records: allRecords.length,
+              successful_verifications: successfulCount,
+              failed_verifications: failedCount,
+              credits_used: creditsToDeduct,
+              results: allRecords
+            });
+          } catch (saveError: any) {
+            console.error('Error saving verification run:', saveError);
+            // Don't show alert to user - this is a background operation
+          }
       })
       .catch((error: any) => {
           console.error("Error processing file:", error);
@@ -215,6 +241,20 @@ const App: React.FC = () => {
       );
   }
 
+  // Show verification history if user clicked "History"
+  if (isHistoryOpen && user) {
+      return (
+          <VerificationHistory
+            userId={user.id}
+            onBack={() => setIsHistoryOpen(false)}
+            onLoadRun={(loadedData) => {
+              setData(loadedData);
+              setUploadStatus(UploadStatus.COMPLETE);
+            }}
+          />
+      );
+  }
+
   return (
     <div className="min-h-screen bg-[#F3F4F6] font-sans relative">
 
@@ -254,6 +294,10 @@ const App: React.FC = () => {
                               {user.email}
                           </span>
                       </div>
+
+                      <button onClick={() => setIsHistoryOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Verification History">
+                          <History size={20} />
+                      </button>
 
                       <button onClick={() => setIsSettingsOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Settings">
                           <Settings size={20} />
@@ -303,6 +347,18 @@ const App: React.FC = () => {
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
                         <span className="text-xs bg-gray-800 text-white px-2 py-1 rounded group-hover:bg-blue-600">Add +</span>
+                     </button>
+
+                     {/* History */}
+                     <button
+                        onClick={() => {
+                           setIsHistoryOpen(true);
+                           setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors"
+                     >
+                        <History size={18} />
+                        <span className="text-sm font-medium">Verification History</span>
                      </button>
 
                      {/* Settings */}

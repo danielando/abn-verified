@@ -25,7 +25,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <a href="#demo" className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Try Free</a>
             <button
               onClick={onGetStarted}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-all"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
               Sign In
             </button>
