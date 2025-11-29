@@ -13,6 +13,60 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack }) => {
     script.async = true;
     document.head.appendChild(script);
 
+    // Add custom styles for Tally form to match site design
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Customize Tally form button to match site design */
+      iframe[data-tally-src] {
+        border: none !important;
+      }
+
+      /* Target Tally submit button inside iframe - using CSS that can pierce shadow DOM */
+      .tally-form-container iframe::part(button),
+      .tally-form-container button[type="submit"] {
+        background: #2563eb !important;
+        color: white !important;
+        border-radius: 9999px !important;
+        padding: 1rem 2rem !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        border: none !important;
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3) !important;
+        transition: all 0.2s !important;
+      }
+
+      .tally-form-container button[type="submit"]:hover {
+        background: #1d4ed8 !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 15px 20px -3px rgba(37, 99, 235, 0.4) !important;
+      }
+
+      /* Style inputs to match site */
+      .tally-form-container input,
+      .tally-form-container textarea,
+      .tally-form-container select {
+        border-radius: 9999px !important;
+        border: 1px solid #e5e7eb !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem !important;
+        transition: all 0.2s !important;
+      }
+
+      .tally-form-container textarea {
+        border-radius: 1rem !important;
+      }
+
+      .tally-form-container input:focus,
+      .tally-form-container textarea:focus,
+      .tally-form-container select:focus {
+        outline: none !important;
+        border-color: #3b82f6 !important;
+        ring: 2px solid #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
     // Initialize Tally embeds after script loads
     script.onload = () => {
       if (window.Tally) {
@@ -21,8 +75,13 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack }) => {
     };
 
     return () => {
-      // Cleanup script on unmount
-      document.head.removeChild(script);
+      // Cleanup script and styles on unmount
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
     };
   }, []);
 
