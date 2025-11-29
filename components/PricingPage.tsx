@@ -247,8 +247,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <div>
                 <h4 className="font-bold text-gray-800 text-lg">2,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$9.99</span>
-                  <span className="text-xs text-gray-400">($0.005/row)</span>
+                  <span className="text-2xl font-bold text-gray-900">$24.99</span>
+                  <span className="text-xs text-gray-400">($0.0125/row)</span>
                 </div>
               </div>
               <button
@@ -265,8 +265,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <div>
                 <h4 className="font-bold text-gray-800 text-lg">5,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$19.99</span>
-                  <span className="text-xs text-gray-400">($0.004/row)</span>
+                  <span className="text-2xl font-bold text-gray-900">$54.99</span>
+                  <span className="text-xs text-gray-400">($0.011/row)</span>
                 </div>
               </div>
               <button
@@ -283,8 +283,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <div>
                 <h4 className="font-bold text-gray-800 text-lg">15,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$39.99</span>
-                  <span className="text-xs text-gray-400">($0.002/row)</span>
+                  <span className="text-2xl font-bold text-gray-900">$149.00</span>
+                  <span className="text-xs text-gray-400">($0.0099/row)</span>
                 </div>
               </div>
               <button
