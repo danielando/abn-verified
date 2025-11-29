@@ -193,7 +193,9 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               </button>
             )}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl"></div>
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center">
+                <TrendingUp size={24} className="text-white" />
+              </div>
               <h1 className="text-2xl font-bold text-gray-800">ABNVerify</h1>
             </div>
           </div>

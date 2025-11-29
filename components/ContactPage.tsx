@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Mail, MessageSquare, Building2 } from 'lucide-react';
+import { ArrowLeft, Mail, MessageSquare, Building2, TrendingUp } from 'lucide-react';
 
 interface ContactPageProps {
   onBack: () => void;
@@ -94,7 +94,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack }) => {
             onClick={onBack}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+              <TrendingUp size={24} className="text-white" />
+            </div>
             <div>
               <h1 className="text-lg font-bold text-gray-800">ABNVerify</h1>
               <p className="text-xs text-gray-500">Powered by ABR</p>

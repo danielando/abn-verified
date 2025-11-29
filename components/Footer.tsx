@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Server } from 'lucide-react';
+import { Shield, Server, TrendingUp } from 'lucide-react';
 
 interface FooterProps {
   onAboutClick?: () => void;
@@ -15,7 +15,9 @@ const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacy
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <TrendingUp size={20} className="text-white" />
+              </div>
               <span className="text-white font-bold text-lg">ABNVerify</span>
             </div>
             <p className="text-sm text-gray-400">

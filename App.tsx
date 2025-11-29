@@ -13,7 +13,7 @@ import VerificationHistory from './components/VerificationHistory';
 import AdminPage from './components/AdminPage';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { LogOut, Menu, X, History, Shield } from 'lucide-react';
+import { LogOut, Menu, X, History, Shield, TrendingUp } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 
 // Hardcoded Default GUID
@@ -280,7 +280,9 @@ const App: React.FC = () => {
             <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex justify-between items-center z-20 shadow-sm">
                {/* Logo */}
                <div className="font-bold text-gray-800 flex items-center gap-2">
-                   <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
+                   <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                       <TrendingUp size={20} className="text-white" />
+                   </div>
                    <span className="hidden sm:inline">ABNVerify</span>
                </div>
 

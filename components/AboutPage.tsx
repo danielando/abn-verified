@@ -15,7 +15,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
             onClick={onBack}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+              <TrendingUp size={24} className="text-white" />
+            </div>
             <div>
               <h1 className="text-lg font-bold text-gray-800">ABNVerify</h1>
               <p className="text-xs text-gray-500">Powered by ABR</p>
@@ -213,7 +215,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
       <footer className="bg-gray-900 text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <TrendingUp size={20} className="text-white" />
+            </div>
             <span className="text-white font-bold text-lg">ABNVerify</span>
           </div>
           <p className="text-sm">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
-import { Shield, Users, CreditCard, ArrowLeft, Plus, Minus, Search, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { Shield, Users, CreditCard, ArrowLeft, Plus, Minus, Search, AlertCircle, CheckCircle, Loader2, TrendingUp } from 'lucide-react';
 
 interface AdminPageProps {
   onBack: () => void;

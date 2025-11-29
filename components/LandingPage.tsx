@@ -16,7 +16,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+              <TrendingUp size={24} className="text-white" />
+            </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
               <p className="text-xs text-gray-500">Powered by ABR</p>
@@ -406,7 +408,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg"></div>
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <TrendingUp size={20} className="text-white" />
+                </div>
                 <span className="text-white font-bold text-lg">ABNVerify</span>
               </div>
               <p className="text-sm text-gray-400">
