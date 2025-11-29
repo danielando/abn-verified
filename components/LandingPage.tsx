@@ -63,13 +63,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                   Start Free Test
                   <ArrowRight size={20} />
                 </button>
-                <a
-                  href="#demo"
-                  className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 rounded-xl font-semibold text-lg transition-all flex items-center justify-center gap-2"
-                >
-                  Try 3 ABNs Free
-                  <FileCheck size={20} />
-                </a>
               </div>
 
               <div className="mt-8 flex items-center gap-6 text-sm text-gray-600">
@@ -214,7 +207,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* Starter Plan */}
             <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Starter</h3>
@@ -313,81 +306,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                 Get Started
               </button>
             </div>
-
-            {/* Enterprise Plan */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border-2 border-gray-700 p-6 hover:shadow-xl transition-all text-white">
-              <h3 className="text-xl font-bold mb-2">Enterprise</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold">Custom</span>
-              </div>
-              <div className="bg-blue-600 bg-opacity-20 text-blue-200 px-3 py-2 rounded-lg text-center font-semibold mb-6">
-                Custom volume
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400 mt-0.5 flex-shrink-0" />
-                  <span>API access</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400 mt-0.5 flex-shrink-0" />
-                  <span>Dedicated queue</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400 mt-0.5 flex-shrink-0" />
-                  <span>Higher volume</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400 mt-0.5 flex-shrink-0" />
-                  <span>Custom service agreement</span>
-                </li>
-              </ul>
-              <a
-                href="mailto:support@abnverify.com"
-                className="w-full py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-xl font-semibold transition-all block text-center"
-              >
-                Contact Sales
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Free Demo Section */}
-      <section id="demo" className="py-16 bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Try it free — no account required
-            </h2>
-            <p className="text-xl text-gray-600">
-              Enter up to 3 ABNs and see real verification results instantly
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl shadow-xl border-2 border-blue-200 p-8">
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Enter ABNs (one per line, up to 3)
-              </label>
-              <textarea
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none resize-none"
-                rows={5}
-                placeholder="51824753556&#10;33102417032&#10;53004085616"
-              />
-              <p className="text-xs text-gray-500 mt-2">
-                Example ABNs provided. Replace with your own to test.
-              </p>
-            </div>
-
-            <button className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl">
-              Verify These ABNs
-            </button>
-
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-              <p className="text-sm text-gray-700 text-center">
-                <strong>Note:</strong> This free demo uses real ABR data. Create an account to verify up to 15,000 ABNs at once.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -399,7 +317,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             Ready to verify your ABN database?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Start with 50 free credits. No credit card required.
+            Start with 10 free credits. No credit card required.
           </p>
           <button
             onClick={onGetStarted}

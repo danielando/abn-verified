@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
-import { Mail, Lock, Loader2, ArrowRight, CheckCircle, AlertCircle, Sparkles, TrendingUp, Shield } from 'lucide-react';
+import { Mail, Lock, Loader2, ArrowRight, CheckCircle, AlertCircle, Sparkles, TrendingUp, Shield, ArrowLeft } from 'lucide-react';
 
 interface AuthPageProps {
   onSuccess: () => void;
+  onBack?: () => void;
 }
 
-const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
+const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -180,10 +181,34 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
       {/* Right Side - Auth Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
-          {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl"></div>
-            <h1 className="text-2xl font-bold text-gray-800">ABNVerify</h1>
+          {/* Back Button & Mobile Logo */}
+          <div className="lg:hidden mb-8">
+            {onBack && (
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors mb-4"
+              >
+                <ArrowLeft size={20} />
+                <span className="text-sm font-medium">Back to Home</span>
+              </button>
+            )}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl"></div>
+              <h1 className="text-2xl font-bold text-gray-800">ABNVerify</h1>
+            </div>
+          </div>
+
+          {/* Desktop Back Button */}
+          <div className="hidden lg:block mb-6">
+            {onBack && (
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <ArrowLeft size={20} />
+                <span className="text-sm font-medium">Back to Home</span>
+              </button>
+            )}
           </div>
 
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
@@ -192,7 +217,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                 {isLogin ? 'Welcome Back' : 'Create Account'}
               </h2>
               <p className="text-gray-500">
-                {isLogin ? 'Sign in to access your dashboard' : 'Get started with 50 free credits'}
+                {isLogin ? 'Sign in to access your dashboard' : 'Get started with 10 free credits'}
               </p>
             </div>
 

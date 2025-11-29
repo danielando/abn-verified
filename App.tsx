@@ -201,7 +201,7 @@ const App: React.FC = () => {
 
   // Show full-page auth if not logged in and user clicked "Get Started"
   if (!user && currentPage === 'auth') {
-      return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} />;
+      return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} onBack={() => setCurrentPage('landing')} />;
   }
 
   // Show full-page pricing if user clicked "Buy Credits"
