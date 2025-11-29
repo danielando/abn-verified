@@ -367,7 +367,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                     Contact
                   </button>
                 </li>
-                <li><a href="mailto:support@abnverify.com" className="hover:text-white transition-colors">Support</a></li>
+                <li>
+                  <button onClick={onContactClick} className="hover:text-white transition-colors">
+                    Support
+                  </button>
+                </li>
               </ul>
             </div>
 
