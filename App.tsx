@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard';
 import FileUploadModal from './components/FileUploadModal';
 import SettingsModal from './components/SettingsModal';
 import AuthPage from './components/AuthPage';
-import PricingModal from './components/PricingModal';
+import PricingPage from './components/PricingPage';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X } from 'lucide-react';
@@ -179,18 +179,19 @@ const App: React.FC = () => {
       return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} />;
   }
 
-  return (
-    <div className="min-h-screen bg-[#F3F4F6] font-sans relative">
-
-      {/* PRICING MODAL */}
-      {user && (
-          <PricingModal
-            isOpen={isPricingOpen}
-            onClose={() => setIsPricingOpen(false)}
+  // Show full-page pricing if user clicked "Buy Credits"
+  if (isPricingOpen) {
+      return (
+          <PricingPage
             userId={user.id}
+            onBack={() => setIsPricingOpen(false)}
             onSuccess={() => fetchProfile(user.id)}
           />
-      )}
+      );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#F3F4F6] font-sans relative">
 
       {/* TOP USER BAR (Visible when logged in) */}
       {user && (
