@@ -161,15 +161,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack }) => {
                 </div>
               </div>
             </div>
-
-            {/* Office Hours */}
-            <div className="mt-8 bg-blue-50 rounded-2xl p-6 border border-blue-100">
-              <h4 className="font-bold text-gray-900 mb-2">Office Hours</h4>
-              <p className="text-sm text-gray-600">
-                Monday - Friday: 9:00 AM - 5:00 PM AEST<br />
-                Saturday - Sunday: Closed
-              </p>
-            </div>
           </div>
 
           {/* Right Side - Tally Form */}
