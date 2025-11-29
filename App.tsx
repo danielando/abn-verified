@@ -10,9 +10,10 @@ import TermsOfUse from './components/TermsOfUse';
 import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
 import VerificationHistory from './components/VerificationHistory';
+import AdminPage from './components/AdminPage';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { LogOut, Menu, X, History } from 'lucide-react';
+import { LogOut, Menu, X, History, Shield } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 
 // Hardcoded Default GUID
@@ -33,6 +34,7 @@ const App: React.FC = () => {
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [currentFileName, setCurrentFileName] = useState<string>('');
 
   // Upload State
@@ -255,6 +257,16 @@ const App: React.FC = () => {
       );
   }
 
+  // Show admin panel if user is admin and clicked "Admin"
+  if (isAdminOpen && user && profile?.is_admin) {
+      return (
+          <AdminPage
+            currentUserId={user.id}
+            onBack={() => setIsAdminOpen(false)}
+          />
+      );
+  }
+
   return (
     <div className="min-h-screen bg-[#F3F4F6] font-sans relative">
 
@@ -298,6 +310,16 @@ const App: React.FC = () => {
                       <button onClick={() => setIsHistoryOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Verification History">
                           <History size={20} />
                       </button>
+
+                      {profile?.is_admin && (
+                        <button
+                          onClick={() => setIsAdminOpen(true)}
+                          className="p-2 text-red-400 hover:text-red-600 transition-colors"
+                          title="Admin Panel"
+                        >
+                          <Shield size={20} />
+                        </button>
+                      )}
 
                       <button
                           onClick={handleLogout}
@@ -356,6 +378,20 @@ const App: React.FC = () => {
                         <History size={18} />
                         <span className="text-sm font-medium">Verification History</span>
                      </button>
+
+                     {/* Admin Panel (only for admins) */}
+                     {profile?.is_admin && (
+                        <button
+                           onClick={() => {
+                              setIsAdminOpen(true);
+                              setIsMobileMenuOpen(false);
+                           }}
+                           className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                        >
+                           <Shield size={18} />
+                           <span className="text-sm font-medium">Admin Panel</span>
+                        </button>
+                     )}
 
                      {/* Logout */}
                      <button

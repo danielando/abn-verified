@@ -13,17 +13,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
           <button
             onClick={onBack}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </button>
-          <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
             <div>
               <h1 className="text-lg font-bold text-gray-800">ABNVerify</h1>
               <p className="text-xs text-gray-500">Powered by ABR</p>
             </div>
-          </div>
+          </button>
         </div>
       </header>
 

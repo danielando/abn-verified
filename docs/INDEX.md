@@ -16,6 +16,7 @@ This directory contains all documentation files for the ABN Verification Dashboa
 - **[STRIPE_CHECKLIST.md](STRIPE_CHECKLIST.md)** - Stripe setup checklist
 - **[EMAIL_SETUP.md](EMAIL_SETUP.md)** - Contact form email service configuration
 - **[SENDGRID_SETUP.md](SENDGRID_SETUP.md)** - SendGrid email service setup
+- **[ADMIN_SETUP.md](ADMIN_SETUP.md)** - Admin panel setup for user and credit management
 
 ## Deployment
 
