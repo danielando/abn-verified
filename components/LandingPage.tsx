@@ -58,7 +58,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={onGetStarted}
-                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   Start Free Test
                   <ArrowRight size={20} />
@@ -234,7 +234,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               </ul>
               <button
                 onClick={onGetStarted}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-xl font-semibold transition-all"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-semibold transition-all"
               >
                 Get Started
               </button>
@@ -269,7 +269,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               </ul>
               <button
                 onClick={onGetStarted}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-all shadow-lg"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg"
               >
                 Get Started
               </button>
@@ -301,7 +301,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               </ul>
               <button
                 onClick={onGetStarted}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-xl font-semibold transition-all"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-semibold transition-all"
               >
                 Get Started
               </button>
@@ -321,7 +321,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           </p>
           <button
             onClick={onGetStarted}
-            className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-600 rounded-xl font-bold text-lg transition-all shadow-xl inline-flex items-center gap-2"
+            className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-600 rounded-full font-bold text-lg transition-all shadow-xl inline-flex items-center gap-2"
           >
             Get Started Free
             <ArrowRight size={20} />

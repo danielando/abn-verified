@@ -122,7 +122,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('starter', 3000, 'subscription')}
                 disabled={loading === 'starter'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading === 'starter' ? 'Processing...' : 'Subscribe'}
               </button>
@@ -158,7 +158,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('growth', 10000, 'subscription')}
                 disabled={loading === 'growth'}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {loading === 'growth' ? 'Processing...' : 'Subscribe'}
               </button>
@@ -191,7 +191,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('pro', 25000, 'subscription')}
                 disabled={loading === 'pro'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading === 'pro' ? 'Processing...' : 'Subscribe'}
               </button>
@@ -226,7 +226,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               </ul>
               <a
                 href="mailto:support@abnverify.com"
-                className="w-full py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-xl font-bold transition-all block text-center"
+                className="w-full py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-full font-bold transition-all block text-center"
               >
                 Contact Sales
               </a>
@@ -254,7 +254,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('pack_2k', 2000, 'payment')}
                 disabled={loading === 'pack_2k'}
-                className="px-6 py-2 rounded-lg shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
               >
                 {loading === 'pack_2k' ? '...' : 'Buy Pack'}
               </button>
@@ -272,7 +272,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('pack_5k', 5000, 'payment')}
                 disabled={loading === 'pack_5k'}
-                className="px-6 py-2 rounded-lg shadow-sm font-semibold bg-white border border-blue-300 hover:border-blue-400 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-blue-300 hover:border-blue-400 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
               >
                 {loading === 'pack_5k' ? '...' : 'Buy Pack'}
               </button>
@@ -290,7 +290,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('pack_15k', 15000, 'payment')}
                 disabled={loading === 'pack_15k'}
-                className="px-6 py-2 rounded-lg shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
               >
                 {loading === 'pack_15k' ? '...' : 'Buy Pack'}
               </button>

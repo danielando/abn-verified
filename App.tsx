@@ -261,7 +261,7 @@ const App: React.FC = () => {
 
                       <button
                           onClick={handleLogout}
-                          className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-lg transition-colors border border-gray-200 hover:border-red-200"
+                          className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-full transition-colors border border-gray-200 hover:border-red-200"
                           title="Sign Out"
                       >
                           <LogOut size={16} />
@@ -297,7 +297,7 @@ const App: React.FC = () => {
                            setIsPricingOpen(true);
                            setIsMobileMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-all group"
+                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-blue-50 rounded-full transition-all group"
                      >
                         <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-700">
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
@@ -311,7 +311,7 @@ const App: React.FC = () => {
                            setIsSettingsOpen(true);
                            setIsMobileMenuOpen(false);
                         }}
-                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors"
                      >
                         <Settings size={18} />
                         <span className="text-sm font-medium">Settings</span>
@@ -323,7 +323,7 @@ const App: React.FC = () => {
                            handleLogout();
                            setIsMobileMenuOpen(false);
                         }}
-                        className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
                      >
                         <LogOut size={18} />
                         <span className="text-sm font-medium">Logout</span>

@@ -44,12 +44,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
                         value={guid}
                         onChange={(e) => setGuid(e.target.value)}
                         placeholder="cb0b0ca6-6283-4780-a0fe-086a80ef6826"
-                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm font-mono text-gray-700"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono text-gray-700"
                     />
                 </div>
                 <p className="mt-2 text-xs text-gray-500">
                     Required to access the ABN Lookup Web Services. 
-                    <a href="https://abr.business.gov.au/Webservices.aspx" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline ml-1">
+                    <a href="https://abr.business.gov.au/Webservices.aspx" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline ml-1">
                         Get a free GUID here.
                     </a>
                 </p>
@@ -58,7 +58,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, onSave, 
             <div className="pt-2">
                 <button 
                     onClick={handleSave}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-medium transition-colors"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-colors"
                 >
                     <Save size={18} />
                     Save Configuration

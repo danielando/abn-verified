@@ -104,7 +104,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                         setShowConfirmation(false);
                         setIsLogin(true);
                     }}
-                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all"
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all"
                 >
                     Back to Sign In
                 </button>
@@ -226,7 +226,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               <button
                 onClick={handleGoogleSignIn}
                 type="button"
-                className="w-full py-3 px-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 flex items-center justify-center gap-3 transition-all group"
+                className="w-full py-3 px-4 border-2 border-gray-200 rounded-full hover:bg-gray-50 hover:border-gray-300 flex items-center justify-center gap-3 transition-all group"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -240,7 +240,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               <button
                 onClick={handleMicrosoftSignIn}
                 type="button"
-                className="w-full py-3 px-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 flex items-center justify-center gap-3 transition-all group"
+                className="w-full py-3 px-4 border-2 border-gray-200 rounded-full hover:bg-gray-50 hover:border-gray-300 flex items-center justify-center gap-3 transition-all group"
               >
                 <svg className="w-5 h-5" viewBox="0 0 23 23">
                   <path fill="#f3f3f3" d="M0 0h23v23H0z"/>
@@ -269,7 +269,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="John Doe"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -284,7 +284,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                   <input
                     type="email"
                     required
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="name@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -299,7 +299,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                   <input
                     type="password"
                     required
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -317,7 +317,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" />
