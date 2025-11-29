@@ -5,6 +5,9 @@ import FileUploadModal from './components/FileUploadModal';
 import SettingsModal from './components/SettingsModal';
 import AuthPage from './components/AuthPage';
 import PricingPage from './components/PricingPage';
+import LandingPage from './components/LandingPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfUse from './components/TermsOfUse';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X } from 'lucide-react';
@@ -19,6 +22,8 @@ const App: React.FC = () => {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [showLanding, setShowLanding] = useState(true);
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms'>('landing');
 
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
@@ -174,8 +179,28 @@ const App: React.FC = () => {
       return <div className="min-h-screen flex items-center justify-center text-gray-400">Loading...</div>;
   }
 
-  // Show full-page auth if not logged in
-  if (!user) {
+  // Handle legal pages
+  if (!user && currentPage === 'privacy') {
+      return <PrivacyPolicy onBack={() => setCurrentPage('landing')} />;
+  }
+
+  if (!user && currentPage === 'terms') {
+      return <TermsOfUse onBack={() => setCurrentPage('landing')} />;
+  }
+
+  // Show landing page if not logged in and landing is visible
+  if (!user && currentPage === 'landing') {
+      return (
+          <LandingPage
+            onGetStarted={() => setCurrentPage('auth')}
+            onPrivacyClick={() => setCurrentPage('privacy')}
+            onTermsClick={() => setCurrentPage('terms')}
+          />
+      );
+  }
+
+  // Show full-page auth if not logged in and user clicked "Get Started"
+  if (!user && currentPage === 'auth') {
       return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} />;
   }
 
@@ -199,8 +224,8 @@ const App: React.FC = () => {
             <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex justify-between items-center z-20 shadow-sm">
                {/* Logo */}
                <div className="font-bold text-gray-800 flex items-center gap-2">
-                   <div className="w-8 h-8 bg-purple-600 rounded-lg"></div>
-                   <span className="hidden sm:inline">ABN<span className="text-purple-600">Verified</span></span>
+                   <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg"></div>
+                   <span className="hidden sm:inline">ABNVerify</span>
                </div>
 
                {/* Desktop Menu */}
@@ -208,13 +233,13 @@ const App: React.FC = () => {
                    {/* Credits Display */}
                    <button
                       onClick={() => setIsPricingOpen(true)}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-purple-50 rounded-full border border-gray-200 hover:border-purple-200 transition-all group"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-blue-50 rounded-full border border-gray-200 hover:border-blue-200 transition-all group"
                    >
                       <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                      <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-700">
+                      <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-700">
                           {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                       </span>
-                      <span className="text-xs bg-gray-800 text-white px-1.5 py-0.5 rounded ml-1 group-hover:bg-purple-600">Add +</span>
+                      <span className="text-xs bg-gray-800 text-white px-1.5 py-0.5 rounded ml-1 group-hover:bg-blue-600">Add +</span>
                    </button>
 
                    {/* User Menu */}
@@ -272,12 +297,12 @@ const App: React.FC = () => {
                            setIsPricingOpen(true);
                            setIsMobileMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-purple-50 rounded-lg transition-all group"
+                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-all group"
                      >
-                        <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-700">
+                        <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-700">
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
-                        <span className="text-xs bg-gray-800 text-white px-2 py-1 rounded group-hover:bg-purple-600">Add +</span>
+                        <span className="text-xs bg-gray-800 text-white px-2 py-1 rounded group-hover:bg-blue-600">Add +</span>
                      </button>
 
                      {/* Settings */}
@@ -313,7 +338,7 @@ const App: React.FC = () => {
         {data.length === 0 && uploadStatus !== UploadStatus.PROCESSING ? (
            <div className="flex flex-col items-center justify-center min-h-[85vh] p-6">
               <div className="max-w-2xl text-center space-y-6 animate-fade-in-up">
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">ABN Verification <br/> <span className="text-purple-600">Bulk Tool</span></h1>
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">ABN Verification <br/> <span className="text-blue-600">Bulk Tool</span></h1>
                   <p className="text-lg text-gray-500">
                     Upload your entity list. We'll fetch status, tax details, and trading names automatically using <strong>Official ABN Lookup Services</strong>.
                   </p>

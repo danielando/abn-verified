@@ -90,20 +90,23 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
 
         {/* Monthly Subscriptions */}
         <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <Zap className="text-purple-600" size={28} />
+          <div className="flex items-center gap-3 mb-4">
+            <Zap className="text-blue-600" size={28} />
             <h2 className="text-2xl font-bold text-gray-800">Monthly Subscriptions</h2>
           </div>
+          <p className="text-sm text-gray-600 mb-6">
+            <strong>Note:</strong> Overage charges apply: $0.01 per additional verification beyond your plan limit.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Starter Subscription */}
-            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-purple-400 hover:shadow-lg transition-all">
+            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Starter</h3>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-bold text-gray-900">$29</span>
                 <span className="text-gray-500">/mo</span>
               </div>
-              <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
                 3,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
@@ -126,8 +129,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
             </div>
 
             {/* Growth Subscription - POPULAR */}
-            <div className="bg-white rounded-2xl border-2 border-purple-500 p-6 hover:shadow-xl transition-all relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+            <div className="bg-white rounded-2xl border-2 border-blue-500 p-6 hover:shadow-xl transition-all relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                 Most Popular
               </div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">Growth</h3>
@@ -135,7 +138,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
                 <span className="text-4xl font-bold text-gray-900">$79</span>
                 <span className="text-gray-500">/mo</span>
               </div>
-              <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
                 10,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
@@ -155,34 +158,34 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('growth', 10000, 'subscription')}
                 disabled={loading === 'growth'}
-                className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {loading === 'growth' ? 'Processing...' : 'Subscribe'}
               </button>
             </div>
 
             {/* Pro Subscription */}
-            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-purple-400 hover:shadow-lg transition-all">
+            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Pro</h3>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-bold text-gray-900">$149</span>
                 <span className="text-gray-500">/mo</span>
               </div>
-              <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
                 25,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Dedicated Server
+                  Faster queue
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  SLA
+                  Priority support
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Phone Support
+                  Dedicated support
                 </li>
               </ul>
               <button
@@ -193,13 +196,48 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
                 {loading === 'pro' ? 'Processing...' : 'Subscribe'}
               </button>
             </div>
+
+            {/* Enterprise Subscription */}
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border-2 border-gray-700 p-6 hover:shadow-xl transition-all text-white">
+              <h3 className="text-xl font-bold mb-2">Enterprise</h3>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-bold">Custom</span>
+              </div>
+              <div className="bg-blue-600 bg-opacity-30 text-blue-200 px-4 py-2 rounded-xl text-center font-bold mb-6">
+                Custom Volume
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-2 text-sm text-gray-300">
+                  <Check size={16} className="text-green-400" />
+                  API access
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-300">
+                  <Check size={16} className="text-green-400" />
+                  Dedicated queue
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-300">
+                  <Check size={16} className="text-green-400" />
+                  Higher volume
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-300">
+                  <Check size={16} className="text-green-400" />
+                  Custom service agreement
+                </li>
+              </ul>
+              <a
+                href="mailto:support@abnverify.com"
+                className="w-full py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-xl font-bold transition-all block text-center"
+              >
+                Contact Sales
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Pay-as-you-go Packs */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <Box className="text-purple-600" size={28} />
+            <Box className="text-blue-600" size={28} />
             <h2 className="text-2xl font-bold text-gray-800">Pay-as-you-go Packs</h2>
           </div>
 
@@ -223,7 +261,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
             </div>
 
             {/* 5,000 Pack - HIGHLIGHT */}
-            <div className="bg-purple-50/50 rounded-2xl p-5 border-2 border-purple-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="bg-blue-50/50 rounded-2xl p-5 border-2 border-blue-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h4 className="font-bold text-gray-800 text-lg">5,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
@@ -234,7 +272,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <button
                 onClick={() => handlePurchase('pack_5k', 5000, 'payment')}
                 disabled={loading === 'pack_5k'}
-                className="px-6 py-2 rounded-lg shadow-sm font-semibold bg-white border border-purple-300 hover:border-purple-400 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-lg shadow-sm font-semibold bg-white border border-blue-300 hover:border-blue-400 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
               >
                 {loading === 'pack_5k' ? '...' : 'Buy Pack'}
               </button>
