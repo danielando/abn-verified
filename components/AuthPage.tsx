@@ -89,7 +89,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
 
   if (showConfirmation) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center p-4">
             <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden p-8 text-center">
                 <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle size={32} />
@@ -103,7 +103,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                         setShowConfirmation(false);
                         setIsLogin(true);
                     }}
-                    className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-bold transition-all"
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all"
                 >
                     Back to Sign In
                 </button>
@@ -113,27 +113,27 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex">
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-600 to-blue-600 p-12 flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-700 p-12 flex-col justify-between relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-12">
             <div className="w-12 h-12 bg-white rounded-xl"></div>
-            <h1 className="text-3xl font-bold text-white">ABN<span className="text-purple-200">Verified</span></h1>
+            <h1 className="text-3xl font-bold text-white">ABNVerify</h1>
           </div>
 
           <div className="space-y-8 mt-20">
             <h2 className="text-4xl font-bold text-white leading-tight">
-              Verify ABN Details<br />in Seconds
+              Bulk ABN verification<br />in seconds
             </h2>
-            <p className="text-purple-100 text-lg">
-              Bulk verification tool powered by official Australian Business Register data.
+            <p className="text-blue-100 text-lg">
+              The only bulk ABR verification engine designed for accuracy, compliance, and scale.
             </p>
 
             <div className="space-y-4 mt-12">
@@ -142,8 +142,8 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                   <TrendingUp className="text-white" size={20} />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold mb-1">Real-Time Data</h3>
-                  <p className="text-purple-100 text-sm">Direct integration with ABR for accurate, up-to-date information</p>
+                  <h3 className="text-white font-semibold mb-1">Official ABR Data</h3>
+                  <p className="text-blue-100 text-sm">Direct integration with ABR for accurate, up-to-date information</p>
                 </div>
               </div>
 
@@ -152,8 +152,8 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                   <Sparkles className="text-white" size={20} />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold mb-1">Bulk Processing</h3>
-                  <p className="text-purple-100 text-sm">Upload CSV files and verify thousands of entities at once</p>
+                  <h3 className="text-white font-semibold mb-1">Bulk Verification</h3>
+                  <p className="text-blue-100 text-sm">Process up to 15,000 ABNs at once - fast, accurate, and reliable</p>
                 </div>
               </div>
 
@@ -163,7 +163,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                 </div>
                 <div>
                   <h3 className="text-white font-semibold mb-1">Secure & Compliant</h3>
-                  <p className="text-purple-100 text-sm">Enterprise-grade security with full data compliance</p>
+                  <p className="text-blue-100 text-sm">Australian servers only - no file storage, GDPR compliant</p>
                 </div>
               </div>
             </div>
@@ -171,8 +171,8 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
         </div>
 
         <div className="relative z-10">
-          <p className="text-purple-200 text-sm">
-            Trusted by businesses across Australia for ABN verification
+          <p className="text-blue-200 text-sm">
+            Trusted by accounting firms, bookkeepers, and compliance teams across Australia
           </p>
         </div>
       </div>
@@ -182,8 +182,8 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-purple-600 rounded-xl"></div>
-            <h1 className="text-2xl font-bold text-gray-800">ABN<span className="text-purple-600">Verified</span></h1>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl"></div>
+            <h1 className="text-2xl font-bold text-gray-800">ABNVerify</h1>
           </div>
 
           <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
@@ -244,7 +244,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                   <input
                     type="text"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="John Doe"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -259,7 +259,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                   <input
                     type="email"
                     required
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="name@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -274,7 +274,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                   <input
                     type="password"
                     required
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -292,7 +292,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
               >
                 {loading ? (
                   <Loader2 className="animate-spin" />
@@ -311,7 +311,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess }) => {
                     setError(null);
                     setShowConfirmation(false);
                 }}
-                className="text-sm font-medium text-gray-500 hover:text-purple-600 transition-colors"
+                className="text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
               >
                 {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
               </button>
