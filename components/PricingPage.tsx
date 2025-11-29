@@ -98,7 +98,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
             <strong>Note:</strong> Overage charges apply: $0.01 per additional verification beyond your plan limit.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Starter Subscription */}
             <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Starter</h3>
@@ -112,19 +112,23 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Basic ABN Lookup
+                  Official ABR data
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Standard Support
+                  CSV upload & export
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-600">
+                  <Check size={16} className="text-green-500" />
+                  Email support
                 </li>
               </ul>
               <button
                 onClick={() => handlePurchase('starter', 3000, 'subscription')}
                 disabled={loading === 'starter'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading === 'starter' ? 'Processing...' : 'Subscribe'}
+                {loading === 'starter' ? 'Processing...' : 'Get Started'}
               </button>
             </div>
 
@@ -144,15 +148,15 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Priority Processing
+                  Everything in Starter
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  API Access
+                  Priority processing
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
-                  Email Support
+                  Priority support
                 </li>
               </ul>
               <button
@@ -160,7 +164,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
                 disabled={loading === 'growth'}
                 className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
-                {loading === 'growth' ? 'Processing...' : 'Subscribe'}
+                {loading === 'growth' ? 'Processing...' : 'Get Started'}
               </button>
             </div>
 
@@ -177,59 +181,24 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
+                  Everything in Growth
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-600">
+                  <Check size={16} className="text-green-500" />
                   Faster queue
                 </li>
                 <li className="flex items-center gap-2 text-sm text-gray-600">
                   <Check size={16} className="text-green-500" />
                   Priority support
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
-                  <Check size={16} className="text-green-500" />
-                  Dedicated support
-                </li>
               </ul>
               <button
                 onClick={() => handlePurchase('pro', 25000, 'subscription')}
                 disabled={loading === 'pro'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading === 'pro' ? 'Processing...' : 'Subscribe'}
+                {loading === 'pro' ? 'Processing...' : 'Get Started'}
               </button>
-            </div>
-
-            {/* Enterprise Subscription */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border-2 border-gray-700 p-6 hover:shadow-xl transition-all text-white">
-              <h3 className="text-xl font-bold mb-2">Enterprise</h3>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold">Custom</span>
-              </div>
-              <div className="bg-blue-600 bg-opacity-30 text-blue-200 px-4 py-2 rounded-xl text-center font-bold mb-6">
-                Custom Volume
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400" />
-                  API access
-                </li>
-                <li className="flex items-center gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400" />
-                  Dedicated queue
-                </li>
-                <li className="flex items-center gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400" />
-                  Higher volume
-                </li>
-                <li className="flex items-center gap-2 text-sm text-gray-300">
-                  <Check size={16} className="text-green-400" />
-                  Custom service agreement
-                </li>
-              </ul>
-              <a
-                href="mailto:support@abnverify.com"
-                className="w-full py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-full font-bold transition-all block text-center"
-              >
-                Contact Sales
-              </a>
             </div>
           </div>
         </div>
