@@ -78,6 +78,15 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Debug: Log admin status when rendering
+  useEffect(() => {
+    if (user && profile) {
+      console.log('👤 Current user:', user.email);
+      console.log('🛡️ Admin status in render:', profile.is_admin);
+      console.log('📋 Full profile:', profile);
+    }
+  }, [user, profile]);
+
   const fetchProfile = async (userId: string) => {
     const { data, error } = await supabase
       .from('profiles')
@@ -262,15 +271,6 @@ const App: React.FC = () => {
           />
       );
   }
-
-  // Debug: Log admin status when rendering
-  useEffect(() => {
-    if (user && profile) {
-      console.log('👤 Current user:', user.email);
-      console.log('🛡️ Admin status in render:', profile.is_admin);
-      console.log('📋 Full profile:', profile);
-    }
-  }, [user, profile]);
 
   // Show admin panel if user is admin and clicked "Admin"
   if (isAdminOpen && user && profile?.is_admin) {
