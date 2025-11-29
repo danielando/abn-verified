@@ -7,7 +7,7 @@ import AuthPage from './components/AuthPage';
 import PricingModal from './components/PricingModal';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { Settings, LogOut, CreditCard, User as UserIcon } from 'lucide-react';
+import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 
 // Hardcoded Default GUID
@@ -25,6 +25,7 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Upload State
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>(UploadStatus.IDLE);
@@ -193,53 +194,118 @@ const App: React.FC = () => {
 
       {/* TOP USER BAR (Visible when logged in) */}
       {user && (
-          <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center z-20 shadow-sm">
-             <div className="font-bold text-gray-800 flex items-center gap-2">
-                 <div className="w-8 h-8 bg-purple-600 rounded-lg"></div>
-                 ABN<span className="text-purple-600">Verified</span>
-             </div>
-             
-             <div className="flex items-center gap-4">
-                 {/* Credits Display */}
-                 <button 
-                    onClick={() => setIsPricingOpen(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-purple-50 rounded-full border border-gray-200 hover:border-purple-200 transition-all group"
-                 >
-                    <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                    <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-700">
-                        {(profile?.credits_balance ?? 0).toLocaleString()} Credits
-                    </span>
-                    <span className="text-xs bg-gray-800 text-white px-1.5 py-0.5 rounded ml-1 group-hover:bg-purple-600">Add +</span>
-                 </button>
+          <>
+            <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex justify-between items-center z-20 shadow-sm">
+               {/* Logo */}
+               <div className="font-bold text-gray-800 flex items-center gap-2">
+                   <div className="w-8 h-8 bg-purple-600 rounded-lg"></div>
+                   <span className="hidden sm:inline">ABN<span className="text-purple-600">Verified</span></span>
+               </div>
 
-                 {/* User Menu */}
-                 <div className="flex items-center gap-3 border-l border-gray-200 pl-4">
-                    <div className="flex flex-col items-end mr-2">
+               {/* Desktop Menu */}
+               <div className="hidden md:flex items-center gap-4">
+                   {/* Credits Display */}
+                   <button
+                      onClick={() => setIsPricingOpen(true)}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-purple-50 rounded-full border border-gray-200 hover:border-purple-200 transition-all group"
+                   >
+                      <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-700">
+                          {(profile?.credits_balance ?? 0).toLocaleString()} Credits
+                      </span>
+                      <span className="text-xs bg-gray-800 text-white px-1.5 py-0.5 rounded ml-1 group-hover:bg-purple-600">Add +</span>
+                   </button>
+
+                   {/* User Menu */}
+                   <div className="flex items-center gap-3 border-l border-gray-200 pl-4">
+                      <div className="flex flex-col items-end mr-2">
+                          {profile?.full_name && (
+                              <span className="text-sm font-bold text-gray-700">
+                                  {profile.full_name}
+                              </span>
+                          )}
+                          <span className="text-xs text-gray-500">
+                              {user.email}
+                          </span>
+                      </div>
+
+                      <button onClick={() => setIsSettingsOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Settings">
+                          <Settings size={20} />
+                      </button>
+
+                      <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-lg transition-colors border border-gray-200 hover:border-red-200"
+                          title="Sign Out"
+                      >
+                          <LogOut size={16} />
+                          <span className="text-sm font-medium">Logout</span>
+                      </button>
+                   </div>
+               </div>
+
+               {/* Mobile Menu Button */}
+               <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="md:hidden p-2 text-gray-600 hover:text-gray-800 transition-colors"
+               >
+                  {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+               </button>
+            </div>
+
+            {/* Mobile Dropdown Menu */}
+            {isMobileMenuOpen && (
+               <div className="md:hidden absolute top-[57px] left-0 w-full bg-white border-b border-gray-200 shadow-lg z-10">
+                  <div className="px-4 py-3 space-y-3">
+                     {/* User Info */}
+                     <div className="pb-3 border-b border-gray-200">
                         {profile?.full_name && (
-                            <span className="text-sm font-bold text-gray-700 hidden md:block">
-                                {profile.full_name}
-                            </span>
+                           <p className="text-sm font-bold text-gray-700">{profile.full_name}</p>
                         )}
-                        <span className="text-xs text-gray-500 hidden md:block">
-                            {user.email}
+                        <p className="text-xs text-gray-500">{user.email}</p>
+                     </div>
+
+                     {/* Credits */}
+                     <button
+                        onClick={() => {
+                           setIsPricingOpen(true);
+                           setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-purple-50 rounded-lg transition-all group"
+                     >
+                        <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-700">
+                           {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
-                    </div>
-                    
-                    <button onClick={() => setIsSettingsOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Settings">
-                        <Settings size={20} />
-                    </button>
-                    
-                    <button 
-                        onClick={handleLogout} 
-                        className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-lg transition-colors border border-gray-200 hover:border-red-200"
-                        title="Sign Out"
-                    >
-                        <LogOut size={16} />
-                        <span className="text-sm font-medium hidden md:inline">Logout</span>
-                    </button>
-                 </div>
-             </div>
-          </div>
+                        <span className="text-xs bg-gray-800 text-white px-2 py-1 rounded group-hover:bg-purple-600">Add +</span>
+                     </button>
+
+                     {/* Settings */}
+                     <button
+                        onClick={() => {
+                           setIsSettingsOpen(true);
+                           setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                     >
+                        <Settings size={18} />
+                        <span className="text-sm font-medium">Settings</span>
+                     </button>
+
+                     {/* Logout */}
+                     <button
+                        onClick={() => {
+                           handleLogout();
+                           setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                     >
+                        <LogOut size={18} />
+                        <span className="text-sm font-medium">Logout</span>
+                     </button>
+                  </div>
+               </div>
+            )}
+          </>
       )}
 
       <main className={`w-full transition-all duration-300 ${user ? 'pt-20' : ''}`}>
