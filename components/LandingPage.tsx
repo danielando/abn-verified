@@ -5,9 +5,11 @@ interface LandingPageProps {
   onGetStarted: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onAboutClick?: () => void;
+  onContactClick?: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header / Nav */}
@@ -355,8 +357,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <div>
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li>
+                  <button onClick={onAboutClick} className="hover:text-white transition-colors">
+                    About
+                  </button>
+                </li>
+                <li>
+                  <button onClick={onContactClick} className="hover:text-white transition-colors">
+                    Contact
+                  </button>
+                </li>
                 <li><a href="mailto:support@abnverify.com" className="hover:text-white transition-colors">Support</a></li>
               </ul>
             </div>

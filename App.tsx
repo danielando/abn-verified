@@ -2,16 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import Dashboard from './components/Dashboard';
 import FileUploadModal from './components/FileUploadModal';
-import SettingsModal from './components/SettingsModal';
 import AuthPage from './components/AuthPage';
 import PricingPage from './components/PricingPage';
 import LandingPage from './components/LandingPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
+import AboutPage from './components/AboutPage';
+import ContactPage from './components/ContactPage';
 import VerificationHistory from './components/VerificationHistory';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { Settings, LogOut, CreditCard, User as UserIcon, Menu, X, History } from 'lucide-react';
+import { LogOut, Menu, X, History } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 
 // Hardcoded Default GUID
@@ -24,12 +25,11 @@ const App: React.FC = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact'>('landing');
 
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -95,17 +95,7 @@ const App: React.FC = () => {
     setUser(null);
   };
 
-  const handleSaveGuid = (guid: string) => {
-    setAbnGuid(guid);
-    localStorage.setItem('abn_guid', guid);
-  };
-
   const handleUploadClick = () => {
-    if (!abnGuid) {
-        alert("Please configure your ABN Lookup GUID in Settings first.");
-        setIsSettingsOpen(true);
-        return;
-    }
     // Only reset if starting a fresh flow from empty or after error
     if (uploadStatus === UploadStatus.ERROR) {
        setUploadStatus(UploadStatus.IDLE);
@@ -205,13 +195,21 @@ const App: React.FC = () => {
       return <div className="min-h-screen flex items-center justify-center text-gray-400">Loading...</div>;
   }
 
-  // Handle legal pages
+  // Handle legal and info pages
   if (!user && currentPage === 'privacy') {
       return <PrivacyPolicy onBack={() => setCurrentPage('landing')} />;
   }
 
   if (!user && currentPage === 'terms') {
       return <TermsOfUse onBack={() => setCurrentPage('landing')} />;
+  }
+
+  if (!user && currentPage === 'about') {
+      return <AboutPage onBack={() => setCurrentPage('landing')} />;
+  }
+
+  if (!user && currentPage === 'contact') {
+      return <ContactPage onBack={() => setCurrentPage('landing')} />;
   }
 
   // Show landing page if not logged in and landing is visible
@@ -221,6 +219,8 @@ const App: React.FC = () => {
             onGetStarted={() => setCurrentPage('auth')}
             onPrivacyClick={() => setCurrentPage('privacy')}
             onTermsClick={() => setCurrentPage('terms')}
+            onAboutClick={() => setCurrentPage('about')}
+            onContactClick={() => setCurrentPage('contact')}
           />
       );
   }
@@ -299,10 +299,6 @@ const App: React.FC = () => {
                           <History size={20} />
                       </button>
 
-                      <button onClick={() => setIsSettingsOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Settings">
-                          <Settings size={20} />
-                      </button>
-
                       <button
                           onClick={handleLogout}
                           className="flex items-center gap-2 px-3 py-2 bg-gray-50 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-full transition-colors border border-gray-200 hover:border-red-200"
@@ -361,18 +357,6 @@ const App: React.FC = () => {
                         <span className="text-sm font-medium">Verification History</span>
                      </button>
 
-                     {/* Settings */}
-                     <button
-                        onClick={() => {
-                           setIsSettingsOpen(true);
-                           setIsMobileMenuOpen(false);
-                        }}
-                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors"
-                     >
-                        <Settings size={18} />
-                        <span className="text-sm font-medium">Settings</span>
-                     </button>
-
                      {/* Logout */}
                      <button
                         onClick={() => {
@@ -427,17 +411,10 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <FileUploadModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <FileUploadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
         onFileProcess={handleFileProcess}
-      />
-
-      <SettingsModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        onSave={handleSaveGuid}
-        currentGuid={abnGuid}
       />
     </div>
   );
