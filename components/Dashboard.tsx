@@ -578,14 +578,20 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
 
                   {/* ABN & ACN */}
                   <td className="py-4 px-6">
-                     <div className="flex flex-col gap-1">
-                        <p className="text-sm text-gray-700 font-mono font-medium">
-                            {record.abn}
-                        </p>
+                     <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                           <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200 tracking-wide">ABN</span>
+                           <span className="text-sm text-gray-800 font-mono font-semibold">
+                               {record.abn}
+                           </span>
+                        </div>
                         {record.acn && (
-                            <p className="text-xs text-gray-500 font-mono">
-                                <span className="text-gray-400 mr-1">ACN:</span>{record.acn}
-                            </p>
+                            <div className="flex items-center gap-2">
+                               <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-purple-100 text-purple-700 border border-purple-200 tracking-wide">ACN</span>
+                               <span className="text-sm text-gray-800 font-mono font-semibold">
+                                   {record.acn}
+                               </span>
+                            </div>
                         )}
                      </div>
                   </td>
