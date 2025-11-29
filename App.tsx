@@ -78,15 +78,6 @@ const App: React.FC = () => {
     };
   }, []);
 
-  // Debug: Log admin status when rendering
-  useEffect(() => {
-    if (user && profile) {
-      console.log('👤 Current user:', user.email);
-      console.log('🛡️ Admin status in render:', profile.is_admin);
-      console.log('📋 Full profile:', profile);
-    }
-  }, [user, profile]);
-
   const fetchProfile = async (userId: string) => {
     const { data, error } = await supabase
       .from('profiles')
@@ -95,13 +86,11 @@ const App: React.FC = () => {
       .single();
 
     if (data) {
-      console.log('🔍 Profile loaded:', data);
-      console.log('🛡️ Is Admin?', data.is_admin);
       setProfile(data as UserProfile);
     }
 
     if (error) {
-      console.error('❌ Error fetching profile:', error);
+      console.error('Error fetching profile:', error);
     }
   };
 

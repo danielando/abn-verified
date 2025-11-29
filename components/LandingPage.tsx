@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Upload, FileSpreadsheet, Shield, Server, Zap, Building2, FileCheck, TrendingUp, ArrowRight } from 'lucide-react';
+import { Check, Upload, FileSpreadsheet, Shield, Server, Zap, Building2, FileCheck, TrendingUp, ArrowRight, Package } from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -307,6 +307,75 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               >
                 Get Started
               </button>
+            </div>
+          </div>
+
+          {/* Pay-as-you-go Packs */}
+          <div className="mt-16 pt-16 border-t border-gray-200">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4">
+                <Package size={18} />
+                Pay-as-you-go Packs
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                One-time credit packs
+              </h3>
+              <p className="text-gray-600">
+                No monthly commitment. Credits never expire.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Pack 1 */}
+              <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold text-gray-900 mb-1">2,000 Credits</h4>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900">$24.99</span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">$0.0125/row</p>
+                </div>
+                <button
+                  onClick={onGetStarted}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all"
+                >
+                  Buy Pack
+                </button>
+              </div>
+
+              {/* Pack 2 - Highlighted */}
+              <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border-2 border-blue-300 p-6 hover:shadow-lg transition-all">
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold text-gray-900 mb-1">5,000 Credits</h4>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900">$54.99</span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">$0.011/row</p>
+                </div>
+                <button
+                  onClick={onGetStarted}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-md"
+                >
+                  Buy Pack
+                </button>
+              </div>
+
+              {/* Pack 3 */}
+              <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
+                <div className="mb-4">
+                  <h4 className="text-lg font-bold text-gray-900 mb-1">15,000 Credits</h4>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900">$149.00</span>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">$0.0099/row</p>
+                </div>
+                <button
+                  onClick={onGetStarted}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all"
+                >
+                  Buy Pack
+                </button>
+              </div>
             </div>
           </div>
         </div>
