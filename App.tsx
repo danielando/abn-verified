@@ -263,6 +263,15 @@ const App: React.FC = () => {
       );
   }
 
+  // Debug: Log admin status when rendering
+  useEffect(() => {
+    if (user && profile) {
+      console.log('👤 Current user:', user.email);
+      console.log('🛡️ Admin status in render:', profile.is_admin);
+      console.log('📋 Full profile:', profile);
+    }
+  }, [user, profile]);
+
   // Show admin panel if user is admin and clicked "Admin"
   if (isAdminOpen && user && profile?.is_admin) {
       return (
@@ -272,15 +281,6 @@ const App: React.FC = () => {
           />
       );
   }
-
-  // Debug: Log admin status when rendering
-  useEffect(() => {
-    if (user && profile) {
-      console.log('👤 Current user:', user.email);
-      console.log('🛡️ Admin status in render:', profile.is_admin);
-      console.log('📋 Full profile:', profile);
-    }
-  }, [user, profile]);
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] font-sans relative">
