@@ -9,9 +9,10 @@ interface AboutPageProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
+const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -240,7 +241,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
-        onArticlesClick={() => {}} // Will be wired up later
+        onArticlesClick={onArticlesClick}
       />
     </div>
   );

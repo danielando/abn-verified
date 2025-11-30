@@ -12,6 +12,7 @@ interface PricingPageProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
 // Live Stripe Price IDs
@@ -24,7 +25,7 @@ const STRIPE_PRICES = {
     pack_15k: 'price_1SYzOyL3TjGjLLsyxcN2LrLE',  // 15,000 Credit Pack - $149.00
 };
 
-const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
+const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
   const [loading, setLoading] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -332,7 +333,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
-        onArticlesClick={() => {}} // Will be wired up later
+        onArticlesClick={onArticlesClick}
       />
     </div>
   );

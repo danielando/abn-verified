@@ -12,6 +12,7 @@ interface PageLayoutProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({
@@ -23,7 +24,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   onAboutClick,
   onContactClick,
   onPrivacyClick,
-  onTermsClick
+  onTermsClick,
+  onArticlesClick
 }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col">
@@ -83,7 +85,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
-        onArticlesClick={() => {}} // Will be wired up later
+        onArticlesClick={onArticlesClick}
       />
     </div>
   );

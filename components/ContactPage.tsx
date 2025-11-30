@@ -9,9 +9,10 @@ interface ContactPageProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
+const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
   useEffect(() => {
     // Load Tally embed script
     const script = document.createElement('script');
@@ -218,7 +219,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutC
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
-        onArticlesClick={() => {}} // Will be wired up later
+        onArticlesClick={onArticlesClick}
       />
     </div>
   );

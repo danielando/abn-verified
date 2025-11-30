@@ -9,6 +9,7 @@ interface HelpCenterProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
 type Article = {
@@ -18,7 +19,7 @@ type Article = {
   content: React.ReactNode;
 };
 
-const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
+const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null);
 
   const articles: Article[] = [
@@ -453,7 +454,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
           onContactClick={onContactClick}
           onPrivacyClick={onPrivacyClick}
           onTermsClick={onTermsClick}
-          onArticlesClick={() => {}} // Will be wired up later
+          onArticlesClick={onArticlesClick}
         />
       </div>
     );
@@ -552,7 +553,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
-        onArticlesClick={() => {}} // Will be wired up later
+        onArticlesClick={onArticlesClick}
       />
     </div>
   );

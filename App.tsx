@@ -361,6 +361,7 @@ const App: React.FC = () => {
             onContactClick={() => setCurrentPage('contact')}
             onPrivacyClick={() => setCurrentPage('privacy')}
             onTermsClick={() => setCurrentPage('terms')}
+            onArticlesClick={() => setCurrentPage('articles')}
           />
       );
   }
