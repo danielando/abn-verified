@@ -594,7 +594,7 @@ For 100 new suppliers/month: **33-50 hours of manual work**
 ### Option 2: Custom Integration (API)
 
 **Example Code (Node.js):**
-```javascript
+
 async function verifySupplier(abn) {
   const response = await fetch('https://api.abnverify.com/verify', {
     method: 'POST',
@@ -613,7 +613,6 @@ async function verifySupplier(abn) {
     return { approved: false, risk: 'high' };
   }
 }
-```
 
 **Pros:**
 - Full control
@@ -692,11 +691,10 @@ async function verifySupplier(abn) {
 - GST registration may lapse
 
 **Automation Strategy:**
-```
+
 - Critical suppliers: Monthly verification
 - Active suppliers: Quarterly verification
 - Inactive suppliers: Annual verification
-```
 
 ### Alert System
 
