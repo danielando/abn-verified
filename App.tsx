@@ -11,6 +11,7 @@ import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
 import VerificationHistory from './components/VerificationHistory';
 import AdminPage from './components/AdminPage';
+import HelpCenter from './components/HelpCenter';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { LogOut, Menu, X, History, Shield, TrendingUp } from 'lucide-react';
