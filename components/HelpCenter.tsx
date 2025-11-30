@@ -397,34 +397,43 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-10 shadow-sm">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-4">
+        <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex justify-between items-center">
+              <button onClick={() => setSelectedArticle(null)} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                  <TrendingUp size={24} className="text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
+                  <p className="text-xs text-gray-500">Powered by ABR</p>
+                </div>
+              </button>
               <div className="flex items-center gap-4">
+                {onHelpClick && (
+                  <button
+                    onClick={onHelpClick}
+                    className="text-gray-600 hover:text-gray-900 text-sm font-medium"
+                  >
+                    Help
+                  </button>
+                )}
                 <button
                   onClick={() => setSelectedArticle(null)}
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm font-medium"
                 >
-                  <ArrowLeft size={20} />
-                  <span className="text-sm font-medium">Back to Help Center</span>
+                  <ArrowLeft size={16} />
+                  <span className="hidden sm:inline">Back</span>
                 </button>
-                <div className="hidden sm:flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                    <TrendingUp size={20} className="text-white" />
-                  </div>
-                  <span className="text-lg font-bold text-gray-800">ABNVerify</span>
-                </div>
               </div>
-              {onHelpClick && (
-                <button
-                  onClick={onHelpClick}
-                  className="text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors"
-                >
-                  Help
-                </button>
-              )}
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">{selectedContent.title}</h1>
+          </div>
+        </header>
+
+        {/* Page Title */}
+        <div className="bg-white border-b border-gray-200 py-6">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900">{selectedContent.title}</h2>
           </div>
         </div>
 
@@ -444,6 +453,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
           onContactClick={onContactClick}
           onPrivacyClick={onPrivacyClick}
           onTermsClick={onTermsClick}
+          onArticlesClick={() => {}} // Will be wired up later
         />
       </div>
     );
@@ -452,37 +462,44 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-4">
+      <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <TrendingUp size={24} className="text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
+                <p className="text-xs text-gray-500">Powered by ABR</p>
+              </div>
+            </button>
             <div className="flex items-center gap-4">
+              {onHelpClick && (
+                <button
+                  onClick={onHelpClick}
+                  className="text-gray-600 hover:text-gray-900 text-sm font-medium"
+                >
+                  Help
+                </button>
+              )}
               <button
                 onClick={onBack}
-                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm font-medium"
               >
-                <ArrowLeft size={20} />
-                <span className="text-sm font-medium">Back</span>
+                <ArrowLeft size={16} />
+                <span className="hidden sm:inline">Back</span>
               </button>
-              <div className="hidden sm:flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                  <TrendingUp size={20} className="text-white" />
-                </div>
-                <span className="text-lg font-bold text-gray-800">ABNVerify</span>
-              </div>
             </div>
-            {onHelpClick && (
-              <button
-                onClick={onHelpClick}
-                className="text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors"
-              >
-                Help
-              </button>
-            )}
           </div>
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Help Center</h1>
-            <p className="text-sm text-gray-500">Everything you need to know about ABNVerify</p>
-          </div>
+        </div>
+      </header>
+
+      {/* Page Title */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900">Help Center</h2>
+          <p className="text-sm text-gray-500 mt-2">Everything you need to know about ABNVerify</p>
         </div>
       </div>
 
@@ -535,6 +552,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
         onContactClick={onContactClick}
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
+        onArticlesClick={() => {}} // Will be wired up later
       />
     </div>
   );

@@ -1,28 +1,50 @@
 import React from 'react';
 import { ArrowLeft, CheckCircle, Target, Users, Zap, Shield, TrendingUp } from 'lucide-react';
+import Footer from './Footer';
 
 interface AboutPageProps {
   onBack: () => void;
+  onHelpClick?: () => void;
+  onAboutClick?: () => void;
+  onContactClick?: () => void;
+  onPrivacyClick?: () => void;
+  onTermsClick?: () => void;
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
+const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-          >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <TrendingUp size={24} className="text-white" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <TrendingUp size={24} className="text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
+                <p className="text-xs text-gray-500">Powered by ABR</p>
+              </div>
+            </button>
+            <div className="flex items-center gap-4">
+              {onHelpClick && (
+                <button
+                  onClick={onHelpClick}
+                  className="text-gray-600 hover:text-gray-900 text-sm font-medium"
+                >
+                  Help
+                </button>
+              )}
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm font-medium"
+              >
+                <ArrowLeft size={16} />
+                <span className="hidden sm:inline">Back</span>
+              </button>
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-gray-800">ABNVerify</h1>
-              <p className="text-xs text-gray-500">Powered by ABR</p>
-            </div>
-          </button>
+          </div>
         </div>
       </header>
 
@@ -212,19 +234,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack }) => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <TrendingUp size={20} className="text-white" />
-            </div>
-            <span className="text-white font-bold text-lg">ABNVerify</span>
-          </div>
-          <p className="text-sm">
-            © 2024 ABNVerify. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer
+        onHelpClick={onHelpClick}
+        onAboutClick={onAboutClick}
+        onContactClick={onContactClick}
+        onPrivacyClick={onPrivacyClick}
+        onTermsClick={onTermsClick}
+        onArticlesClick={() => {}} // Will be wired up later
+      />
     </div>
   );
 };

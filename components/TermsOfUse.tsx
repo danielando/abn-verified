@@ -1,31 +1,64 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, TrendingUp } from 'lucide-react';
+import Footer from './Footer';
 
 interface TermsOfUseProps {
   onBack: () => void;
+  onHelpClick?: () => void;
+  onAboutClick?: () => void;
+  onContactClick?: () => void;
+  onPrivacyClick?: () => void;
+  onTermsClick?: () => void;
 }
 
-const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
+const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-4xl mx-auto flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </button>
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Terms of Use</h1>
-            <p className="text-sm text-gray-500">Last updated: November 2024</p>
+      <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <TrendingUp size={24} className="text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
+                <p className="text-xs text-gray-500">Powered by ABR</p>
+              </div>
+            </button>
+            <div className="flex items-center gap-4">
+              {onHelpClick && (
+                <button
+                  onClick={onHelpClick}
+                  className="text-gray-600 hover:text-gray-900 text-sm font-medium"
+                >
+                  Help
+                </button>
+              )}
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm font-medium"
+              >
+                <ArrowLeft size={16} />
+                <span className="hidden sm:inline">Back</span>
+              </button>
+            </div>
           </div>
+        </div>
+      </header>
+
+      {/* Page Title */}
+      <div className="bg-white border-b border-gray-200 py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900">Terms of Use</h2>
+          <p className="text-sm text-gray-500 mt-2">Last updated: November 2024</p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+      <div className="flex-grow">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
         <div className="prose max-w-none">
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Agreement to Terms</h2>
@@ -188,7 +221,18 @@ const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack }) => {
             </p>
           </section>
         </div>
+        </div>
       </div>
+
+      {/* Footer */}
+      <Footer
+        onHelpClick={onHelpClick}
+        onAboutClick={onAboutClick}
+        onContactClick={onContactClick}
+        onPrivacyClick={onPrivacyClick}
+        onTermsClick={onTermsClick}
+        onArticlesClick={() => {}} // Will be wired up later
+      />
     </div>
   );
 };

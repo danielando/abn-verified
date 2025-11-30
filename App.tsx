@@ -12,7 +12,10 @@ import ContactPage from './components/ContactPage';
 import VerificationHistory from './components/VerificationHistory';
 import AdminPage from './components/AdminPage';
 import HelpCenter from './components/HelpCenter';
+import ArticlesList from './components/ArticlesList';
+import ArticleView from './components/ArticleView';
 import Footer from './components/Footer';
+import { getArticleById } from './articles/articleRegistry';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { LogOut, Menu, X, History, Shield, TrendingUp, HelpCircle } from 'lucide-react';
@@ -29,7 +32,8 @@ const App: React.FC = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article'>('landing');
+  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
@@ -218,19 +222,93 @@ const App: React.FC = () => {
 
   // Handle legal and info pages
   if (!user && currentPage === 'privacy') {
-      return <PrivacyPolicy onBack={() => setCurrentPage('landing')} />;
+      return (
+        <PrivacyPolicy
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
   }
 
   if (!user && currentPage === 'terms') {
-      return <TermsOfUse onBack={() => setCurrentPage('landing')} />;
+      return (
+        <TermsOfUse
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
   }
 
   if (!user && currentPage === 'about') {
-      return <AboutPage onBack={() => setCurrentPage('landing')} />;
+      return (
+        <AboutPage
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
   }
 
   if (!user && currentPage === 'contact') {
-      return <ContactPage onBack={() => setCurrentPage('landing')} />;
+      return (
+        <ContactPage
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
+  }
+
+  // Handle articles
+  if (currentPage === 'articles') {
+      return (
+        <ArticlesList
+          onBack={() => setCurrentPage('landing')}
+          onArticleClick={(articleId: string) => {
+            setSelectedArticleId(articleId);
+            setCurrentPage('article');
+          }}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
+  }
+
+  if (currentPage === 'article' && selectedArticleId) {
+      const article = getArticleById(selectedArticleId);
+      if (!article) {
+        setCurrentPage('articles');
+        return null;
+      }
+      return (
+        <ArticleView
+          article={article}
+          onBack={() => setCurrentPage('articles')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+          onArticlesClick={() => setCurrentPage('articles')}
+        />
+      );
   }
 
   if (!user && currentPage === 'help') {
