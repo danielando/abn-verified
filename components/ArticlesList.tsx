@@ -11,6 +11,8 @@ interface ArticlesListProps {
   onContactClick?: () => void;
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
 const ArticlesList: React.FC<ArticlesListProps> = ({
@@ -20,7 +22,9 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
   onAboutClick,
   onContactClick,
   onPrivacyClick,
-  onTermsClick
+  onTermsClick,
+  onFeaturesClick,
+  onPricingClick
 }) => {
   const categories = getAllCategories();
 
@@ -166,6 +170,8 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={() => {}} // Already on articles page
+        onFeaturesClick={onFeaturesClick}
+        onPricingClick={onPricingClick}
       />
     </div>
   );

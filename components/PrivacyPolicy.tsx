@@ -10,9 +10,11 @@ interface PrivacyPolicyProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
-const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
+const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -176,6 +178,8 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
+        onFeaturesClick={onFeaturesClick}
+        onPricingClick={onPricingClick}
       />
     </div>
   );

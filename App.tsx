@@ -14,6 +14,7 @@ import AdminPage from './components/AdminPage';
 import HelpCenter from './components/HelpCenter';
 import ArticlesList from './components/ArticlesList';
 import ArticleView from './components/ArticleView';
+import FeaturesPage from './components/FeaturesPage';
 import Footer from './components/Footer';
 import { getArticleById } from './articles/articleRegistry';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
@@ -32,7 +33,7 @@ const App: React.FC = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article' | 'features' | 'pricing'>('landing');
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   // App State
@@ -231,6 +232,8 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -245,6 +248,8 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -259,6 +264,8 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -273,6 +280,42 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
+        />
+      );
+  }
+
+  if (!user && currentPage === 'features') {
+      return (
+        <FeaturesPage
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+          onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
+        />
+      );
+  }
+
+  if (!user && currentPage === 'pricing') {
+      return (
+        <PricingPage
+          userId={null}
+          onBack={() => setCurrentPage('landing')}
+          onSuccess={() => {}}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+          onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -291,6 +334,8 @@ const App: React.FC = () => {
           onContactClick={() => setCurrentPage('contact')}
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -311,6 +356,8 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -325,6 +372,8 @@ const App: React.FC = () => {
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
           onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -340,6 +389,8 @@ const App: React.FC = () => {
             onContactClick={() => setCurrentPage('contact')}
             onHelpClick={() => setCurrentPage('help')}
             onArticlesClick={() => setCurrentPage('articles')}
+            onFeaturesClick={() => setCurrentPage('features')}
+            onPricingClick={() => setCurrentPage('pricing')}
           />
       );
   }
@@ -362,6 +413,8 @@ const App: React.FC = () => {
             onPrivacyClick={() => setCurrentPage('privacy')}
             onTermsClick={() => setCurrentPage('terms')}
             onArticlesClick={() => setCurrentPage('articles')}
+            onFeaturesClick={() => setCurrentPage('features')}
+            onPricingClick={() => setCurrentPage('pricing')}
           />
       );
   }
@@ -400,6 +453,9 @@ const App: React.FC = () => {
           onContactClick={() => setCurrentPage('contact')}
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
+          onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setCurrentPage('pricing')}
         />
       );
   }
@@ -622,6 +678,9 @@ const App: React.FC = () => {
           onContactClick={() => setCurrentPage('contact')}
           onPrivacyClick={() => setCurrentPage('privacy')}
           onTermsClick={() => setCurrentPage('terms')}
+          onArticlesClick={() => setCurrentPage('articles')}
+          onFeaturesClick={() => setCurrentPage('features')}
+          onPricingClick={() => setIsPricingOpen(true)}
         />
       )}
 

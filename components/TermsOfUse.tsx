@@ -10,9 +10,11 @@ interface TermsOfUseProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
-const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
+const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -232,6 +234,8 @@ const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack, onHelpClick, onAboutCli
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
+        onFeaturesClick={onFeaturesClick}
+        onPricingClick={onPricingClick}
       />
     </div>
   );

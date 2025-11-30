@@ -4,7 +4,7 @@ import { createCheckoutSession } from '../services/supabaseClient';
 import Footer from './Footer';
 
 interface PricingPageProps {
-  userId: string;
+  userId: string | null;
   onBack: () => void;
   onSuccess: () => void;
   onHelpClick?: () => void;
@@ -13,6 +13,8 @@ interface PricingPageProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
 // Live Stripe Price IDs
@@ -25,7 +27,7 @@ const STRIPE_PRICES = {
     pack_15k: 'price_1SYzOyL3TjGjLLsyxcN2LrLE',  // 15,000 Credit Pack - $149.00
 };
 
-const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick }) => {
+const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
   const [loading, setLoading] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -334,6 +336,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
+        onFeaturesClick={onFeaturesClick}
+        onPricingClick={onPricingClick}
       />
     </div>
   );

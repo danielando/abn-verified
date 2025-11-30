@@ -9,9 +9,11 @@ interface LandingPageProps {
   onContactClick?: () => void;
   onHelpClick?: () => void;
   onArticlesClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick, onArticlesClick }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header / Nav */}

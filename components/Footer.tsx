@@ -8,9 +8,11 @@ interface FooterProps {
   onTermsClick?: () => void;
   onHelpClick?: () => void;
   onArticlesClick?: () => void;
+  onFeaturesClick?: () => void;
+  onPricingClick?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onHelpClick, onArticlesClick }) => {
+const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onHelpClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,9 +32,20 @@ const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacy
           <div>
             <h4 className="text-white font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#demo" className="hover:text-white transition-colors">Try Free</a></li>
+              {onFeaturesClick && (
+                <li>
+                  <button onClick={onFeaturesClick} className="hover:text-white transition-colors">
+                    Features
+                  </button>
+                </li>
+              )}
+              {onPricingClick && (
+                <li>
+                  <button onClick={onPricingClick} className="hover:text-white transition-colors">
+                    Pricing
+                  </button>
+                </li>
+              )}
               {onHelpClick && (
                 <li>
                   <button onClick={onHelpClick} className="hover:text-white transition-colors">
