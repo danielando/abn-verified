@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Zap, Box, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Check, Zap, Box, AlertCircle, TrendingUp } from 'lucide-react';
 import { createCheckoutSession } from '../services/supabaseClient';
+import Footer from './Footer';
 
 interface PricingPageProps {
   userId: string;
   onBack: () => void;
   onSuccess: () => void;
+  onHelpClick?: () => void;
+  onAboutClick?: () => void;
+  onContactClick?: () => void;
+  onPrivacyClick?: () => void;
+  onTermsClick?: () => void;
 }
 
 // Live Stripe Price IDs
@@ -18,7 +24,7 @@ const STRIPE_PRICES = {
     pack_15k: 'price_1SYzOyL3TjGjLLsyxcN2LrLE',  // 15,000 Credit Pack - $149.00
 };
 
-const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) => {
+const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick }) => {
   const [loading, setLoading] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -58,16 +64,35 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 pb-12">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center gap-4">
-          <button
-            onClick={onBack}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ArrowLeft size={24} className="text-gray-600" />
-          </button>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <ArrowLeft size={20} />
+                <span className="text-sm font-medium">Back</span>
+              </button>
+              <div className="hidden sm:flex items-center gap-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                  <TrendingUp size={20} className="text-white" />
+                </div>
+                <span className="text-lg font-bold text-gray-800">ABNVerify</span>
+              </div>
+            </div>
+            {onHelpClick && (
+              <button
+                onClick={onHelpClick}
+                className="text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors"
+              >
+                Help
+              </button>
+            )}
+          </div>
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Buy Credits</h1>
             <p className="text-sm text-gray-500">Secure payment via Stripe</p>
@@ -76,6 +101,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
       </div>
 
       {/* Content */}
+      <div className="flex-grow">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
 
         {errorMessage && (
@@ -290,6 +316,16 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) 
           </div>
         </div>
       </div>
+      </div>
+
+      {/* Footer */}
+      <Footer
+        onHelpClick={onHelpClick}
+        onAboutClick={onAboutClick}
+        onContactClick={onContactClick}
+        onPrivacyClick={onPrivacyClick}
+        onTermsClick={onTermsClick}
+      />
     </div>
   );
 };

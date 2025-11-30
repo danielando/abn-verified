@@ -234,7 +234,16 @@ const App: React.FC = () => {
   }
 
   if (!user && currentPage === 'help') {
-      return <HelpCenter onBack={() => setCurrentPage('landing')} />;
+      return (
+        <HelpCenter
+          onBack={() => setCurrentPage('landing')}
+          onHelpClick={() => setCurrentPage('help')}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
   }
 
   // Show landing page if not logged in and landing is visible
@@ -263,6 +272,11 @@ const App: React.FC = () => {
             userId={user.id}
             onBack={() => setIsPricingOpen(false)}
             onSuccess={() => fetchProfile(user.id)}
+            onHelpClick={() => setIsHelpOpen(true)}
+            onAboutClick={() => setCurrentPage('about')}
+            onContactClick={() => setCurrentPage('contact')}
+            onPrivacyClick={() => setCurrentPage('privacy')}
+            onTermsClick={() => setCurrentPage('terms')}
           />
       );
   }
@@ -293,7 +307,16 @@ const App: React.FC = () => {
 
   // Show help center if user clicked "Help"
   if (isHelpOpen) {
-      return <HelpCenter onBack={() => setIsHelpOpen(false)} />;
+      return (
+        <HelpCenter
+          onBack={() => setIsHelpOpen(false)}
+          onHelpClick={() => setIsHelpOpen(true)}
+          onAboutClick={() => setCurrentPage('about')}
+          onContactClick={() => setCurrentPage('contact')}
+          onPrivacyClick={() => setCurrentPage('privacy')}
+          onTermsClick={() => setCurrentPage('terms')}
+        />
+      );
   }
 
   return (
