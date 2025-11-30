@@ -8,9 +8,10 @@ interface LandingPageProps {
   onAboutClick?: () => void;
   onContactClick?: () => void;
   onHelpClick?: () => void;
+  onArticlesClick?: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick, onArticlesClick }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header / Nav */}
@@ -433,6 +434,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                 <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#demo" className="hover:text-white transition-colors">Try Free</a></li>
+                {onArticlesClick && (
+                  <li>
+                    <button onClick={onArticlesClick} className="hover:text-white transition-colors">
+                      Articles
+                    </button>
+                  </li>
+                )}
                 {onHelpClick && (
                   <li>
                     <button onClick={onHelpClick} className="hover:text-white transition-colors">

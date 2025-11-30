@@ -334,6 +334,7 @@ const App: React.FC = () => {
             onAboutClick={() => setCurrentPage('about')}
             onContactClick={() => setCurrentPage('contact')}
             onHelpClick={() => setCurrentPage('help')}
+            onArticlesClick={() => setCurrentPage('articles')}
           />
       );
   }
