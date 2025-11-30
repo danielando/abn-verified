@@ -15,6 +15,7 @@ import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { LogOut, Menu, X, History, Shield, TrendingUp } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
+import { trackFileUpload, trackVerificationComplete, trackAddCreditsClick } from './utils/analytics';
 
 // Hardcoded Default GUID
 const DEFAULT_GUID = 'cb0b0ca6-6283-4780-a0fe-086a80ef6826';
@@ -136,6 +137,9 @@ const App: React.FC = () => {
     setData([]);
     setCurrentFileName(file.name);
 
+    // Track file upload event
+    trackFileUpload(file.name, lineCount);
+
     // 3. Start Stream
     let actualRecordsProcessed = 0;
     let allRecords: AbnRecord[] = [];
@@ -174,6 +178,14 @@ const App: React.FC = () => {
           // --- SAVE VERIFICATION RUN TO DATABASE ---
           const successfulCount = allRecords.filter(r => r.status === 'Active').length;
           const failedCount = allRecords.length - successfulCount;
+
+          // Track verification completion
+          trackVerificationComplete({
+            totalRecords: allRecords.length,
+            successfulVerifications: successfulCount,
+            failedVerifications: failedCount,
+            creditsUsed: creditsToDeduct,
+          });
 
           try {
             await supabase.from('verification_runs').insert({
@@ -290,7 +302,10 @@ const App: React.FC = () => {
                <div className="hidden md:flex items-center gap-4">
                    {/* Credits Display */}
                    <button
-                      onClick={() => setIsPricingOpen(true)}
+                      onClick={() => {
+                        trackAddCreditsClick();
+                        setIsPricingOpen(true);
+                      }}
                       className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-blue-50 rounded-full border border-gray-200 hover:border-blue-200 transition-all group"
                    >
                       <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
@@ -362,6 +377,7 @@ const App: React.FC = () => {
                      {/* Credits */}
                      <button
                         onClick={() => {
+                           trackAddCreditsClick();
                            setIsPricingOpen(true);
                            setIsMobileMenuOpen(false);
                         }}

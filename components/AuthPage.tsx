@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { Mail, Lock, Loader2, ArrowRight, CheckCircle, AlertCircle, Sparkles, TrendingUp, Shield, ArrowLeft } from 'lucide-react';
+import { trackSignUp } from '../utils/analytics';
 
 interface AuthPageProps {
   onSuccess: () => void;
@@ -41,6 +42,9 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
         });
         if (error) throw error;
 
+        // Track sign-up conversion
+        trackSignUp('email');
+
         // If session is null, it means email confirmation is required
         if (data && !data.session) {
             setShowConfirmation(true);
@@ -71,6 +75,9 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
     });
     if (error) {
       setError(error.message);
+    } else {
+      // Track Google sign-up/sign-in
+      trackSignUp('google');
     }
   };
 
@@ -85,6 +92,9 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
     });
     if (error) {
       setError(error.message);
+    } else {
+      // Track Microsoft sign-up/sign-in
+      trackSignUp('microsoft');
     }
   };
 
