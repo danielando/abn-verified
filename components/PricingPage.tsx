@@ -8,14 +8,14 @@ interface PricingPageProps {
   onSuccess: () => void;
 }
 
-// Your Stripe Price IDs
+// Live Stripe Price IDs
 const STRIPE_PRICES = {
-    starter: 'price_1SYXd0L3TjGjLLsy5B6X2h1r',  // Starter Pack
-    growth: 'price_1SYXdpL3TjGjLLsyccPZ5u6j',   // Growth Pack
-    pro: 'price_1SYXeGL3TjGjLLsyYAMyBJKD',      // Pro Pack
-    pack_2k: 'price_1SYXd0L3TjGjLLsy5B6X2h1r',
-    pack_5k: 'price_1SYXdpL3TjGjLLsyccPZ5u6j',
-    pack_15k: 'price_1SYXeGL3TjGjLLsyYAMyBJKD',
+    starter: 'price_1SYRF6L3TjGjLLsyuk4fg61r',   // Starter Pack - $29/mo (3,000 lookups)
+    growth: 'price_1SYRFRL3TjGjLLsyfxpEtbup',    // Growth Plan - $79/mo (10,000 lookups)
+    pro: 'price_1SYRFlL3TjGjLLsyxwTEhrp1',       // Pro Plan - $149/mo (25,000 lookups)
+    pack_2k: 'price_1SYzOOL3TjGjLLsyvmk6TOqD',   // 2,000 Credit Pack - $24.99
+    pack_5k: 'price_1SYzOiL3TjGjLLsyazsihVK5',   // 5,000 Credit Pack - $54.99
+    pack_15k: 'price_1SYzOyL3TjGjLLsyxcN2LrLE',  // 15,000 Credit Pack - $149.00
 };
 
 const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess }) => {
