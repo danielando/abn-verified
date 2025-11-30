@@ -7,9 +7,10 @@ interface LandingPageProps {
   onTermsClick?: () => void;
   onAboutClick?: () => void;
   onContactClick?: () => void;
+  onHelpClick?: () => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header / Nav */}
@@ -27,6 +28,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           <div className="flex items-center gap-4">
             <a href="#pricing" className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Pricing</a>
             <a href="#demo" className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Try Free</a>
+            {onHelpClick && (
+              <button
+                onClick={onHelpClick}
+                className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block"
+              >
+                Help
+              </button>
+            )}
             <button
               onClick={onGetStarted}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
@@ -424,6 +433,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                 <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#demo" className="hover:text-white transition-colors">Try Free</a></li>
+                {onHelpClick && (
+                  <li>
+                    <button onClick={onHelpClick} className="hover:text-white transition-colors">
+                      Help Center
+                    </button>
+                  </li>
+                )}
               </ul>
             </div>
 

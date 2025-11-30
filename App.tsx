@@ -14,7 +14,7 @@ import AdminPage from './components/AdminPage';
 import HelpCenter from './components/HelpCenter';
 import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
-import { LogOut, Menu, X, History, Shield, TrendingUp } from 'lucide-react';
+import { LogOut, Menu, X, History, Shield, TrendingUp, HelpCircle } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 import { trackFileUpload, trackVerificationComplete, trackAddCreditsClick } from './utils/analytics';
 
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help'>('landing');
 
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
@@ -37,6 +37,7 @@ const App: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [currentFileName, setCurrentFileName] = useState<string>('');
 
   // Upload State
@@ -231,6 +232,10 @@ const App: React.FC = () => {
       return <ContactPage onBack={() => setCurrentPage('landing')} />;
   }
 
+  if (!user && currentPage === 'help') {
+      return <HelpCenter onBack={() => setCurrentPage('landing')} />;
+  }
+
   // Show landing page if not logged in and landing is visible
   if (!user && currentPage === 'landing') {
       return (
@@ -240,6 +245,7 @@ const App: React.FC = () => {
             onTermsClick={() => setCurrentPage('terms')}
             onAboutClick={() => setCurrentPage('about')}
             onContactClick={() => setCurrentPage('contact')}
+            onHelpClick={() => setCurrentPage('help')}
           />
       );
   }
@@ -282,6 +288,11 @@ const App: React.FC = () => {
             onBack={() => setIsAdminOpen(false)}
           />
       );
+  }
+
+  // Show help center if user clicked "Help"
+  if (isHelpOpen) {
+      return <HelpCenter onBack={() => setIsHelpOpen(false)} />;
   }
 
   return (
@@ -331,6 +342,10 @@ const App: React.FC = () => {
 
                       <button onClick={() => setIsHistoryOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Verification History">
                           <History size={20} />
+                      </button>
+
+                      <button onClick={() => setIsHelpOpen(true)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Help Center">
+                          <HelpCircle size={20} />
                       </button>
 
                       {profile?.is_admin && (
@@ -400,6 +415,18 @@ const App: React.FC = () => {
                      >
                         <History size={18} />
                         <span className="text-sm font-medium">Verification History</span>
+                     </button>
+
+                     {/* Help Center */}
+                     <button
+                        onClick={() => {
+                           setIsHelpOpen(true);
+                           setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors"
+                     >
+                        <HelpCircle size={18} />
+                        <span className="text-sm font-medium">Help Center</span>
                      </button>
 
                      {/* Admin Panel (only for admins) */}
