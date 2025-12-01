@@ -228,7 +228,7 @@ const App: React.FC = () => {
   }
 
   // Handle legal and info pages
-  if (!user && currentPage === 'privacy') {
+  if (currentPage === 'privacy') {
       return (
         <PrivacyPolicy
           onBack={() => navigateToPage('landing')}
@@ -245,7 +245,7 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'terms') {
+  if (currentPage === 'terms') {
       return (
         <TermsOfUse
           onBack={() => navigateToPage('landing')}
@@ -262,7 +262,7 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'about') {
+  if (currentPage === 'about') {
       return (
         <AboutPage
           onBack={() => navigateToPage('landing')}
@@ -279,7 +279,7 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'contact') {
+  if (currentPage === 'contact') {
       return (
         <ContactPage
           onBack={() => navigateToPage('landing')}
@@ -296,7 +296,7 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'features') {
+  if (currentPage === 'features') {
       return (
         <FeaturesPage
           onBack={() => navigateToPage('landing')}
@@ -313,12 +313,12 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'pricing') {
+  if (currentPage === 'pricing') {
       return (
         <PricingPage
-          userId={null}
+          userId={user?.id || null}
           onBack={() => navigateToPage('landing')}
-          onSuccess={() => {}}
+          onSuccess={() => user?.id && fetchProfile(user.id)}
           onHelpClick={() => navigateToPage('help')}
           onAboutClick={() => navigateToPage('about')}
           onContactClick={() => navigateToPage('contact')}
@@ -376,7 +376,7 @@ const App: React.FC = () => {
       );
   }
 
-  if (!user && currentPage === 'help') {
+  if (currentPage === 'help') {
       return (
         <HelpCenter
           onBack={() => navigateToPage('landing')}
