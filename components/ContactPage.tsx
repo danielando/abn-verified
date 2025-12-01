@@ -12,9 +12,10 @@ interface ContactPageProps {
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
+const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
   useEffect(() => {
     // Load Tally embed script
     const script = document.createElement('script');
@@ -123,7 +124,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutC
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>

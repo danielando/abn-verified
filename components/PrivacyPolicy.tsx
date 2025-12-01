@@ -12,9 +12,10 @@ interface PrivacyPolicyProps {
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
-const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
+const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
@@ -44,7 +45,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>

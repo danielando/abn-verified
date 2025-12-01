@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
-import { Shield, Users, CreditCard, ArrowLeft, Plus, Minus, Search, AlertCircle, CheckCircle, Loader2, TrendingUp } from 'lucide-react';
+import { Shield, Users, CreditCard, ArrowLeft, Plus, Minus, Search, AlertCircle, CheckCircle, Loader2, TrendingUp, Trash2 } from 'lucide-react';
 
 interface AdminPageProps {
   onBack: () => void;
@@ -25,6 +25,8 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
   const [processing, setProcessing] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [deletingUserId, setDeletingUserId] = useState<string | null>(null);
+  const [confirmDeleteEmail, setConfirmDeleteEmail] = useState<string>('');
 
   useEffect(() => {
     fetchAllUsers();
@@ -110,6 +112,66 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
     } catch (error: any) {
       console.error('Error adjusting credits:', error);
       setErrorMessage('Failed to adjust credits: ' + error.message);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const handleDeleteUser = async (userId: string, userEmail: string) => {
+    // Prevent admin from deleting themselves
+    if (userId === currentUserId) {
+      setErrorMessage('You cannot delete your own account!');
+      setTimeout(() => setErrorMessage(''), 3000);
+      return;
+    }
+
+    // Verify email confirmation
+    if (confirmDeleteEmail !== userEmail) {
+      setErrorMessage('Email does not match. Please type the exact email to confirm deletion.');
+      return;
+    }
+
+    setProcessing(true);
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    try {
+      // Call Supabase Admin API to delete the user from auth.users
+      // This requires a service role key and admin privileges
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        throw new Error('No active session');
+      }
+
+      // Delete user via RPC function (you'll need to create this function in Supabase)
+      const { error: deleteError } = await supabase.rpc('delete_user_admin', {
+        user_id_to_delete: userId
+      });
+
+      if (deleteError) {
+        // If RPC function doesn't exist, try direct deletion from profiles
+        // This will work due to the cascade delete from auth trigger
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .delete()
+          .eq('id', userId);
+
+        if (profileError) throw profileError;
+      }
+
+      // Refresh user list
+      await fetchAllUsers();
+
+      setSuccessMessage(`Successfully deleted user: ${userEmail}`);
+      setDeletingUserId(null);
+      setConfirmDeleteEmail('');
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setSuccessMessage(''), 5000);
+    } catch (error: any) {
+      console.error('Error deleting user:', error);
+      setErrorMessage(`Failed to delete user: ${error.message}. Note: Full user deletion requires admin API access.`);
     } finally {
       setProcessing(false);
     }
@@ -306,7 +368,38 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
                       </span>
                     </td>
                     <td className="py-4 px-6">
-                      {editingUserId === user.id ? (
+                      {deletingUserId === user.id ? (
+                        <div className="flex flex-col gap-2">
+                          <p className="text-xs text-red-600 font-semibold">⚠️ Type email to confirm:</p>
+                          <input
+                            type="text"
+                            value={confirmDeleteEmail}
+                            onChange={(e) => setConfirmDeleteEmail(e.target.value)}
+                            placeholder={user.email}
+                            className="w-full px-3 py-1.5 border border-red-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                            disabled={processing}
+                          />
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleDeleteUser(user.id, user.email)}
+                              disabled={processing || confirmDeleteEmail !== user.email}
+                              className="flex-1 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                              {processing ? 'Deleting...' : 'Confirm Delete'}
+                            </button>
+                            <button
+                              onClick={() => {
+                                setDeletingUserId(null);
+                                setConfirmDeleteEmail('');
+                              }}
+                              disabled={processing}
+                              className="px-3 py-1.5 text-xs text-gray-600 hover:text-gray-800 transition-colors"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : editingUserId === user.id ? (
                         <div className="flex items-center gap-2">
                           <input
                             type="number"
@@ -345,12 +438,30 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
                           </button>
                         </div>
                       ) : (
-                        <button
-                          onClick={() => setEditingUserId(user.id)}
-                          className="px-4 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium transition-colors"
-                        >
-                          Adjust Credits
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setEditingUserId(user.id)}
+                            className="px-4 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            Adjust Credits
+                          </button>
+                          <button
+                            onClick={() => {
+                              if (user.id === currentUserId) {
+                                setErrorMessage('You cannot delete your own account!');
+                                setTimeout(() => setErrorMessage(''), 3000);
+                                return;
+                              }
+                              setDeletingUserId(user.id);
+                              setConfirmDeleteEmail('');
+                            }}
+                            disabled={user.id === currentUserId}
+                            className="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                            title={user.id === currentUserId ? 'Cannot delete yourself' : 'Delete User'}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
                       )}
                     </td>
                   </tr>

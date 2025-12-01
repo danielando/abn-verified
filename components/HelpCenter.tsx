@@ -12,6 +12,7 @@ interface HelpCenterProps {
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
 type Article = {
@@ -21,7 +22,7 @@ type Article = {
   content: React.ReactNode;
 };
 
-const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
+const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null);
 
   const articles: Article[] = [
@@ -426,7 +427,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
                 onClick={onBack}
                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
               >
-                Sign In
+                {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
               </button>
             </div>
           </div>
@@ -492,7 +493,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>

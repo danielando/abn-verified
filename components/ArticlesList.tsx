@@ -13,6 +13,7 @@ interface ArticlesListProps {
   onTermsClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
 const ArticlesList: React.FC<ArticlesListProps> = ({
@@ -24,7 +25,8 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
   onPrivacyClick,
   onTermsClick,
   onFeaturesClick,
-  onPricingClick
+  onPricingClick,
+  isLoggedIn
 }) => {
   const categories = getAllCategories();
 
@@ -57,7 +59,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>

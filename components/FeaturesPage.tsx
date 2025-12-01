@@ -12,6 +12,7 @@ interface FeaturesPageProps {
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
 const FeaturesPage: React.FC<FeaturesPageProps> = ({
@@ -23,7 +24,8 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
   onTermsClick,
   onArticlesClick,
   onFeaturesClick,
-  onPricingClick
+  onPricingClick,
+  isLoggedIn
 }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -54,7 +56,7 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>

@@ -36,6 +36,12 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article' | 'features' | 'pricing'>('landing');
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
+  // Helper function to navigate and scroll to top
+  const navigateToPage = (page: typeof currentPage) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -225,15 +231,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'privacy') {
       return (
         <PrivacyPolicy
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -241,15 +248,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'terms') {
       return (
         <TermsOfUse
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -257,15 +265,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'about') {
       return (
         <AboutPage
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -273,15 +282,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'contact') {
       return (
         <ContactPage
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -289,15 +299,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'features') {
       return (
         <FeaturesPage
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -306,16 +317,17 @@ const App: React.FC = () => {
       return (
         <PricingPage
           userId={null}
-          onBack={() => setCurrentPage('landing')}
+          onBack={() => navigateToPage('landing')}
           onSuccess={() => {}}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -324,18 +336,19 @@ const App: React.FC = () => {
   if (currentPage === 'articles') {
       return (
         <ArticlesList
-          onBack={() => setCurrentPage('landing')}
+          onBack={() => navigateToPage('landing')}
           onArticleClick={(articleId: string) => {
             setSelectedArticleId(articleId);
-            setCurrentPage('article');
+            navigateToPage('article');
           }}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -343,21 +356,22 @@ const App: React.FC = () => {
   if (currentPage === 'article' && selectedArticleId) {
       const article = getArticleById(selectedArticleId);
       if (!article) {
-        setCurrentPage('articles');
+        navigateToPage('articles');
         return null;
       }
       return (
         <ArticleView
           article={article}
-          onBack={() => setCurrentPage('articles')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('articles')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -365,15 +379,16 @@ const App: React.FC = () => {
   if (!user && currentPage === 'help') {
       return (
         <HelpCenter
-          onBack={() => setCurrentPage('landing')}
-          onHelpClick={() => setCurrentPage('help')}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onBack={() => navigateToPage('landing')}
+          onHelpClick={() => navigateToPage('help')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -382,22 +397,23 @@ const App: React.FC = () => {
   if (!user && currentPage === 'landing') {
       return (
           <LandingPage
-            onGetStarted={() => setCurrentPage('auth')}
-            onPrivacyClick={() => setCurrentPage('privacy')}
-            onTermsClick={() => setCurrentPage('terms')}
-            onAboutClick={() => setCurrentPage('about')}
-            onContactClick={() => setCurrentPage('contact')}
-            onHelpClick={() => setCurrentPage('help')}
-            onArticlesClick={() => setCurrentPage('articles')}
-            onFeaturesClick={() => setCurrentPage('features')}
-            onPricingClick={() => setCurrentPage('pricing')}
+            onGetStarted={() => navigateToPage('auth')}
+            onPrivacyClick={() => navigateToPage('privacy')}
+            onTermsClick={() => navigateToPage('terms')}
+            onAboutClick={() => navigateToPage('about')}
+            onContactClick={() => navigateToPage('contact')}
+            onHelpClick={() => navigateToPage('help')}
+            onArticlesClick={() => navigateToPage('articles')}
+            onFeaturesClick={() => navigateToPage('features')}
+            onPricingClick={() => navigateToPage('pricing')}
+            isLoggedIn={!!user}
           />
       );
   }
 
   // Show full-page auth if not logged in and user clicked "Get Started"
   if (!user && currentPage === 'auth') {
-      return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} onBack={() => setCurrentPage('landing')} />;
+      return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} onBack={() => navigateToPage('landing')} />;
   }
 
   // Show full-page pricing if user clicked "Buy Credits"
@@ -408,13 +424,14 @@ const App: React.FC = () => {
             onBack={() => setIsPricingOpen(false)}
             onSuccess={() => fetchProfile(user.id)}
             onHelpClick={() => setIsHelpOpen(true)}
-            onAboutClick={() => setCurrentPage('about')}
-            onContactClick={() => setCurrentPage('contact')}
-            onPrivacyClick={() => setCurrentPage('privacy')}
-            onTermsClick={() => setCurrentPage('terms')}
-            onArticlesClick={() => setCurrentPage('articles')}
-            onFeaturesClick={() => setCurrentPage('features')}
-            onPricingClick={() => setCurrentPage('pricing')}
+            onAboutClick={() => navigateToPage('about')}
+            onContactClick={() => navigateToPage('contact')}
+            onPrivacyClick={() => navigateToPage('privacy')}
+            onTermsClick={() => navigateToPage('terms')}
+            onArticlesClick={() => navigateToPage('articles')}
+            onFeaturesClick={() => navigateToPage('features')}
+            onPricingClick={() => navigateToPage('pricing')}
+            isLoggedIn={!!user}
           />
       );
   }
@@ -449,13 +466,14 @@ const App: React.FC = () => {
         <HelpCenter
           onBack={() => setIsHelpOpen(false)}
           onHelpClick={() => setIsHelpOpen(true)}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
-          onPricingClick={() => setCurrentPage('pricing')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
+          onPricingClick={() => navigateToPage('pricing')}
+          isLoggedIn={!!user}
         />
       );
   }
@@ -674,12 +692,12 @@ const App: React.FC = () => {
       {user && (
         <Footer
           onHelpClick={() => setIsHelpOpen(true)}
-          onAboutClick={() => setCurrentPage('about')}
-          onContactClick={() => setCurrentPage('contact')}
-          onPrivacyClick={() => setCurrentPage('privacy')}
-          onTermsClick={() => setCurrentPage('terms')}
-          onArticlesClick={() => setCurrentPage('articles')}
-          onFeaturesClick={() => setCurrentPage('features')}
+          onAboutClick={() => navigateToPage('about')}
+          onContactClick={() => navigateToPage('contact')}
+          onPrivacyClick={() => navigateToPage('privacy')}
+          onTermsClick={() => navigateToPage('terms')}
+          onArticlesClick={() => navigateToPage('articles')}
+          onFeaturesClick={() => navigateToPage('features')}
           onPricingClick={() => setIsPricingOpen(true)}
         />
       )}

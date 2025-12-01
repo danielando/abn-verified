@@ -14,6 +14,7 @@ interface ArticleViewProps {
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
   onPricingClick?: () => void;
+  isLoggedIn?: boolean;
 }
 
 const ArticleView: React.FC<ArticleViewProps> = ({
@@ -26,7 +27,8 @@ const ArticleView: React.FC<ArticleViewProps> = ({
   onTermsClick,
   onArticlesClick,
   onFeaturesClick,
-  onPricingClick
+  onPricingClick,
+  isLoggedIn
 }) => {
   // Update document title and meta tags for SEO
   useEffect(() => {
@@ -164,7 +166,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({
               onClick={onBack}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
             >
-              Sign In
+              {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
           </div>
         </div>
@@ -213,29 +215,68 @@ const ArticleView: React.FC<ArticleViewProps> = ({
             <div
               className="article-content"
               dangerouslySetInnerHTML={{
-                __html: article.content
-                  .split('\n')
-                  .map(line => {
-                    // Convert markdown-style headings to HTML
-                    if (line.startsWith('# ')) {
-                      return `<h1>${line.substring(2)}</h1>`;
-                    } else if (line.startsWith('## ')) {
-                      return `<h2>${line.substring(3)}</h2>`;
+                __html: (() => {
+                  const lines = article.content.split('\n');
+                  const html: string[] = [];
+                  let inList = false;
+
+                  const processInlineMarkdown = (text: string): string => {
+                    // Handle bold **text**
+                    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                    // Handle italic *text*
+                    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+                    // Handle inline code `code`
+                    text = text.replace(/`(.+?)`/g, '<code>$1</code>');
+                    return text;
+                  };
+
+                  lines.forEach((line, index) => {
+                    const trimmedLine = line.trim();
+
+                    // Handle headings
+                    if (line.startsWith('#### ')) {
+                      if (inList) { html.push('</ul>'); inList = false; }
+                      html.push(`<h4>${processInlineMarkdown(line.substring(5))}</h4>`);
                     } else if (line.startsWith('### ')) {
-                      return `<h3>${line.substring(4)}</h3>`;
-                    } else if (line.startsWith('#### ')) {
-                      return `<h4>${line.substring(5)}</h4>`;
-                    } else if (line.startsWith('**') && line.endsWith('**')) {
-                      return `<p><strong>${line.substring(2, line.length - 2)}</strong></p>`;
-                    } else if (line.trim() === '') {
-                      return '<br />';
-                    } else if (line.startsWith('- ')) {
-                      return `<li>${line.substring(2)}</li>`;
-                    } else {
-                      return `<p>${line}</p>`;
+                      if (inList) { html.push('</ul>'); inList = false; }
+                      html.push(`<h3>${processInlineMarkdown(line.substring(4))}</h3>`);
+                    } else if (line.startsWith('## ')) {
+                      if (inList) { html.push('</ul>'); inList = false; }
+                      html.push(`<h2>${processInlineMarkdown(line.substring(3))}</h2>`);
+                    } else if (line.startsWith('# ')) {
+                      if (inList) { html.push('</ul>'); inList = false; }
+                      html.push(`<h1>${processInlineMarkdown(line.substring(2))}</h1>`);
                     }
-                  })
-                  .join('')
+                    // Handle list items
+                    else if (line.startsWith('- ') || line.startsWith('* ')) {
+                      if (!inList) {
+                        html.push('<ul>');
+                        inList = true;
+                      }
+                      html.push(`<li>${processInlineMarkdown(line.substring(2))}</li>`);
+                    }
+                    // Handle empty lines
+                    else if (trimmedLine === '') {
+                      if (inList) {
+                        html.push('</ul>');
+                        inList = false;
+                      }
+                      html.push('<br />');
+                    }
+                    // Handle paragraphs
+                    else {
+                      if (inList) { html.push('</ul>'); inList = false; }
+                      html.push(`<p>${processInlineMarkdown(line)}</p>`);
+                    }
+                  });
+
+                  // Close any open list
+                  if (inList) {
+                    html.push('</ul>');
+                  }
+
+                  return html.join('');
+                })()
               }}
             />
           </div>
