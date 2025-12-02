@@ -17,33 +17,35 @@ interface PrivacyPolicyProps {
 
 const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col" style={{ fontFamily: 'Raleway, sans-serif' }}>
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <TrendingUp size={24} className="text-white" />
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+              <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
-              <p className="text-xs text-gray-500">Powered by ABR</p>
+              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+              <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
             </div>
           </button>
           <div className="flex items-center gap-4">
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Pricing</button>
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Try Free</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Pricing</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Try Free</button>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
-                className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block"
+                className="text-sm font-medium hidden sm:block hover:opacity-80"
+                style={{ color: '#4b4b4b' }}
               >
                 Help
               </button>
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-4 py-2 rounded-full font-medium text-sm transition-all shadow-md hover:shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -54,8 +56,8 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
       {/* Page Title */}
       <div className="bg-white border-b border-gray-200 py-6">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900">Privacy Policy</h2>
-          <p className="text-sm text-gray-500 mt-2">Last updated: November 2024</p>
+          <h2 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Privacy Policy</h2>
+          <p className="text-sm mt-2" style={{ color: '#828282' }}>Last updated: November 2024</p>
         </div>
       </div>
 
@@ -64,15 +66,15 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
         <div className="prose max-w-none">
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
-            <p className="text-gray-700 mb-4">
+            <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Introduction</h2>
+            <p className="mb-4" style={{ color: '#4b4b4b' }}>
               ABNVerify ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our ABN verification service.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Information We Collect</h2>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">Account Information</h3>
+            <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Information We Collect</h2>
+            <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Account Information</h3>
             <ul className="list-disc pl-6 mb-4 text-gray-700">
               <li>Email address</li>
               <li>Name (if provided)</li>
