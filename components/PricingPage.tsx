@@ -68,32 +68,34 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, #fff9e6 0%, #ffffff 100%)' }}>
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                <TrendingUp size={24} className="text-white" />
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+                <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
-                <p className="text-xs text-gray-500">Powered by ABR</p>
+                <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+                <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
               </div>
             </button>
             <div className="flex items-center gap-4">
               {onHelpClick && (
                 <button
                   onClick={onHelpClick}
-                  className="text-gray-600 hover:text-gray-900 text-sm font-medium"
+                  className="text-sm font-medium hover:opacity-80"
+                  style={{ color: '#4b4b4b' }}
                 >
                   Help
                 </button>
               )}
               <button
                 onClick={onBack}
-                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm font-medium"
+                className="flex items-center gap-2 text-sm font-medium hover:opacity-80"
+                style={{ color: '#4b4b4b' }}
               >
                 <ArrowLeft size={16} />
                 <span className="hidden sm:inline">Back</span>
@@ -104,10 +106,10 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
       </header>
 
       {/* Page Title */}
-      <div className="bg-white border-b border-gray-200 py-6">
+      <div className="bg-white border-b py-6" style={{ borderColor: '#e5e5e5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900">Buy Credits</h2>
-          <p className="text-sm text-gray-500 mt-2">Secure payment via Stripe</p>
+          <h2 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Buy Credits</h2>
+          <p className="text-sm mt-2" style={{ color: '#828282' }}>Secure payment via Stripe</p>
         </div>
       </div>
 
@@ -116,7 +118,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
 
         {errorMessage && (
-          <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-xl flex items-start gap-3">
+          <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-2xl flex items-start gap-3">
             <AlertCircle className="text-red-600 mt-0.5 flex-shrink-0" size={20} />
             <div className="flex-1">
               <p className="text-sm font-semibold text-red-800">Payment Error</p>
@@ -128,34 +130,34 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
         {/* Monthly Subscriptions */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <Zap className="text-blue-600" size={28} />
-            <h2 className="text-2xl font-bold text-gray-800">Monthly Subscriptions</h2>
+            <Zap style={{ color: '#fdb717' }} size={28} />
+            <h2 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Monthly Subscriptions</h2>
           </div>
-          <p className="text-sm text-gray-600 mb-6">
+          <p className="text-sm mb-6" style={{ color: '#4b4b4b' }}>
             <strong>Note:</strong> Overage charges apply: $0.01 per additional verification beyond your plan limit.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Starter Subscription */}
-            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Starter</h3>
+            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Starter</h3>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-gray-900">$29</span>
-                <span className="text-gray-500">/mo</span>
+                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$29</span>
+                <span style={{ color: '#828282' }}>/mo</span>
               </div>
-              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="px-4 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
                 3,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Official ABR data
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   CSV upload & export
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Email support
                 </li>
@@ -163,35 +165,36 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
               <button
                 onClick={() => handlePurchase('starter', 3000, 'subscription')}
                 disabled={loading === 'starter'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: '#f3f3f3', color: '#2e2e2e' }}
               >
                 {loading === 'starter' ? 'Processing...' : 'Get Started'}
               </button>
             </div>
 
             {/* Growth Subscription - POPULAR */}
-            <div className="bg-white rounded-2xl border-2 border-blue-500 p-6 hover:shadow-xl transition-all relative">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-2xl transition-all relative" style={{ borderColor: '#fdb717' }}>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
                 Most Popular
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Growth</h3>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Growth</h3>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-gray-900">$79</span>
-                <span className="text-gray-500">/mo</span>
+                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$79</span>
+                <span style={{ color: '#828282' }}>/mo</span>
               </div>
-              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="px-4 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fee045', color: '#2e2e2e' }}>
                 10,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Everything in Starter
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Priority processing
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Priority support
                 </li>
@@ -199,32 +202,33 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
               <button
                 onClick={() => handlePurchase('growth', 10000, 'subscription')}
                 disabled={loading === 'growth'}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full py-3 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
               >
                 {loading === 'growth' ? 'Processing...' : 'Get Started'}
               </button>
             </div>
 
             {/* Pro Subscription */}
-            <div className="bg-white rounded-2xl border-2 border-gray-200 p-6 hover:border-blue-400 hover:shadow-lg transition-all">
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Pro</h3>
+            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Pro</h3>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-gray-900">$149</span>
-                <span className="text-gray-500">/mo</span>
+                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$149</span>
+                <span style={{ color: '#828282' }}>/mo</span>
               </div>
-              <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+              <div className="px-4 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
                 25,000 Lookups
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Everything in Growth
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Faster queue
                 </li>
-                <li className="flex items-center gap-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                   <Check size={16} className="text-green-500" />
                   Priority support
                 </li>
@@ -232,7 +236,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
               <button
                 onClick={() => handlePurchase('pro', 25000, 'subscription')}
                 disabled={loading === 'pro'}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-full font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ backgroundColor: '#f3f3f3', color: '#2e2e2e' }}
               >
                 {loading === 'pro' ? 'Processing...' : 'Get Started'}
               </button>
@@ -243,60 +248,63 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
         {/* Pay-as-you-go Packs */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <Box className="text-blue-600" size={28} />
-            <h2 className="text-2xl font-bold text-gray-800">Pay-as-you-go Packs</h2>
+            <Box style={{ color: '#fdb717' }} size={28} />
+            <h2 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Pay-as-you-go Packs</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* 2,000 Pack */}
-            <div className="bg-white rounded-2xl p-5 border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="bg-white rounded-3xl p-5 border flex flex-col md:flex-row md:items-center justify-between gap-4" style={{ borderColor: '#e5e5e5' }}>
               <div>
-                <h4 className="font-bold text-gray-800 text-lg">2,000 Credits</h4>
+                <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>2,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$24.99</span>
-                  <span className="text-xs text-gray-400">($0.0125/row)</span>
+                  <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$24.99</span>
+                  <span className="text-xs" style={{ color: '#828282' }}>($0.0125/row)</span>
                 </div>
               </div>
               <button
                 onClick={() => handlePurchase('pack_2k', 2000, 'payment')}
                 disabled={loading === 'pack_2k'}
-                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-sm font-semibold disabled:opacity-50 transition-all whitespace-nowrap border"
+                style={{ backgroundColor: 'white', borderColor: '#e5e5e5', color: '#4b4b4b' }}
               >
                 {loading === 'pack_2k' ? '...' : 'Buy Pack'}
               </button>
             </div>
 
             {/* 5,000 Pack - HIGHLIGHT */}
-            <div className="bg-blue-50/50 rounded-2xl p-5 border-2 border-blue-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="rounded-3xl p-5 border-2 flex flex-col md:flex-row md:items-center justify-between gap-4" style={{ background: 'linear-gradient(135deg, #fff9e6 0%, #ffffff 100%)', borderColor: '#fee045' }}>
               <div>
-                <h4 className="font-bold text-gray-800 text-lg">5,000 Credits</h4>
+                <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>5,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$54.99</span>
-                  <span className="text-xs text-gray-400">($0.011/row)</span>
+                  <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$54.99</span>
+                  <span className="text-xs" style={{ color: '#828282' }}>($0.011/row)</span>
                 </div>
               </div>
               <button
                 onClick={() => handlePurchase('pack_5k', 5000, 'payment')}
                 disabled={loading === 'pack_5k'}
-                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-blue-300 hover:border-blue-400 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-md font-semibold disabled:opacity-50 transition-all whitespace-nowrap"
+                style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
               >
                 {loading === 'pack_5k' ? '...' : 'Buy Pack'}
               </button>
             </div>
 
             {/* 15,000 Pack */}
-            <div className="bg-white rounded-2xl p-5 border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="bg-white rounded-3xl p-5 border flex flex-col md:flex-row md:items-center justify-between gap-4" style={{ borderColor: '#e5e5e5' }}>
               <div>
-                <h4 className="font-bold text-gray-800 text-lg">15,000 Credits</h4>
+                <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>15,000 Credits</h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-2xl font-bold text-gray-900">$149.00</span>
-                  <span className="text-xs text-gray-400">($0.0099/row)</span>
+                  <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$149.00</span>
+                  <span className="text-xs" style={{ color: '#828282' }}>($0.0099/row)</span>
                 </div>
               </div>
               <button
                 onClick={() => handlePurchase('pack_15k', 15000, 'payment')}
                 disabled={loading === 'pack_15k'}
-                className="px-6 py-2 rounded-full shadow-sm font-semibold bg-white border border-gray-200 hover:border-gray-300 text-gray-700 disabled:opacity-50 transition-all whitespace-nowrap"
+                className="px-6 py-2 rounded-full shadow-sm font-semibold disabled:opacity-50 transition-all whitespace-nowrap border"
+                style={{ backgroundColor: 'white', borderColor: '#e5e5e5', color: '#4b4b4b' }}
               >
                 {loading === 'pack_15k' ? '...' : 'Buy Pack'}
               </button>
@@ -305,24 +313,24 @@ const PricingPage: React.FC<PricingPageProps> = ({ userId, onBack, onSuccess, on
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h3>
+        <div className="bg-white rounded-3xl border p-6 md:p-8" style={{ borderColor: '#e5e5e5' }}>
+          <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Frequently Asked Questions</h3>
           <div className="space-y-4">
             <div>
-              <p className="font-semibold text-gray-800">Do credits expire?</p>
-              <p className="text-sm text-gray-600 mt-1">No, all credit packs never expire. Use them at your own pace.</p>
+              <p className="font-semibold" style={{ color: '#2e2e2e' }}>Do credits expire?</p>
+              <p className="text-sm mt-1" style={{ color: '#4b4b4b' }}>No, all credit packs never expire. Use them at your own pace.</p>
             </div>
             <div>
-              <p className="font-semibold text-gray-800">Is payment secure?</p>
-              <p className="text-sm text-gray-600 mt-1">Yes, all payments are processed securely through Stripe. We never store your card details.</p>
+              <p className="font-semibold" style={{ color: '#2e2e2e' }}>Is payment secure?</p>
+              <p className="text-sm mt-1" style={{ color: '#4b4b4b' }}>Yes, all payments are processed securely through Stripe. We never store your card details.</p>
             </div>
             <div>
-              <p className="font-semibold text-gray-800">Can I get a refund?</p>
-              <p className="text-sm text-gray-600 mt-1">Credits can be refunded within 30 days if unused. Contact support for assistance.</p>
+              <p className="font-semibold" style={{ color: '#2e2e2e' }}>Can I get a refund?</p>
+              <p className="text-sm mt-1" style={{ color: '#4b4b4b' }}>Credits can be refunded within 30 days if unused. Contact support for assistance.</p>
             </div>
             <div>
-              <p className="font-semibold text-gray-800">Need more credits?</p>
-              <p className="text-sm text-gray-600 mt-1">Contact us for custom enterprise pricing at support@abnverify.com</p>
+              <p className="font-semibold" style={{ color: '#2e2e2e' }}>Need more credits?</p>
+              <p className="text-sm mt-1" style={{ color: '#4b4b4b' }}>Contact us for custom enterprise pricing at support@abnverify.com</p>
             </div>
           </div>
         </div>
