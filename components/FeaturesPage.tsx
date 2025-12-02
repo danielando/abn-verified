@@ -28,33 +28,38 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
   isLoggedIn
 }) => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col" style={{ fontFamily: 'Raleway, sans-serif' }}>
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <TrendingUp size={24} className="text-white" />
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+              <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
-              <p className="text-xs text-gray-500">Powered by ABR</p>
+              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+              <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
             </div>
           </button>
           <div className="flex items-center gap-4">
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Pricing</button>
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Try Free</button>
+            <button onClick={onBack} className="hover:opacity-80 text-sm font-medium hidden sm:block" style={{ color: '#4b4b4b' }}>Pricing</button>
+            <button onClick={onBack} className="hover:opacity-80 text-sm font-medium hidden sm:block" style={{ color: '#4b4b4b' }}>Try Free</button>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
-                className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block"
+                className="hover:opacity-80 text-sm font-medium hidden sm:block"
+                style={{ color: '#4b4b4b' }}
               >
                 Help
               </button>
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-5 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md hover:shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
+                color: '#2e2e2e'
+              }}
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -63,12 +68,12 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-white">
+      <section className="py-16" style={{ background: 'linear-gradient(180deg, #fff9e6 0%, #ffffff 100%)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
             Everything you need for bulk ABN verification
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl leading-relaxed" style={{ color: '#4b4b4b' }}>
             Powerful features designed for accounting firms, compliance teams, and businesses
             that need to verify Australian Business Numbers at scale.
           </p>
@@ -80,122 +85,122 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Zap className="text-blue-600" size={32} />
+              <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
+                <Zap style={{ color: '#fdb717' }} size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Bulk Verification</h3>
-              <p className="text-gray-600">Process up to 15,000 ABNs at once. Fast, accurate, and reliable.</p>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Bulk Verification</h3>
+              <p style={{ color: '#4b4b4b' }}>Process up to 15,000 ABNs at once. Fast, accurate, and reliable.</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Shield className="text-blue-600" size={32} />
+              <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
+                <Shield style={{ color: '#fdb717' }} size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Official ABR Data</h3>
-              <p className="text-gray-600">Powered by the Australian Business Register. Always up-to-date.</p>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Official ABR Data</h3>
+              <p style={{ color: '#4b4b4b' }}>Powered by the Australian Business Register. Always up-to-date.</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Server className="text-blue-600" size={32} />
+              <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
+                <Server style={{ color: '#fdb717' }} size={32} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Secure & Compliant</h3>
-              <p className="text-gray-600">Australian servers. No file storage. GDPR & privacy compliant.</p>
+              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Secure & Compliant</h3>
+              <p style={{ color: '#4b4b4b' }}>Australian servers. No file storage. GDPR & privacy compliant.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Detailed Features */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ backgroundColor: '#f9f9f9' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Comprehensive Verification Data</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Comprehensive Verification Data</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">ABN Status & Registration</h3>
+            <div className="bg-white rounded-3xl p-6 border" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABN Status & Registration</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Current ABN status (Active or Cancelled)</span>
+                  <span style={{ color: '#4b4b4b' }}>Current ABN status (Active or Cancelled)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Status date and registration date</span>
+                  <span style={{ color: '#4b4b4b' }}>Status date and registration date</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">GST registration status and effective date</span>
+                  <span style={{ color: '#4b4b4b' }}>GST registration status and effective date</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">DGR (Deductible Gift Recipient) status</span>
+                  <span style={{ color: '#4b4b4b' }}>DGR (Deductible Gift Recipient) status</span>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Business Details</h3>
+            <div className="bg-white rounded-3xl p-6 border" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Business Details</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Legal name and trading names</span>
+                  <span style={{ color: '#4b4b4b' }}>Legal name and trading names</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Entity type (Company, Trust, Individual, etc.)</span>
+                  <span style={{ color: '#4b4b4b' }}>Entity type (Company, Trust, Individual, etc.)</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">ACN (Australian Company Number) if applicable</span>
+                  <span style={{ color: '#4b4b4b' }}>ACN (Australian Company Number) if applicable</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Business location (State/Territory)</span>
+                  <span style={{ color: '#4b4b4b' }}>Business location (State/Territory)</span>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Easy File Processing</h3>
+            <div className="bg-white rounded-3xl p-6 border" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Easy File Processing</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Simple CSV upload - drag and drop</span>
+                  <span style={{ color: '#4b4b4b' }}>Simple CSV upload - drag and drop</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Automatic ABN column detection</span>
+                  <span style={{ color: '#4b4b4b' }}>Automatic ABN column detection</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Preserve your existing columns and data</span>
+                  <span style={{ color: '#4b4b4b' }}>Preserve your existing columns and data</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Real-time streaming progress updates</span>
+                  <span style={{ color: '#4b4b4b' }}>Real-time streaming progress updates</span>
                 </li>
               </ul>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 border border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Results & Export</h3>
+            <div className="bg-white rounded-3xl p-6 border" style={{ borderColor: '#e5e5e5' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Results & Export</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Interactive results dashboard</span>
+                  <span style={{ color: '#4b4b4b' }}>Interactive results dashboard</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Filter by Active/Cancelled/All status</span>
+                  <span style={{ color: '#4b4b4b' }}>Filter by Active/Cancelled/All status</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Export enriched data to CSV</span>
+                  <span style={{ color: '#4b4b4b' }}>Export enriched data to CSV</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="text-green-600 mt-1 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">Verification history tracking</span>
+                  <span style={{ color: '#4b4b4b' }}>Verification history tracking</span>
                 </li>
               </ul>
             </div>
@@ -207,10 +212,10 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
               Built for professionals
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl" style={{ color: '#4b4b4b' }}>
               Trusted by accounting firms, bookkeepers, and compliance teams across Australia
             </p>
           </div>
@@ -224,10 +229,10 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
               { icon: FileSpreadsheet, title: 'CRM Cleansing', desc: 'Clean and update your contact database' },
               { icon: Check, title: 'Data Integrity', desc: 'Maintain accurate business records' },
             ].map((useCase, i) => (
-              <div key={i} className="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all">
-                <useCase.icon className="text-blue-600 mb-4" size={32} />
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{useCase.title}</h3>
-                <p className="text-gray-600">{useCase.desc}</p>
+              <div key={i} className="p-6 rounded-2xl border hover:shadow-xl transition-all" style={{ backgroundColor: '#f9f9f9', borderColor: '#e5e5e5' }}>
+                <useCase.icon style={{ color: '#fdb717' }} className="mb-4" size={32} />
+                <h3 className="text-lg font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{useCase.title}</h3>
+                <p style={{ color: '#4b4b4b' }}>{useCase.desc}</p>
               </div>
             ))}
           </div>
@@ -235,17 +240,18 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600">
+      <section className="py-16" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h3 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
             Ready to streamline your ABN verification?
           </h3>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl mb-8" style={{ color: '#4b4b4b' }}>
             Start verifying Australian Business Numbers in bulk today with 10 free lookups.
           </p>
           <button
             onClick={onBack}
-            className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-600 rounded-full font-bold text-lg transition-all shadow-xl inline-flex items-center gap-2"
+            className="px-8 py-4 bg-white hover:opacity-90 rounded-full font-bold text-lg transition-all shadow-2xl inline-flex items-center gap-2"
+            style={{ color: '#2e2e2e' }}
           >
             Try ABNVerify Free
             <ArrowRight size={20} />
