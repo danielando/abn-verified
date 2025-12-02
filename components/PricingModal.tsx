@@ -21,7 +21,7 @@ const STRIPE_PRICES = {
 };
 
 // Toggle for testing
-const DEV_TEST_MODE = false; 
+const DEV_TEST_MODE = false;
 
 const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, onSuccess }) => {
   const [loading, setLoading] = useState<string | null>(null);
@@ -57,7 +57,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
 
     try {
         const { url, error } = await createCheckoutSession(priceId, userId, mode, credits);
-        
+
         if (error) {
             // Check for common Stripe errors to give better feedback
             if (error.includes("No such price")) {
@@ -65,7 +65,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
             }
             throw new Error(error);
         }
-        
+
         if (url) {
             console.log("Redirecting to Stripe:", url);
 
@@ -82,57 +82,57 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm overflow-y-auto" style={{ fontFamily: 'Raleway, sans-serif' }}>
       <div className="bg-white rounded-3xl w-full max-w-6xl shadow-2xl overflow-hidden animate-fade-in-up my-8">
-        
+
         <div className="px-8 py-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
             <div>
-                <h2 className="text-2xl font-bold text-gray-800">Upgrade Your Plan</h2>
-                <p className="text-gray-500">Secure payment via Stripe</p>
+                <h2 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Upgrade Your Plan</h2>
+                <p style={{ color: '#828282' }}>Secure payment via Stripe</p>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white rounded-full text-gray-400 hover:text-gray-600 transition-colors">
+            <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors" style={{ color: '#828282' }}>
                 <X size={24} />
             </button>
         </div>
 
         <div className="p-8 bg-gray-50">
-            
+
             {errorMessage && (
                 <div className="mb-8 p-4 bg-red-50 border border-red-100 rounded-xl flex items-start gap-3 text-red-700 animate-pulse">
                     <AlertCircle size={20} className="mt-0.5 flex-shrink-0" />
                     <div>
-                        <p className="font-bold text-sm">Checkout Failed</p>
+                        <p className="font-bold text-sm" style={{ fontFamily: 'Ubuntu, sans-serif' }}>Checkout Failed</p>
                         <p className="text-sm opacity-90">{errorMessage}</p>
                     </div>
                 </div>
             )}
 
             {/* 1. SUBSCRIPTIONS */}
-            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: '#828282' }}>
                 <Zap size={16} /> Monthly Subscriptions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <PricingCard 
-                    title="Starter" 
-                    price="$29" 
-                    credits="3,000" 
+                <PricingCard
+                    title="Starter"
+                    price="$29"
+                    credits="3,000"
                     features={['Basic ABN Lookup', 'Standard Support']}
                     onSelect={() => handlePurchase('starter', 3000, 'subscription')}
                     loading={loading === 'starter'}
                 />
-                <PricingCard 
-                    title="Growth" 
-                    price="$79" 
-                    credits="10,000" 
+                <PricingCard
+                    title="Growth"
+                    price="$79"
+                    credits="10,000"
                     features={['Priority Processing', 'API Access', 'Email Support']}
                     popular
                     onSelect={() => handlePurchase('growth', 10000, 'subscription')}
                     loading={loading === 'growth'}
                 />
-                <PricingCard 
-                    title="Pro" 
-                    price="$149" 
-                    credits="25,000" 
+                <PricingCard
+                    title="Pro"
+                    price="$149"
+                    credits="25,000"
                     features={['Dedicated Server', 'SLA', 'Phone Support']}
                     onSelect={() => handlePurchase('pro', 25000, 'subscription')}
                     loading={loading === 'pro'}
@@ -140,28 +140,28 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
             </div>
 
             {/* 2. PAY AS YOU GO */}
-            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: '#828282' }}>
                 <Box size={16} /> Pay-as-you-go Packs
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 <PackCard 
-                    credits="2,000" 
-                    price="$9.99" 
+                 <PackCard
+                    credits="2,000"
+                    price="$9.99"
                     perRow="$0.005"
                     onSelect={() => handlePurchase('pack_2k', 2000, 'payment')}
                     loading={loading === 'pack_2k'}
                  />
-                 <PackCard 
-                    credits="5,000" 
-                    price="$19.99" 
+                 <PackCard
+                    credits="5,000"
+                    price="$19.99"
                     perRow="$0.004"
                     highlight
                     onSelect={() => handlePurchase('pack_5k', 5000, 'payment')}
                     loading={loading === 'pack_5k'}
                  />
-                 <PackCard 
-                    credits="15,000" 
-                    price="$39.99" 
+                 <PackCard
+                    credits="15,000"
+                    price="$39.99"
                     perRow="$0.002"
                     onSelect={() => handlePurchase('pack_15k', 15000, 'payment')}
                     loading={loading === 'pack_15k'}
@@ -174,37 +174,38 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
 };
 
 const PricingCard = ({ title, price, credits, features, popular, onSelect, loading, disabled, buttonText }: any) => (
-    <div className={`bg-white rounded-3xl p-6 border-2 flex flex-col relative ${popular ? 'border-purple-500 shadow-xl' : 'border-gray-100 shadow-sm'} ${disabled ? 'opacity-60 grayscale' : ''}`}>
+    <div className={`bg-white rounded-3xl p-6 border-2 flex flex-col relative ${popular ? 'shadow-xl' : 'shadow-sm'} ${disabled ? 'opacity-60 grayscale' : ''}`} style={popular && !disabled ? { borderColor: '#fdb717' } : { borderColor: '#e5e5e5' }}>
         {popular && !disabled && (
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
                 Most Popular
             </div>
         )}
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
+        <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{title}</h3>
         <div className="flex items-baseline gap-1 mb-4">
-            <span className="text-4xl font-bold text-gray-900">{price}</span>
-            <span className="text-gray-500">/mo</span>
+            <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{price}</span>
+            <span style={{ color: '#828282' }}>/mo</span>
         </div>
-        <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-xl text-center font-bold mb-6">
+        <div className="px-4 py-2 rounded-xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
             {credits} Lookups
         </div>
         <ul className="space-y-3 mb-8 flex-1">
             {features.map((f: string, i: number) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                <li key={i} className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
                     <Check size={16} className="text-green-500" /> {f}
                 </li>
             ))}
         </ul>
-        <button 
+        <button
             onClick={disabled ? undefined : onSelect}
             disabled={loading || disabled}
             className={`w-full py-3 rounded-xl font-bold transition-all ${
-                disabled 
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                : popular 
-                    ? 'bg-purple-600 text-white hover:bg-purple-700' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                disabled
+                ? 'bg-gray-100 cursor-not-allowed'
+                : popular
+                    ? 'hover:shadow-lg'
+                    : 'bg-gray-100 hover:bg-gray-200'
             }`}
+            style={disabled ? { color: '#828282' } : popular ? { background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' } : { color: '#4b4b4b' }}
         >
             {loading ? 'Processing...' : (buttonText || 'Subscribe')}
         </button>
@@ -212,22 +213,23 @@ const PricingCard = ({ title, price, credits, features, popular, onSelect, loadi
 );
 
 const PackCard = ({ credits, price, perRow, highlight, onSelect, loading, disabled }: any) => (
-    <div className={`bg-white rounded-2xl p-5 border flex items-center justify-between ${highlight ? 'border-purple-200 bg-purple-50/30' : 'border-gray-100'} ${disabled ? 'opacity-60' : ''}`}>
+    <div className={`bg-white rounded-2xl p-5 border flex items-center justify-between ${disabled ? 'opacity-60' : ''}`} style={highlight ? { borderColor: '#fee045', backgroundColor: '#fff9e6' } : { borderColor: '#e5e5e5' }}>
         <div>
-            <h4 className="font-bold text-gray-800 text-lg">{credits} Credits</h4>
+            <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{credits} Credits</h4>
             <div className="flex items-center gap-2 mt-1">
-                <span className="text-2xl font-bold text-gray-900">{price}</span>
-                <span className="text-xs text-gray-400">({perRow}/row)</span>
+                <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{price}</span>
+                <span className="text-xs" style={{ color: '#828282' }}>({perRow}/row)</span>
             </div>
         </div>
-        <button 
+        <button
             onClick={disabled ? undefined : onSelect}
             disabled={loading || disabled}
             className={`px-4 py-2 rounded-lg shadow-sm font-semibold ${
-                disabled 
-                ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed' 
-                : 'bg-white border border-gray-200 hover:border-gray-300 text-gray-700'
+                disabled
+                ? 'border cursor-not-allowed'
+                : 'bg-white border hover:border-gray-300'
             }`}
+            style={disabled ? { backgroundColor: '#f9f9f9', color: '#828282', borderColor: '#e5e5e5' } : { borderColor: '#e5e5e5', color: '#4b4b4b' }}
         >
             {loading ? '...' : 'Buy Pack'}
         </button>

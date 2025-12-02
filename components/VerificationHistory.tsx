@@ -113,7 +113,7 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Raleway, sans-serif' }}>
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-10 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
@@ -121,11 +121,11 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
             onClick={onBack}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <ArrowLeft size={24} className="text-gray-600" />
+            <ArrowLeft size={24} style={{ color: '#4b4b4b' }} />
           </button>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Verification History</h1>
-            <p className="text-sm text-gray-500">View and manage your past verification runs</p>
+            <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Verification History</h1>
+            <p className="text-sm" style={{ color: '#828282' }}>View and manage your past verification runs</p>
           </div>
         </div>
       </div>
@@ -134,13 +134,13 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="animate-spin text-blue-600" size={40} />
+            <Loader2 className="animate-spin" size={40} style={{ color: '#fdb717' }} />
           </div>
         ) : runs.length === 0 ? (
           <div className="text-center py-20">
-            <FileText className="mx-auto text-gray-300 mb-4" size={64} />
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">No verification history yet</h3>
-            <p className="text-gray-500">Your completed verification runs will appear here</p>
+            <FileText className="mx-auto mb-4" size={64} style={{ color: '#e5e5e5' }} />
+            <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#4b4b4b' }}>No verification history yet</h3>
+            <p style={{ color: '#828282' }}>Your completed verification runs will appear here</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -153,10 +153,10 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                   {/* Run Info */}
                   <div className="flex-1">
                     <div className="flex items-start gap-3 mb-3">
-                      <FileText className="text-blue-600 mt-1 flex-shrink-0" size={24} />
+                      <FileText className="mt-1 flex-shrink-0" size={24} style={{ color: '#fdb717' }} />
                       <div>
-                        <h3 className="text-lg font-bold text-gray-800">{run.file_name}</h3>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                        <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{run.file_name}</h3>
+                        <div className="flex items-center gap-2 text-sm mt-1" style={{ color: '#828282' }}>
                           <Calendar size={14} />
                           <span>{formatDate(run.created_at)}</span>
                         </div>
@@ -166,26 +166,26 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                     {/* Stats */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                       <div className="bg-gray-50 rounded-xl p-3">
-                        <p className="text-xs text-gray-500 mb-1">Total Records</p>
-                        <p className="text-lg font-bold text-gray-800">{run.total_records}</p>
+                        <p className="text-xs mb-1" style={{ color: '#828282' }}>Total Records</p>
+                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{run.total_records}</p>
                       </div>
                       <div className="bg-green-50 rounded-xl p-3">
                         <p className="text-xs text-green-600 mb-1 flex items-center gap-1">
                           <CheckCircle size={12} />
                           Successful
                         </p>
-                        <p className="text-lg font-bold text-green-700">{run.successful_verifications}</p>
+                        <p className="text-lg font-bold text-green-700" style={{ fontFamily: 'Ubuntu, sans-serif' }}>{run.successful_verifications}</p>
                       </div>
                       <div className="bg-red-50 rounded-xl p-3">
                         <p className="text-xs text-red-600 mb-1 flex items-center gap-1">
                           <XCircle size={12} />
                           Failed
                         </p>
-                        <p className="text-lg font-bold text-red-700">{run.failed_verifications}</p>
+                        <p className="text-lg font-bold text-red-700" style={{ fontFamily: 'Ubuntu, sans-serif' }}>{run.failed_verifications}</p>
                       </div>
-                      <div className="bg-blue-50 rounded-xl p-3">
-                        <p className="text-xs text-blue-600 mb-1">Credits Used</p>
-                        <p className="text-lg font-bold text-blue-700">{run.credits_used}</p>
+                      <div className="rounded-xl p-3" style={{ backgroundColor: '#fff9e6' }}>
+                        <p className="text-xs mb-1" style={{ color: '#fdb717' }}>Credits Used</p>
+                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#fdb717' }}>{run.credits_used}</p>
                       </div>
                     </div>
                   </div>
@@ -194,13 +194,15 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                   <div className="flex md:flex-col gap-2">
                     <button
                       onClick={() => handleLoadRun(run)}
-                      className="flex-1 md:flex-none px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-all text-sm"
+                      className="flex-1 md:flex-none px-4 py-2 rounded-full font-medium transition-all text-sm shadow-lg hover:shadow-xl"
+                      style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
                     >
                       View Results
                     </button>
                     <button
                       onClick={() => handleDownloadCSV(run)}
-                      className="flex-1 md:flex-none px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-medium transition-all text-sm flex items-center justify-center gap-2"
+                      className="flex-1 md:flex-none px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium transition-all text-sm flex items-center justify-center gap-2"
+                      style={{ color: '#4b4b4b' }}
                     >
                       <Download size={16} />
                       <span className="hidden md:inline">Download</span>
