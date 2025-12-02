@@ -15,8 +15,8 @@ interface DashboardProps {
   uploadProgress: UploadProgress;
 }
 
-const COLORS = ['#8B5CF6', '#A78BFA', '#C4B5FD', '#DDD6FE', '#F5F3FF', '#6D28D9'];
-const YEAR_COLORS = ['#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#DBEAFE', '#2563EB'];
+const COLORS = ['#fdb717', '#fee045', '#ffcc00', '#ffe680', '#fff9e6', '#fdb717'];
+const YEAR_COLORS = ['#fdb717', '#fee045', '#ffcc00', '#ffe680', '#fff9e6', '#fdb717'];
 
 type FilterMode = 'ALL' | 'GST_YES' | 'GST_NO' | 'STATUS_ACTIVE' | 'STATUS_CANCELLED';
 
@@ -224,28 +224,28 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       
       {/* PROCESSING BANNER */}
       {uploadStatus === UploadStatus.PROCESSING && (
-         <div className="bg-white rounded-3xl p-6 shadow-lg border border-purple-100 animate-fade-in-down sticky top-6 z-40">
+         <div className="bg-white rounded-3xl p-6 shadow-lg border animate-fade-in-down sticky top-6 z-40" style={{ borderColor: '#fff9e6' }}>
             <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex items-center gap-4 w-full md:w-auto">
-                    <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
                         <Loader2 className="animate-spin" size={24} />
                     </div>
                     <div>
-                        <h3 className="font-bold text-gray-800">Processing Bulk Batch...</h3>
-                        <p className="text-sm text-gray-500">
-                            Verified <span className="font-bold text-purple-600">{uploadProgress.current}</span> of <span className="font-bold">{uploadProgress.total}</span> records
+                        <h3 className="font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Processing Bulk Batch...</h3>
+                        <p className="text-sm" style={{ color: '#828282' }}>
+                            Verified <span className="font-bold" style={{ color: '#fdb717' }}>{uploadProgress.current}</span> of <span className="font-bold">{uploadProgress.total}</span> records
                         </p>
                     </div>
                 </div>
                 <div className="flex-1 w-full">
-                    <div className="flex justify-between text-xs font-semibold text-gray-400 mb-2">
+                    <div className="flex justify-between text-xs font-semibold mb-2" style={{ color: '#828282' }}>
                         <span>Progress</span>
                         <span>{progressPercent}%</span>
                     </div>
                     <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-                        <div 
-                            className="h-full bg-purple-600 transition-all duration-300 ease-out"
-                            style={{ width: `${progressPercent}%` }}
+                        <div
+                            className="h-full transition-all duration-300 ease-out"
+                            style={{ width: `${progressPercent}%`, background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}
                         ></div>
                     </div>
                 </div>
@@ -257,15 +257,16 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-3">
-             <h1 className="text-3xl font-bold text-gray-800">ABN Verification Dashboard</h1>
-             <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-bold border border-blue-200">Bulk Mode</span>
+             <h1 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABN Verification Dashboard</h1>
+             <span className="px-2 py-0.5 rounded text-xs font-bold border" style={{ backgroundColor: '#fff9e6', color: '#fdb717', borderColor: '#fee045' }}>Bulk Mode</span>
           </div>
-          <p className="text-gray-500 mt-1">Real-time ABR verification status</p>
+          <p className="mt-1" style={{ color: '#828282' }}>Real-time ABR verification status</p>
         </div>
         <button
           onClick={onUploadClick}
           disabled={uploadStatus === UploadStatus.PROCESSING}
-          className={`flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium transition-colors shadow-lg shadow-gray-200 ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}`}
+          className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all shadow-lg ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
+          style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
         >
           <Upload size={18} />
           {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
@@ -282,15 +283,15 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
           <div className="bg-white p-8 rounded-3xl shadow-sm">
             <div className="flex justify-between items-center mb-8">
               <div>
-                <p className="text-gray-500 mb-1">Geographic Distribution</p>
+                <p className="mb-1" style={{ color: '#828282' }}>Geographic Distribution</p>
                 <div className="flex items-center gap-3">
-                  <h2 className="text-4xl font-bold text-gray-800">By State</h2>
-                  <span className="bg-purple-100 text-purple-600 px-2 py-1 rounded-lg text-xs font-bold">
+                  <h2 className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>By State</h2>
+                  <span className="px-2 py-1 rounded-lg text-xs font-bold" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
                     {stats.stateData.length} Regions
                   </span>
                 </div>
               </div>
-              <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
                   <MapPin size={20} />
               </div>
             </div>
@@ -347,17 +348,17 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             
             {/* 1. Active Status (Clickable) */}
-            <button 
+            <button
                 onClick={() => toggleFilter('STATUS_ACTIVE')}
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'STATUS_ACTIVE' ? 'border-green-500 bg-green-50/50 ring-2 ring-green-100 ring-offset-2' : 'border-transparent hover:border-green-100'}`}
             >
               <div>
-                <p className="text-gray-500 text-sm mb-1">Active</p>
+                <p className="text-sm mb-1" style={{ color: '#828282' }}>Active</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                         {stats.total > 0 ? Math.round((stats.active / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs text-gray-400">({stats.active})</span>
+                    <span className="text-xs" style={{ color: '#828282' }}>({stats.active})</span>
                 </div>
                 <p className="text-xs text-green-500 mt-2 font-medium">Click to filter</p>
               </div>
@@ -367,17 +368,17 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
             </button>
 
              {/* 2. Cancelled Status (Clickable) */}
-            <button 
+            <button
                 onClick={() => toggleFilter('STATUS_CANCELLED')}
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'STATUS_CANCELLED' ? 'border-red-500 bg-red-50/50 ring-2 ring-red-100 ring-offset-2' : 'border-transparent hover:border-red-100'}`}
             >
               <div>
-                <p className="text-gray-500 text-sm mb-1">Cancelled</p>
+                <p className="text-sm mb-1" style={{ color: '#828282' }}>Cancelled</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                         {stats.total > 0 ? Math.round((stats.cancelled / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs text-gray-400">({stats.cancelled})</span>
+                    <span className="text-xs" style={{ color: '#828282' }}>({stats.cancelled})</span>
                 </div>
                 <p className="text-xs text-red-400 mt-2 font-medium">Click to filter</p>
               </div>
@@ -387,37 +388,38 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
             </button>
 
             {/* 3. GST Registered (Clickable) */}
-            <button 
+            <button
                 onClick={() => toggleFilter('GST_YES')}
-                className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'GST_YES' ? 'border-purple-500 bg-purple-50/50 ring-2 ring-purple-100 ring-offset-2' : 'border-transparent hover:border-purple-100'}`}
+                className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'GST_YES' ? 'ring-2 ring-offset-2' : 'border-transparent'}`}
+                style={filterMode === 'GST_YES' ? { borderColor: '#fdb717', backgroundColor: '#fff9e6', ringColor: '#fee045' } : {}}
             >
               <div>
-                <p className="text-gray-500 text-sm mb-1">GST Reg</p>
+                <p className="text-sm mb-1" style={{ color: '#828282' }}>GST Reg</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                         {stats.gstCount > 0 && stats.total > 0 ? Math.round((stats.gstCount / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs text-gray-400">({stats.gstCount})</span>
+                    <span className="text-xs" style={{ color: '#828282' }}>({stats.gstCount})</span>
                 </div>
-                <p className="text-xs text-purple-400 mt-2 font-medium">Click to filter</p>
+                <p className="text-xs mt-2 font-medium" style={{ color: '#fdb717' }}>Click to filter</p>
               </div>
-              <div className="w-10 h-10 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500">
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
                  <ReceiptText size={20} />
               </div>
             </button>
 
             {/* 4. Non-GST (Clickable) */}
-            <button 
+            <button
                 onClick={() => toggleFilter('GST_NO')}
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'GST_NO' ? 'border-orange-500 bg-orange-50/50 ring-2 ring-orange-100 ring-offset-2' : 'border-transparent hover:border-orange-100'}`}
             >
               <div>
-                <p className="text-gray-500 text-sm mb-1">Not Reg</p>
+                <p className="text-sm mb-1" style={{ color: '#828282' }}>Not Reg</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                         {stats.nonGstCount > 0 && stats.total > 0 ? Math.round((stats.nonGstCount / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs text-gray-400">({stats.nonGstCount})</span>
+                    <span className="text-xs" style={{ color: '#828282' }}>({stats.nonGstCount})</span>
                 </div>
                 <p className="text-xs text-orange-400 mt-2 font-medium">Click to filter</p>
               </div>
@@ -434,10 +436,10 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
         <div className="space-y-8">
             <div className="bg-white p-8 rounded-3xl shadow-sm h-full flex flex-col">
               <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-800">Registration Timeline</h3>
-                <p className="text-sm text-gray-400">Activity by Year</p>
+                <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Registration Timeline</h3>
+                <p className="text-sm" style={{ color: '#828282' }}>Activity by Year</p>
               </div>
-              
+
               <div className="flex-1 min-h-[250px] relative">
                  <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
@@ -453,29 +455,29 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                         ))}
                       </Pie>
                       <RechartsTooltip />
-                      <Legend 
-                        verticalAlign="bottom" 
-                        height={36} 
+                      <Legend
+                        verticalAlign="bottom"
+                        height={36}
                         iconType="circle"
-                        formatter={(value) => <span className="text-xs text-gray-500 ml-1">{value}</span>}
+                        formatter={(value) => <span className="text-xs ml-1" style={{ color: '#828282' }}>{value}</span>}
                       />
                     </PieChart>
                  </ResponsiveContainer>
                  {/* Center Text */}
                  <div className="absolute inset-0 pb-8 flex items-center justify-center pointer-events-none">
                     <div className="text-center">
-                       <span className="block text-2xl font-bold text-blue-600">
+                       <span className="block text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#fdb717' }}>
                          {stats.total}
                        </span>
-                       <span className="text-xs text-gray-400">Records</span>
+                       <span className="text-xs" style={{ color: '#828282' }}>Records</span>
                     </div>
                  </div>
               </div>
-              
+
               {/* Top Entity Type */}
               <div className="mt-8 border-t border-gray-100 pt-6 text-center">
-                  <span className="text-xs font-bold text-gray-400 uppercase">Most Common Entity</span>
-                  <p className="text-lg font-bold text-gray-700 mt-1">{stats.topType}</p>
+                  <span className="text-xs font-bold uppercase" style={{ color: '#828282' }}>Most Common Entity</span>
+                  <p className="text-lg font-bold mt-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{stats.topType}</p>
               </div>
             </div>
         </div>
@@ -485,24 +487,26 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       <div className="bg-white rounded-3xl shadow-sm overflow-hidden flex flex-col">
         <div className="p-8 pb-4 flex justify-between items-center">
             <div className="flex items-center gap-3">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="text-xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                     {getTableTitle()}
                 </h3>
-                <span className={`px-2 py-0.5 rounded text-xs font-bold ${filterMode === 'ALL' ? 'bg-gray-100 text-gray-500' : filterMode.includes('GST') ? 'bg-purple-100 text-purple-700' : filterMode === 'STATUS_ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <span className={`px-2 py-0.5 rounded text-xs font-bold ${filterMode === 'ALL' ? 'bg-gray-100 text-gray-500' : filterMode.includes('GST') ? '' : filterMode === 'STATUS_ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                      style={filterMode.includes('GST') ? { backgroundColor: '#fff9e6', color: '#fdb717' } : {}}>
                     {filteredData.length} records
                 </span>
-                
+
                 {filterMode !== 'ALL' && (
-                    <button onClick={() => setFilterMode('ALL')} className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                    <button onClick={() => setFilterMode('ALL')} className="flex items-center gap-1 text-xs hover:opacity-80 transition-opacity" style={{ color: '#828282' }}>
                         <FilterX size={12} /> Clear Filter
                     </button>
                 )}
             </div>
             <div className="flex gap-2">
-                <button 
+                <button
                   onClick={handleDownloadCsv}
                   disabled={data.length === 0}
-                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium disabled:opacity-50"
+                  style={{ borderColor: '#e5e5e5', color: '#4b4b4b' }}
                 >
                   <Download size={16} />
                   Download CSV

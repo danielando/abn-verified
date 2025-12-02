@@ -31,33 +31,35 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
   const categories = getAllCategories();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, #fff9e6 0%, #ffffff 100%)' }}>
       {/* Header */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <TrendingUp size={24} className="text-white" />
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+              <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">ABNVerify</h1>
-              <p className="text-xs text-gray-500">Powered by ABR</p>
+              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+              <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
             </div>
           </button>
           <div className="flex items-center gap-4">
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Pricing</button>
-            <button onClick={onBack} className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block">Try Free</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Pricing</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Try Free</button>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
-                className="text-gray-600 hover:text-gray-900 text-sm font-medium hidden sm:block"
+                className="text-sm font-medium hidden sm:block hover:opacity-80"
+                style={{ color: '#4b4b4b' }}
               >
                 Help
               </button>
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-4 py-2 rounded-full font-medium text-sm transition-all shadow-md hover:shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -69,12 +71,12 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
       <div className="bg-white border-b border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <BookOpen className="text-blue-600" size={40} />
+            <BookOpen size={40} style={{ color: '#fdb717' }} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
             ABN Verification Articles
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto" style={{ color: '#4b4b4b' }}>
             Learn everything about bulk ABN verification, compliance, and best practices for Australian businesses.
           </p>
         </div>
@@ -85,13 +87,14 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Badges */}
           <div className="flex flex-wrap gap-2 mb-8">
-            <span className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold">
+            <span className="px-4 py-2 rounded-full text-sm font-semibold" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
               All Articles
             </span>
             {categories.map(category => (
               <button
                 key={category}
-                className="px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 rounded-full text-sm font-semibold border border-gray-200 transition-colors"
+                className="px-4 py-2 bg-white hover:bg-gray-100 rounded-full text-sm font-semibold border transition-colors"
+                style={{ color: '#4b4b4b', borderColor: '#e5e5e5' }}
               >
                 {category}
               </button>
@@ -103,24 +106,25 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
             {articles.map(article => (
               <article
                 key={article.id}
-                className="bg-white rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all cursor-pointer group"
+                className="bg-white rounded-3xl border hover:shadow-xl transition-all cursor-pointer group"
+                style={{ borderColor: '#e5e5e5' }}
                 onClick={() => onArticleClick(article.id)}
               >
                 <div className="p-6">
                   {/* Category Badge */}
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
                       {article.category}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  <h2 className="text-xl font-bold mb-3 transition-colors line-clamp-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
                     {article.title}
                   </h2>
 
                   {/* Description */}
-                  <p className="text-gray-600 mb-4 line-clamp-3 text-sm leading-relaxed">
+                  <p className="mb-4 line-clamp-3 text-sm leading-relaxed" style={{ color: '#4b4b4b' }}>
                     {article.description}
                   </p>
 
@@ -144,7 +148,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 
                   {/* Read More Link */}
                   <div className="mt-4">
-                    <span className="text-blue-600 font-semibold text-sm group-hover:underline">
+                    <span className="font-semibold text-sm group-hover:underline" style={{ color: '#fdb717' }}>
                       Read Article →
                     </span>
                   </div>
