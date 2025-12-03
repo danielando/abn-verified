@@ -655,14 +655,15 @@ const App: React.FC = () => {
         {data.length === 0 && uploadStatus !== UploadStatus.PROCESSING ? (
            <div className="flex flex-col items-center justify-center min-h-[85vh] p-6">
               <div className="max-w-2xl text-center space-y-6 animate-fade-in-up">
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">ABN Verification <br/> <span className="text-blue-600">Bulk Tool</span></h1>
-                  <p className="text-lg text-gray-500">
+                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABN Verification <br/> <span style={{ color: '#fdb717' }}>Bulk Tool</span></h1>
+                  <p className="text-lg" style={{ color: '#828282', fontFamily: 'Raleway, sans-serif' }}>
                     Upload your entity list. We'll fetch status, tax details, and trading names automatically using <strong>Official ABN Lookup Services</strong>.
                   </p>
-                  
-                  <button 
+
+                  <button
                     onClick={handleUploadClick}
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white text-lg font-medium rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                    className="inline-flex items-center gap-3 px-8 py-4 text-lg font-medium rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                    style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
                   >
                     Start Verification
                   </button>
