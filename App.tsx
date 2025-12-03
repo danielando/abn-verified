@@ -487,15 +487,16 @@ const App: React.FC = () => {
             <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex justify-between items-center z-20 shadow-sm">
                {/* Logo & Help Link */}
                <div className="flex items-center gap-6">
-                   <div className="font-bold text-gray-800 flex items-center gap-2">
-                       <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                           <TrendingUp size={20} className="text-white" />
+                   <div className="font-bold flex items-center gap-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                       <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+                           <TrendingUp size={20} style={{ color: '#2e2e2e' }} />
                        </div>
                        <span className="hidden sm:inline">ABNVerify</span>
                    </div>
                    <button
                        onClick={() => setIsHelpOpen(true)}
-                       className="hidden md:block text-sm text-gray-600 hover:text-blue-600 font-medium transition-colors"
+                       className="hidden md:block text-sm font-medium transition-colors hover:opacity-80"
+                       style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}
                    >
                        Help
                    </button>
@@ -509,13 +510,14 @@ const App: React.FC = () => {
                         trackAddCreditsClick();
                         setIsPricingOpen(true);
                       }}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-blue-50 rounded-full border border-gray-200 hover:border-blue-200 transition-all group"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all group"
+                      style={{ backgroundColor: '#f5f5f5', borderColor: '#e5e5e5' }}
                    >
                       <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                      <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-700">
+                      <span className="text-sm font-semibold" style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}>
                           {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                       </span>
-                      <span className="text-xs bg-gray-800 text-white px-1.5 py-0.5 rounded ml-1 group-hover:bg-blue-600">Add +</span>
+                      <span className="text-xs text-white px-1.5 py-0.5 rounded ml-1" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>Add +</span>
                    </button>
 
                    {/* User Menu */}
@@ -588,12 +590,13 @@ const App: React.FC = () => {
                            setIsPricingOpen(true);
                            setIsMobileMenuOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 hover:bg-blue-50 rounded-full transition-all group"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-full transition-all group"
+                        style={{ backgroundColor: '#f5f5f5' }}
                      >
-                        <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-700">
+                        <span className="text-sm font-semibold" style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}>
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
-                        <span className="text-xs bg-gray-800 text-white px-2 py-1 rounded group-hover:bg-blue-600">Add +</span>
+                        <span className="text-xs text-white px-2 py-1 rounded" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>Add +</span>
                      </button>
 
                      {/* History */}
