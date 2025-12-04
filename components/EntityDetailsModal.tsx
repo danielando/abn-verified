@@ -2,6 +2,7 @@
 import React from 'react';
 import { X, Building2, MapPin, Tag, CheckCircle, XCircle, Heart, Info, FileText } from 'lucide-react';
 import { AbnRecord } from '../types';
+import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
 interface EntityDetailsModalProps {
   isOpen: boolean;
@@ -19,16 +20,16 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
         {/* Header */}
         <div className="px-8 py-6 border-b border-gray-100 flex justify-between items-start bg-gray-50">
             <div>
-                <h2 className="text-xl font-bold leading-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{record.entityName}</h2>
+                <h2 className="text-xl font-bold leading-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{record.entityName}</h2>
                 <div className="flex items-center gap-2 mt-2">
                     <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold ${record.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${record.status === 'Active' ? 'bg-green-500' : 'bg-gray-400'}`}></span>
                         {record.status}
                     </span>
-                    <span className="text-sm font-mono" style={{ color: '#828282' }}>{record.abn}</span>
+                    <span className="text-sm font-mono" style={{ color: 'SBS_COLORS.lightCharcoal' }}>{record.abn}</span>
                 </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors shadow-sm" style={{ color: '#828282' }}>
+            <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors shadow-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 <X size={20} />
             </button>
         </div>
@@ -42,7 +43,7 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                 <div className="space-y-8">
                     {/* 1. Key Business Details */}
                     <section>
-                        <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: '#828282' }}>
+                        <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                             <Building2 size={16} /> Business Identification
                         </h3>
                         <div className="bg-gray-50 p-6 rounded-2xl space-y-4">
@@ -53,15 +54,15 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                             </div>
                             <DetailItem label="Entity Type" value={`${record.entityType} (${record.entityTypeCode || 'N/A'})`} />
                             <div>
-                                <label className="text-xs font-semibold block mb-1" style={{ color: '#828282' }}>Trading Names</label>
+                                <label className="text-xs font-semibold block mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Trading Names</label>
                                 <div className="flex flex-wrap gap-2">
                                     {record.tradingName && (
-                                        <span className="bg-white px-3 py-1 rounded-lg border text-sm font-medium shadow-sm" style={{ borderColor: '#e5e5e5', color: '#2e2e2e' }}>{record.tradingName}</span>
+                                        <span className="bg-white px-3 py-1 rounded-lg border text-sm font-medium shadow-sm" style={{ borderColor: '#e5e5e5', color: 'SBS_COLORS.darkBase' }}>{record.tradingName}</span>
                                     )}
                                     {record.otherTradingNames.map((name, i) => (
-                                        <span key={i} className="bg-white px-3 py-1 rounded-lg border text-sm" style={{ borderColor: '#e5e5e5', color: '#4b4b4b' }}>{name}</span>
+                                        <span key={i} className="bg-white px-3 py-1 rounded-lg border text-sm" style={{ borderColor: '#e5e5e5', color: 'SBS_COLORS.midCharcoal' }}>{name}</span>
                                     ))}
-                                    {!record.tradingName && record.otherTradingNames.length === 0 && <span className="text-sm italic" style={{ color: '#828282' }}>No trading names listed</span>}
+                                    {!record.tradingName && record.otherTradingNames.length === 0 && <span className="text-sm italic" style={{ color: 'SBS_COLORS.lightCharcoal' }}>No trading names listed</span>}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +70,7 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
 
                     {/* 2. Tax & Compliance Status */}
                     <section>
-                        <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: '#828282' }}>
+                        <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                             <Tag size={16} /> Tax & Compliance
                         </h3>
                         <div className="grid grid-cols-1 gap-4">
@@ -111,23 +112,23 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                 <div className="space-y-8">
                     {/* 3. Location */}
                     <section>
-                         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: '#828282' }}>
+                         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                              <MapPin size={16} /> Location
                          </h3>
                          <div className="bg-white border p-5 rounded-2xl shadow-sm space-y-4" style={{ borderColor: '#e5e5e5' }}>
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm" style={{ color: '#828282' }}>Registered State</p>
-                                    <p className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{record.state || 'Unknown'}</p>
+                                    <p className="text-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Registered State</p>
+                                    <p className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{record.state || 'Unknown'}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm" style={{ color: '#828282' }}>Postcode</p>
-                                    <p className="font-mono bg-gray-100 px-3 py-1 rounded-lg" style={{ color: '#4b4b4b' }}>{record.postcode || 'N/A'}</p>
+                                    <p className="text-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Postcode</p>
+                                    <p className="font-mono bg-gray-100 px-3 py-1 rounded-lg" style={{ color: 'SBS_COLORS.midCharcoal' }}>{record.postcode || 'N/A'}</p>
                                 </div>
                             </div>
                             {record.addressDate && (
                                 <div className="pt-3 border-t border-gray-50">
-                                    <p className="text-xs" style={{ color: '#828282' }}>Address last updated: {record.addressDate}</p>
+                                    <p className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Address last updated: {record.addressDate}</p>
                                 </div>
                             )}
                          </div>
@@ -143,8 +144,8 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
 
 const DetailItem = ({ label, value, fontMono = false }: { label: string, value: string, fontMono?: boolean }) => (
     <div>
-        <label className="text-xs font-semibold block mb-1" style={{ color: '#828282' }}>{label}</label>
-        <p className={`font-medium text-sm break-words ${fontMono ? 'font-mono' : ''}`} style={{ color: '#2e2e2e' }}>{value}</p>
+        <label className="text-xs font-semibold block mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>{label}</label>
+        <p className={`font-medium text-sm break-words ${fontMono ? 'font-mono' : ''}`} style={{ color: 'SBS_COLORS.darkBase' }}>{value}</p>
     </div>
 );
 
@@ -155,15 +156,15 @@ const StatusCard = ({ active, label, date, icon, inactiveLabel, activeColor }: a
                 {active ? icon : <XCircle size={24} />}
             </div>
             <div>
-                <p className={`text-sm font-bold ${active ? '' : ''}`} style={active ? { fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' } : { color: '#828282' }}>
+                <p className={`text-sm font-bold ${active ? '' : ''}`} style={active ? { fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' } : { color: 'SBS_COLORS.lightCharcoal' }}>
                     {label}
                 </p>
-                <p className="text-xs font-medium" style={{ color: '#828282' }}>
+                <p className="text-xs font-medium" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                     {active ? 'Active' : (inactiveLabel || 'Inactive')}
                 </p>
             </div>
         </div>
-        {date && <span className="text-xs bg-white px-2 py-1 rounded border" style={{ borderColor: '#e5e5e5', color: '#828282' }}>{date}</span>}
+        {date && <span className="text-xs bg-white px-2 py-1 rounded border" style={{ borderColor: '#e5e5e5', color: 'SBS_COLORS.lightCharcoal' }}>{date}</span>}
     </div>
 );
 

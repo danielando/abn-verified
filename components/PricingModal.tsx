@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { X, Check, Zap, Box, AlertCircle, ExternalLink } from 'lucide-react';
 import { createCheckoutSession } from '../services/supabaseClient';
+import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
 interface PricingModalProps {
   isOpen: boolean;
@@ -87,10 +88,10 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
 
         <div className="px-8 py-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
             <div>
-                <h2 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Upgrade Your Plan</h2>
-                <p style={{ color: '#828282' }}>Secure payment via Stripe</p>
+                <h2 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Upgrade Your Plan</h2>
+                <p style={{ color: 'SBS_COLORS.lightCharcoal' }}>Secure payment via Stripe</p>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors" style={{ color: '#828282' }}>
+            <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 <X size={24} />
             </button>
         </div>
@@ -108,7 +109,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
             )}
 
             {/* 1. SUBSCRIPTIONS */}
-            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: '#828282' }}>
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 <Zap size={16} /> Monthly Subscriptions
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -140,7 +141,7 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
             </div>
 
             {/* 2. PAY AS YOU GO */}
-            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: '#828282' }}>
+            <h3 className="text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 <Box size={16} /> Pay-as-you-go Packs
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -174,23 +175,23 @@ const PricingModal: React.FC<PricingModalProps> = ({ isOpen, onClose, userId, on
 };
 
 const PricingCard = ({ title, price, credits, features, popular, onSelect, loading, disabled, buttonText }: any) => (
-    <div className={`bg-white rounded-3xl p-6 border-2 flex flex-col relative ${popular ? 'shadow-xl' : 'shadow-sm'} ${disabled ? 'opacity-60 grayscale' : ''}`} style={popular && !disabled ? { borderColor: '#fdb717' } : { borderColor: '#e5e5e5' }}>
+    <div className={`bg-white rounded-3xl p-6 border-2 flex flex-col relative ${popular ? 'shadow-xl' : 'shadow-sm'} ${disabled ? 'opacity-60 grayscale' : ''}`} style={popular && !disabled ? { borderColor: 'SBS_COLORS.standardYellow' } : { borderColor: '#e5e5e5' }}>
         {popular && !disabled && (
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}>
                 Most Popular
             </div>
         )}
-        <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{title}</h3>
+        <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{title}</h3>
         <div className="flex items-baseline gap-1 mb-4">
-            <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{price}</span>
-            <span style={{ color: '#828282' }}>/mo</span>
+            <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{price}</span>
+            <span style={{ color: 'SBS_COLORS.lightCharcoal' }}>/mo</span>
         </div>
-        <div className="px-4 py-2 rounded-xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
+        <div className="px-4 py-2 rounded-xl text-center font-bold mb-6" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' }}>
             {credits} Lookups
         </div>
         <ul className="space-y-3 mb-8 flex-1">
             {features.map((f: string, i: number) => (
-                <li key={i} className="flex items-center gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li key={i} className="flex items-center gap-2 text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>
                     <Check size={16} className="text-green-500" /> {f}
                 </li>
             ))}
@@ -205,7 +206,7 @@ const PricingCard = ({ title, price, credits, features, popular, onSelect, loadi
                     ? 'hover:shadow-lg'
                     : 'bg-gray-100 hover:bg-gray-200'
             }`}
-            style={disabled ? { color: '#828282' } : popular ? { background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' } : { color: '#4b4b4b' }}
+            style={disabled ? { color: 'SBS_COLORS.lightCharcoal' } : popular ? { background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' } : { color: 'SBS_COLORS.midCharcoal' }}
         >
             {loading ? 'Processing...' : (buttonText || 'Subscribe')}
         </button>
@@ -213,12 +214,12 @@ const PricingCard = ({ title, price, credits, features, popular, onSelect, loadi
 );
 
 const PackCard = ({ credits, price, perRow, highlight, onSelect, loading, disabled }: any) => (
-    <div className={`bg-white rounded-2xl p-5 border flex items-center justify-between ${disabled ? 'opacity-60' : ''}`} style={highlight ? { borderColor: '#fee045', backgroundColor: '#fff9e6' } : { borderColor: '#e5e5e5' }}>
+    <div className={`bg-white rounded-2xl p-5 border flex items-center justify-between ${disabled ? 'opacity-60' : ''}`} style={highlight ? { borderColor: 'SBS_COLORS.popYellow', backgroundColor: 'SBS_COLORS.lightYellow' } : { borderColor: '#e5e5e5' }}>
         <div>
-            <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{credits} Credits</h4>
+            <h4 className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{credits} Credits</h4>
             <div className="flex items-center gap-2 mt-1">
-                <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{price}</span>
-                <span className="text-xs" style={{ color: '#828282' }}>({perRow}/row)</span>
+                <span className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{price}</span>
+                <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>({perRow}/row)</span>
             </div>
         </div>
         <button
@@ -229,7 +230,7 @@ const PackCard = ({ credits, price, perRow, highlight, onSelect, loading, disabl
                 ? 'border cursor-not-allowed'
                 : 'bg-white border hover:border-gray-300'
             }`}
-            style={disabled ? { backgroundColor: '#f9f9f9', color: '#828282', borderColor: '#e5e5e5' } : { borderColor: '#e5e5e5', color: '#4b4b4b' }}
+            style={disabled ? { backgroundColor: '#f9f9f9', color: 'SBS_COLORS.lightCharcoal', borderColor: '#e5e5e5' } : { borderColor: '#e5e5e5', color: 'SBS_COLORS.midCharcoal' }}
         >
             {loading ? '...' : 'Buy Pack'}
         </button>

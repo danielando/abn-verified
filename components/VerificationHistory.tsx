@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Download, Trash2, Calendar, FileText, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { supabase } from '../services/supabaseClient';
 import { AbnRecord } from '../types';
+import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
 interface VerificationRun {
   id: string;
@@ -121,11 +122,11 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
             onClick={onBack}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <ArrowLeft size={24} style={{ color: '#4b4b4b' }} />
+            <ArrowLeft size={24} style={{ color: 'SBS_COLORS.midCharcoal' }} />
           </button>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Verification History</h1>
-            <p className="text-sm" style={{ color: '#828282' }}>View and manage your past verification runs</p>
+            <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Verification History</h1>
+            <p className="text-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>View and manage your past verification runs</p>
           </div>
         </div>
       </div>
@@ -134,13 +135,13 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="animate-spin" size={40} style={{ color: '#fdb717' }} />
+            <Loader2 className="animate-spin" size={40} style={{ color: 'SBS_COLORS.standardYellow' }} />
           </div>
         ) : runs.length === 0 ? (
           <div className="text-center py-20">
             <FileText className="mx-auto mb-4" size={64} style={{ color: '#e5e5e5' }} />
-            <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#4b4b4b' }}>No verification history yet</h3>
-            <p style={{ color: '#828282' }}>Your completed verification runs will appear here</p>
+            <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.midCharcoal' }}>No verification history yet</h3>
+            <p style={{ color: 'SBS_COLORS.lightCharcoal' }}>Your completed verification runs will appear here</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -153,10 +154,10 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                   {/* Run Info */}
                   <div className="flex-1">
                     <div className="flex items-start gap-3 mb-3">
-                      <FileText className="mt-1 flex-shrink-0" size={24} style={{ color: '#fdb717' }} />
+                      <FileText className="mt-1 flex-shrink-0" size={24} style={{ color: 'SBS_COLORS.standardYellow' }} />
                       <div>
-                        <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{run.file_name}</h3>
-                        <div className="flex items-center gap-2 text-sm mt-1" style={{ color: '#828282' }}>
+                        <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{run.file_name}</h3>
+                        <div className="flex items-center gap-2 text-sm mt-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                           <Calendar size={14} />
                           <span>{formatDate(run.created_at)}</span>
                         </div>
@@ -166,8 +167,8 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                     {/* Stats */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                       <div className="bg-gray-50 rounded-xl p-3">
-                        <p className="text-xs mb-1" style={{ color: '#828282' }}>Total Records</p>
-                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{run.total_records}</p>
+                        <p className="text-xs mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Total Records</p>
+                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{run.total_records}</p>
                       </div>
                       <div className="bg-green-50 rounded-xl p-3">
                         <p className="text-xs text-green-600 mb-1 flex items-center gap-1">
@@ -183,9 +184,9 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                         </p>
                         <p className="text-lg font-bold text-red-700" style={{ fontFamily: 'Ubuntu, sans-serif' }}>{run.failed_verifications}</p>
                       </div>
-                      <div className="rounded-xl p-3" style={{ backgroundColor: '#fff9e6' }}>
-                        <p className="text-xs mb-1" style={{ color: '#fdb717' }}>Credits Used</p>
-                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#fdb717' }}>{run.credits_used}</p>
+                      <div className="rounded-xl p-3" style={{ backgroundColor: 'SBS_COLORS.lightYellow' }}>
+                        <p className="text-xs mb-1" style={{ color: 'SBS_COLORS.standardYellow' }}>Credits Used</p>
+                        <p className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.standardYellow' }}>{run.credits_used}</p>
                       </div>
                     </div>
                   </div>
@@ -195,14 +196,14 @@ const VerificationHistory: React.FC<VerificationHistoryProps> = ({ userId, onBac
                     <button
                       onClick={() => handleLoadRun(run)}
                       className="flex-1 md:flex-none px-4 py-2 rounded-full font-medium transition-all text-sm shadow-lg hover:shadow-xl"
-                      style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+                      style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
                     >
                       View Results
                     </button>
                     <button
                       onClick={() => handleDownloadCSV(run)}
                       className="flex-1 md:flex-none px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full font-medium transition-all text-sm flex items-center justify-center gap-2"
-                      style={{ color: '#4b4b4b' }}
+                      style={{ color: 'SBS_COLORS.midCharcoal' }}
                     >
                       <Download size={16} />
                       <span className="hidden md:inline">Download</span>

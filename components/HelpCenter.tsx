@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, FileSpreadsheet, CheckCircle, CreditCard, Search, ChevronRight, TrendingUp } from 'lucide-react';
 import Footer from './Footer';
+import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
 interface HelpCenterProps {
   onBack: () => void;
@@ -470,22 +471,22 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <button onClick={onBack} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
-              <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)' }}>
+              <TrendingUp size={24} style={{ color: 'SBS_COLORS.darkBase' }} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
-              <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
+              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>ABNVerify</h1>
+              <p className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Powered by ABR</p>
             </div>
           </button>
           <div className="flex items-center gap-4">
-            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Pricing</button>
-            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: '#4b4b4b' }}>Try Free</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: 'SBS_COLORS.midCharcoal' }}>Pricing</button>
+            <button onClick={onBack} className="text-sm font-medium hidden sm:block hover:opacity-80" style={{ color: 'SBS_COLORS.midCharcoal' }}>Try Free</button>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
                 className="text-sm font-medium hidden sm:block hover:opacity-80"
-                style={{ color: '#4b4b4b' }}
+                style={{ color: 'SBS_COLORS.midCharcoal' }}
               >
                 Help
               </button>
@@ -493,7 +494,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
             <button
               onClick={onBack}
               className="px-4 py-2 rounded-full font-medium text-sm transition-all shadow-md hover:shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+              style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -504,8 +505,8 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
       {/* Page Title */}
       <div className="bg-white border-b border-gray-200 py-6">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Help Center</h2>
-          <p className="text-sm mt-2" style={{ color: '#828282' }}>Everything you need to know about ABNVerify</p>
+          <h2 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Help Center</h2>
+          <p className="text-sm mt-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Everything you need to know about ABNVerify</p>
         </div>
       </div>
 
@@ -526,26 +527,26 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
                     {article.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold transition-colors" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                    <h3 className="text-lg font-bold transition-colors" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                       {article.title}
                     </h3>
                   </div>
                 </div>
-                <ChevronRight className="transition-opacity group-hover:opacity-100" style={{ color: '#fdb717', opacity: 0.6 }} size={24} />
+                <ChevronRight className="transition-opacity group-hover:opacity-100" style={{ color: 'SBS_COLORS.standardYellow', opacity: 0.6 }} size={24} />
               </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-12 rounded-3xl border p-6 text-center" style={{ backgroundColor: '#fff9e6', borderColor: '#fee045' }}>
-          <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Still need help?</h3>
-          <p className="mb-4" style={{ color: '#4b4b4b' }}>
+        <div className="mt-12 rounded-3xl border p-6 text-center" style={{ backgroundColor: 'SBS_COLORS.lightYellow', borderColor: 'SBS_COLORS.popYellow' }}>
+          <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Still need help?</h3>
+          <p className="mb-4" style={{ color: 'SBS_COLORS.midCharcoal' }}>
             Can't find what you're looking for? Our support team is here to help.
           </p>
           <a
             href="mailto:support@abnverify.com"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl"
-            style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+            style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
           >
             Contact Support
           </a>

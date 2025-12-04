@@ -225,28 +225,28 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       
       {/* PROCESSING BANNER */}
       {uploadStatus === UploadStatus.PROCESSING && (
-         <div className="bg-white rounded-3xl p-6 shadow-lg border animate-fade-in-down sticky top-6 z-40" style={{ borderColor: '#fff9e6' }}>
+         <div className="bg-white rounded-3xl p-6 shadow-lg border animate-fade-in-down sticky top-6 z-40" style={{ borderColor: 'SBS_COLORS.lightYellow' }}>
             <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex items-center gap-4 w-full md:w-auto">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' }}>
                         <Loader2 className="animate-spin" size={24} />
                     </div>
                     <div>
-                        <h3 className="font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Processing Bulk Batch...</h3>
-                        <p className="text-sm" style={{ color: '#828282' }}>
-                            Verified <span className="font-bold" style={{ color: '#fdb717' }}>{uploadProgress.current}</span> of <span className="font-bold">{uploadProgress.total}</span> records
+                        <h3 className="font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Processing Bulk Batch...</h3>
+                        <p className="text-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
+                            Verified <span className="font-bold" style={{ color: 'SBS_COLORS.standardYellow' }}>{uploadProgress.current}</span> of <span className="font-bold">{uploadProgress.total}</span> records
                         </p>
                     </div>
                 </div>
                 <div className="flex-1 w-full">
-                    <div className="flex justify-between text-xs font-semibold mb-2" style={{ color: '#828282' }}>
+                    <div className="flex justify-between text-xs font-semibold mb-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                         <span>Progress</span>
                         <span>{progressPercent}%</span>
                     </div>
                     <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
                         <div
                             className="h-full transition-all duration-300 ease-out"
-                            style={{ width: `${progressPercent}%`, background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}
+                            style={{ width: `${progressPercent}%`, background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)' }}
                         ></div>
                     </div>
                 </div>
@@ -258,16 +258,16 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-3">
-             <h1 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABN Verification Dashboard</h1>
-             <span className="px-2 py-0.5 rounded text-xs font-bold border" style={{ backgroundColor: '#fff9e6', color: '#fdb717', borderColor: '#fee045' }}>Bulk Mode</span>
+             <h1 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>ABN Verification Dashboard</h1>
+             <span className="px-2 py-0.5 rounded text-xs font-bold border" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow', borderColor: 'SBS_COLORS.popYellow' }}>Bulk Mode</span>
           </div>
-          <p className="mt-1" style={{ color: '#828282' }}>Real-time ABR verification status</p>
+          <p className="mt-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Real-time ABR verification status</p>
         </div>
         <button
           onClick={onUploadClick}
           disabled={uploadStatus === UploadStatus.PROCESSING}
           className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all shadow-lg ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
-          style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+          style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
         >
           <Upload size={18} />
           {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
@@ -284,15 +284,15 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
           <div className="bg-white p-8 rounded-3xl shadow-sm">
             <div className="flex justify-between items-center mb-8">
               <div>
-                <p className="mb-1" style={{ color: '#828282' }}>Geographic Distribution</p>
+                <p className="mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Geographic Distribution</p>
                 <div className="flex items-center gap-3">
-                  <h2 className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>By State</h2>
-                  <span className="px-2 py-1 rounded-lg text-xs font-bold" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
+                  <h2 className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>By State</h2>
+                  <span className="px-2 py-1 rounded-lg text-xs font-bold" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' }}>
                     {stats.stateData.length} Regions
                   </span>
                 </div>
               </div>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' }}>
                   <MapPin size={20} />
               </div>
             </div>
@@ -354,12 +354,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'STATUS_ACTIVE' ? 'border-green-500 bg-green-50/50 ring-2 ring-green-100 ring-offset-2' : 'border-transparent hover:border-green-100'}`}
             >
               <div>
-                <p className="text-sm mb-1" style={{ color: '#828282' }}>Active</p>
+                <p className="text-sm mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Active</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                         {stats.total > 0 ? Math.round((stats.active / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs" style={{ color: '#828282' }}>({stats.active})</span>
+                    <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>({stats.active})</span>
                 </div>
                 <p className="text-xs text-green-500 mt-2 font-medium">Click to filter</p>
               </div>
@@ -374,12 +374,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'STATUS_CANCELLED' ? 'border-red-500 bg-red-50/50 ring-2 ring-red-100 ring-offset-2' : 'border-transparent hover:border-red-100'}`}
             >
               <div>
-                <p className="text-sm mb-1" style={{ color: '#828282' }}>Cancelled</p>
+                <p className="text-sm mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Cancelled</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                         {stats.total > 0 ? Math.round((stats.cancelled / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs" style={{ color: '#828282' }}>({stats.cancelled})</span>
+                    <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>({stats.cancelled})</span>
                 </div>
                 <p className="text-xs text-red-400 mt-2 font-medium">Click to filter</p>
               </div>
@@ -392,19 +392,19 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
             <button
                 onClick={() => toggleFilter('GST_YES')}
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'GST_YES' ? 'ring-2 ring-offset-2' : 'border-transparent'}`}
-                style={filterMode === 'GST_YES' ? { borderColor: '#fdb717', backgroundColor: '#fff9e6', ringColor: '#fee045' } : {}}
+                style={filterMode === 'GST_YES' ? { borderColor: 'SBS_COLORS.standardYellow', backgroundColor: 'SBS_COLORS.lightYellow', ringColor: 'SBS_COLORS.popYellow' } : {}}
             >
               <div>
-                <p className="text-sm mb-1" style={{ color: '#828282' }}>GST Reg</p>
+                <p className="text-sm mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>GST Reg</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                         {stats.gstCount > 0 && stats.total > 0 ? Math.round((stats.gstCount / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs" style={{ color: '#828282' }}>({stats.gstCount})</span>
+                    <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>({stats.gstCount})</span>
                 </div>
-                <p className="text-xs mt-2 font-medium" style={{ color: '#fdb717' }}>Click to filter</p>
+                <p className="text-xs mt-2 font-medium" style={{ color: 'SBS_COLORS.standardYellow' }}>Click to filter</p>
               </div>
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ backgroundColor: '#fff9e6', color: '#fdb717' }}>
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' }}>
                  <ReceiptText size={20} />
               </div>
             </button>
@@ -415,12 +415,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                 className={`bg-white p-6 rounded-3xl shadow-sm flex items-center justify-between text-left transition-all duration-200 border-2 ${filterMode === 'GST_NO' ? 'border-orange-500 bg-orange-50/50 ring-2 ring-orange-100 ring-offset-2' : 'border-transparent hover:border-orange-100'}`}
             >
               <div>
-                <p className="text-sm mb-1" style={{ color: '#828282' }}>Not Reg</p>
+                <p className="text-sm mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Not Reg</p>
                 <div className="flex items-baseline gap-2">
-                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                    <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                         {stats.nonGstCount > 0 && stats.total > 0 ? Math.round((stats.nonGstCount / stats.total) * 100) : 0}%
                     </h3>
-                    <span className="text-xs" style={{ color: '#828282' }}>({stats.nonGstCount})</span>
+                    <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>({stats.nonGstCount})</span>
                 </div>
                 <p className="text-xs text-orange-400 mt-2 font-medium">Click to filter</p>
               </div>
@@ -437,8 +437,8 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
         <div className="space-y-8">
             <div className="bg-white p-8 rounded-3xl shadow-sm h-full flex flex-col">
               <div className="mb-6">
-                <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Registration Timeline</h3>
-                <p className="text-sm" style={{ color: '#828282' }}>Activity by Year</p>
+                <h3 className="text-lg font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Registration Timeline</h3>
+                <p className="text-sm" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Activity by Year</p>
               </div>
 
               <div className="flex-1 min-h-[250px] relative">
@@ -460,25 +460,25 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                         verticalAlign="bottom"
                         height={36}
                         iconType="circle"
-                        formatter={(value) => <span className="text-xs ml-1" style={{ color: '#828282' }}>{value}</span>}
+                        formatter={(value) => <span className="text-xs ml-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>{value}</span>}
                       />
                     </PieChart>
                  </ResponsiveContainer>
                  {/* Center Text */}
                  <div className="absolute inset-0 pb-8 flex items-center justify-center pointer-events-none">
                     <div className="text-center">
-                       <span className="block text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#fdb717' }}>
+                       <span className="block text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.standardYellow' }}>
                          {stats.total}
                        </span>
-                       <span className="text-xs" style={{ color: '#828282' }}>Records</span>
+                       <span className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Records</span>
                     </div>
                  </div>
               </div>
 
               {/* Top Entity Type */}
               <div className="mt-8 border-t border-gray-100 pt-6 text-center">
-                  <span className="text-xs font-bold uppercase" style={{ color: '#828282' }}>Most Common Entity</span>
-                  <p className="text-lg font-bold mt-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{stats.topType}</p>
+                  <span className="text-xs font-bold uppercase" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Most Common Entity</span>
+                  <p className="text-lg font-bold mt-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{stats.topType}</p>
               </div>
             </div>
         </div>
@@ -488,16 +488,16 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
       <div className="bg-white rounded-3xl shadow-sm overflow-hidden flex flex-col">
         <div className="p-8 pb-4 flex justify-between items-center">
             <div className="flex items-center gap-3">
-                <h3 className="text-xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+                <h3 className="text-xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                     {getTableTitle()}
                 </h3>
                 <span className={`px-2 py-0.5 rounded text-xs font-bold ${filterMode === 'ALL' ? 'bg-gray-100 text-gray-500' : filterMode.includes('GST') ? '' : filterMode === 'STATUS_ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
-                      style={filterMode.includes('GST') ? { backgroundColor: '#fff9e6', color: '#fdb717' } : {}}>
+                      style={filterMode.includes('GST') ? { backgroundColor: 'SBS_COLORS.lightYellow', color: 'SBS_COLORS.standardYellow' } : {}}>
                     {filteredData.length} records
                 </span>
 
                 {filterMode !== 'ALL' && (
-                    <button onClick={() => setFilterMode('ALL')} className="flex items-center gap-1 text-xs hover:opacity-80 transition-opacity" style={{ color: '#828282' }}>
+                    <button onClick={() => setFilterMode('ALL')} className="flex items-center gap-1 text-xs hover:opacity-80 transition-opacity" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                         <FilterX size={12} /> Clear Filter
                     </button>
                 )}
@@ -507,7 +507,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus
                   onClick={handleDownloadCsv}
                   disabled={data.length === 0}
                   className="flex items-center gap-2 px-4 py-2 bg-white border rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium disabled:opacity-50"
-                  style={{ borderColor: '#e5e5e5', color: '#4b4b4b' }}
+                  style={{ borderColor: '#e5e5e5', color: 'SBS_COLORS.midCharcoal' }}
                 >
                   <Download size={16} />
                   Download CSV

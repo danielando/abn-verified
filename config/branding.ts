@@ -15,6 +15,9 @@ export const SBS_COLORS = {
   midCharcoal: '#4b4b4b',
   darkBase: '#2e2e2e',
 
+  // Light backgrounds
+  lightYellow: '#fff9e6',
+
   // Accent Colors (for status indicators)
   success: '#10b981', // green
   error: '#ef4444',   // red

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { Mail, Lock, Loader2, ArrowRight, CheckCircle, AlertCircle, Sparkles, TrendingUp, Shield, ArrowLeft } from 'lucide-react';
 import { trackSignUp } from '../utils/analytics';
+import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
 interface AuthPageProps {
   onSuccess: () => void;
@@ -100,14 +101,14 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
 
   if (showConfirmation) {
       return (
-        <div className="min-h-screen flex items-center justify-center p-4" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, #fff9e6 0%, #ffffff 100%)' }}>
+        <div className="min-h-screen flex items-center justify-center p-4" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, SBS_COLORS.lightYellow 0%, #ffffff 100%)' }}>
             <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden p-8 text-center">
                 <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle size={32} />
                 </div>
-                <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Check your inbox</h2>
-                <p className="mb-8" style={{ color: '#828282' }}>
-                    We've sent a confirmation link to <span className="font-bold" style={{ color: '#2e2e2e' }}>{email}</span>. Please click the link to activate your account.
+                <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Check your inbox</h2>
+                <p className="mb-8" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
+                    We've sent a confirmation link to <span className="font-bold" style={{ color: 'SBS_COLORS.darkBase' }}>{email}</span>. Please click the link to activate your account.
                 </p>
                 <button
                     onClick={() => {
@@ -115,7 +116,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                         setIsLogin(true);
                     }}
                     className="w-full py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl"
-                    style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+                    style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
                 >
                     Back to Sign In
                 </button>
@@ -125,59 +126,59 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
   }
 
   return (
-    <div className="min-h-screen flex" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, #fff9e6 0%, #ffffff 100%)' }}>
+    <div className="min-h-screen flex" style={{ fontFamily: 'Raleway, sans-serif', background: 'linear-gradient(180deg, SBS_COLORS.lightYellow 0%, #ffffff 100%)' }}>
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col justify-between relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
+      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col justify-between relative overflow-hidden" style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)' }}>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: '#fdb717' }}></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: 'SBS_COLORS.standardYellow' }}></div>
         </div>
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-12">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: '#2e2e2e' }}>
-              <TrendingUp size={24} style={{ color: '#fdb717' }} />
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: 'SBS_COLORS.darkBase' }}>
+              <TrendingUp size={24} style={{ color: 'SBS_COLORS.standardYellow' }} />
             </div>
-            <h1 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+            <h1 className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>ABNVerify</h1>
           </div>
 
           <div className="space-y-8 mt-20">
-            <h2 className="text-4xl font-bold leading-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+            <h2 className="text-4xl font-bold leading-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
               Bulk ABN verification<br />in seconds
             </h2>
-            <p className="text-lg" style={{ color: '#4b4b4b' }}>
+            <p className="text-lg" style={{ color: 'SBS_COLORS.midCharcoal' }}>
               The only bulk ABR verification engine designed for accuracy, compliance, and scale.
             </p>
 
             <div className="space-y-4 mt-12">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 backdrop-blur rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(46, 46, 46, 0.2)' }}>
-                  <TrendingUp size={20} style={{ color: '#2e2e2e' }} />
+                  <TrendingUp size={20} style={{ color: 'SBS_COLORS.darkBase' }} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Official ABR Data</h3>
-                  <p className="text-sm" style={{ color: '#4b4b4b' }}>Direct integration with ABR for accurate, up-to-date information</p>
+                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Official ABR Data</h3>
+                  <p className="text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>Direct integration with ABR for accurate, up-to-date information</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 backdrop-blur rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(46, 46, 46, 0.2)' }}>
-                  <Sparkles size={20} style={{ color: '#2e2e2e' }} />
+                  <Sparkles size={20} style={{ color: 'SBS_COLORS.darkBase' }} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Bulk Verification</h3>
-                  <p className="text-sm" style={{ color: '#4b4b4b' }}>Process up to 15,000 ABNs at once - fast, accurate, and reliable</p>
+                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Bulk Verification</h3>
+                  <p className="text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>Process up to 15,000 ABNs at once - fast, accurate, and reliable</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 backdrop-blur rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(46, 46, 46, 0.2)' }}>
-                  <Shield size={20} style={{ color: '#2e2e2e' }} />
+                  <Shield size={20} style={{ color: 'SBS_COLORS.darkBase' }} />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Secure & Compliant</h3>
-                  <p className="text-sm" style={{ color: '#4b4b4b' }}>Australian servers only - no file storage, GDPR compliant</p>
+                  <h3 className="font-semibold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>Secure & Compliant</h3>
+                  <p className="text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>Australian servers only - no file storage, GDPR compliant</p>
                 </div>
               </div>
             </div>
@@ -185,7 +186,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
         </div>
 
         <div className="relative z-10">
-          <p className="text-sm" style={{ color: '#4b4b4b' }}>
+          <p className="text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>
             Trusted by accounting firms, bookkeepers, and compliance teams across Australia
           </p>
         </div>
@@ -206,10 +207,10 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               </button>
             )}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
-                <TrendingUp size={24} style={{ color: '#2e2e2e' }} />
+              <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)' }}>
+                <TrendingUp size={24} style={{ color: 'SBS_COLORS.darkBase' }} />
               </div>
-              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
+              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>ABNVerify</h1>
             </div>
           </div>
 
@@ -219,7 +220,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
               <button
                 onClick={onBack}
                 className="flex items-center gap-2 transition-opacity hover:opacity-80"
-                style={{ color: '#4b4b4b' }}
+                style={{ color: 'SBS_COLORS.midCharcoal' }}
               >
                 <ArrowLeft size={20} />
                 <span className="text-sm font-medium">Back to Home</span>
@@ -229,10 +230,10 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
 
           <div className="bg-white rounded-3xl shadow-xl p-8 border" style={{ borderColor: '#e5e5e5' }}>
             <div className="mb-8">
-              <h2 className="text-3xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+              <h2 className="text-3xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>
                 {isLogin ? 'Welcome Back' : 'Create Account'}
               </h2>
-              <p style={{ color: '#828282' }}>
+              <p style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 {isLogin ? 'Sign in to access your dashboard' : 'Get started with 10 free credits'}
               </p>
             </div>
@@ -334,7 +335,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                 type="submit"
                 disabled={loading}
                 className="w-full py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-                style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+                style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
               >
                 {loading ? (
                   <Loader2 className="animate-spin" />
@@ -354,14 +355,14 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
                     setShowConfirmation(false);
                 }}
                 className="text-sm font-medium transition-opacity hover:opacity-80"
-                style={{ color: '#828282' }}
+                style={{ color: 'SBS_COLORS.lightCharcoal' }}
               >
                 {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
               </button>
             </div>
 
             {!isLogin && (
-              <p className="mt-6 text-xs text-center" style={{ color: '#828282' }}>
+              <p className="mt-6 text-xs text-center" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                 By creating an account, you agree to our Terms of Service and Privacy Policy
               </p>
             )}
