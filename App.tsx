@@ -22,6 +22,7 @@ import { processCsvStream } from './services/abnService';
 import { LogOut, Menu, X, History, Shield, TrendingUp, HelpCircle } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
 import { trackFileUpload, trackVerificationComplete, trackAddCreditsClick } from './utils/analytics';
+import { SBS_COLORS, headingStyle, bodyStyle, yellowButtonStyle, logoStyle } from './config/branding';
 
 // Hardcoded Default GUID
 const DEFAULT_GUID = 'cb0b0ca6-6283-4780-a0fe-086a80ef6826';
@@ -487,16 +488,16 @@ const App: React.FC = () => {
             <div className="absolute top-0 left-0 w-full bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex justify-between items-center z-20 shadow-sm">
                {/* Logo & Help Link */}
                <div className="flex items-center gap-6">
-                   <div className="font-bold flex items-center gap-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
-                       <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
-                           <TrendingUp size={20} style={{ color: '#2e2e2e' }} />
+                   <div className="font-bold flex items-center gap-2" style={headingStyle()}>
+                       <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={logoStyle}>
+                           <TrendingUp size={20} style={{ color: SBS_COLORS.darkBase }} />
                        </div>
                        <span className="hidden sm:inline">ABNVerify</span>
                    </div>
                    <button
                        onClick={() => setIsHelpOpen(true)}
                        className="hidden md:block text-sm font-medium transition-colors hover:opacity-80"
-                       style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}
+                       style={bodyStyle(SBS_COLORS.midCharcoal)}
                    >
                        Help
                    </button>
@@ -511,13 +512,13 @@ const App: React.FC = () => {
                         setIsPricingOpen(true);
                       }}
                       className="flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all group"
-                      style={{ backgroundColor: '#f5f5f5', borderColor: '#e5e5e5' }}
+                      style={{ backgroundColor: SBS_COLORS.gray50, borderColor: SBS_COLORS.gray200 }}
                    >
                       <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                      <span className="text-sm font-semibold" style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}>
+                      <span className="text-sm font-semibold" style={bodyStyle(SBS_COLORS.midCharcoal)}>
                           {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                       </span>
-                      <span className="text-xs text-white px-1.5 py-0.5 rounded ml-1" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>Add +</span>
+                      <span className="text-xs text-white px-1.5 py-0.5 rounded ml-1" style={yellowButtonStyle}>Add +</span>
                    </button>
 
                    {/* User Menu */}
@@ -591,12 +592,12 @@ const App: React.FC = () => {
                            setIsMobileMenuOpen(false);
                         }}
                         className="w-full flex items-center justify-between px-3 py-2 rounded-full transition-all group"
-                        style={{ backgroundColor: '#f5f5f5' }}
+                        style={{ backgroundColor: SBS_COLORS.gray50 }}
                      >
-                        <span className="text-sm font-semibold" style={{ color: '#4b4b4b', fontFamily: 'Raleway, sans-serif' }}>
+                        <span className="text-sm font-semibold" style={bodyStyle(SBS_COLORS.midCharcoal)}>
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
-                        <span className="text-xs text-white px-2 py-1 rounded" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>Add +</span>
+                        <span className="text-xs text-white px-2 py-1 rounded" style={yellowButtonStyle}>Add +</span>
                      </button>
 
                      {/* History */}
@@ -658,15 +659,15 @@ const App: React.FC = () => {
         {data.length === 0 && uploadStatus !== UploadStatus.PROCESSING ? (
            <div className="flex flex-col items-center justify-center min-h-[85vh] p-6">
               <div className="max-w-2xl text-center space-y-6 animate-fade-in-up">
-                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABN Verification <br/> <span style={{ color: '#fdb717' }}>Bulk Tool</span></h1>
-                  <p className="text-lg" style={{ color: '#828282', fontFamily: 'Raleway, sans-serif' }}>
+                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight" style={headingStyle()}>ABN Verification <br/> <span style={{ color: SBS_COLORS.standardYellow }}>Bulk Tool</span></h1>
+                  <p className="text-lg" style={bodyStyle(SBS_COLORS.lightCharcoal)}>
                     Upload your entity list. We'll fetch status, tax details, and trading names automatically using <strong>Official ABN Lookup Services</strong>.
                   </p>
 
                   <button
                     onClick={handleUploadClick}
                     className="inline-flex items-center gap-3 px-8 py-4 text-lg font-medium rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                    style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}
+                    style={yellowButtonStyle}
                   >
                     Start Verification
                   </button>
