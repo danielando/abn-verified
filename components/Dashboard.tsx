@@ -1,12 +1,13 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
-import { 
-  BarChart, Bar, XAxis, Tooltip as RechartsTooltip, ResponsiveContainer, 
+import {
+  BarChart, Bar, XAxis, Tooltip as RechartsTooltip, ResponsiveContainer,
   Cell, PieChart, Pie, Legend
 } from 'recharts';
 import { AbnRecord, ChartDataState, UploadStatus, UploadProgress } from '../types';
 import { ArrowUpRight, Upload, Download, Briefcase, Info, MapPin, ReceiptText, Eye, Heart, Building2, ChevronLeft, ChevronRight, Ban, FilterX, XCircle, Activity, Loader2, CheckCircle } from 'lucide-react';
 import EntityDetailsModal from './EntityDetailsModal';
+import { SBS_COLORS, headingStyle, bodyStyle, yellowButtonStyle, CHART_COLORS } from '../config/branding';
 
 interface DashboardProps {
   data: AbnRecord[];
@@ -15,8 +16,8 @@ interface DashboardProps {
   uploadProgress: UploadProgress;
 }
 
-const COLORS = ['#fdb717', '#fee045', '#ffcc00', '#ffe680', '#fff9e6', '#fdb717'];
-const YEAR_COLORS = ['#fdb717', '#fee045', '#ffcc00', '#ffe680', '#fff9e6', '#fdb717'];
+const COLORS = CHART_COLORS.yellow;
+const YEAR_COLORS = CHART_COLORS.yellow;
 
 type FilterMode = 'ALL' | 'GST_YES' | 'GST_NO' | 'STATUS_ACTIVE' | 'STATUS_CANCELLED';
 

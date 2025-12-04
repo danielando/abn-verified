@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check, Upload, FileSpreadsheet, Shield, Server, Zap, Building2, FileCheck, TrendingUp, ArrowRight, Package } from 'lucide-react';
+import { SBS_COLORS, SBS_GRADIENTS, headingStyle, bodyStyle, yellowButtonStyle, logoStyle } from '../config/branding';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -16,27 +17,27 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick, onTermsClick, onAboutClick, onContactClick, onHelpClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'Raleway, sans-serif' }}>
+    <div className="min-h-screen bg-white" style={bodyStyle()}>
       {/* Header / Nav */}
       <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
-              <TrendingUp size={24} className="text-gray-900" />
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={logoStyle}>
+              <TrendingUp size={24} style={{ color: SBS_COLORS.darkBase }} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>ABNVerify</h1>
-              <p className="text-xs" style={{ color: '#828282' }}>Powered by ABR</p>
+              <h1 className="text-2xl font-bold" style={headingStyle()}>ABNVerify</h1>
+              <p className="text-xs" style={{ color: SBS_COLORS.lightCharcoal }}>Powered by ABR</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#pricing" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: '#4b4b4b' }}>Pricing</a>
-            <a href="#demo" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: '#4b4b4b' }}>Try Free</a>
+            <a href="#pricing" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: SBS_COLORS.midCharcoal }}>Pricing</a>
+            <a href="#demo" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: SBS_COLORS.midCharcoal }}>Try Free</a>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
                 className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity"
-                style={{ color: '#4b4b4b' }}
+                style={{ color: SBS_COLORS.midCharcoal }}
               >
                 Help
               </button>
@@ -44,10 +45,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <button
               onClick={onGetStarted}
               className="px-5 py-2.5 rounded-full font-semibold text-sm transition-all shadow-md hover:shadow-lg"
-              style={{
-                background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                color: '#2e2e2e'
-              }}
+              style={yellowButtonStyle}
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -61,19 +59,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Content */}
             <div>
-              <div className="inline-block px-4 py-2 rounded-full text-sm font-bold mb-6" style={{ background: '#fee045', color: '#2e2e2e' }}>
+              <div className="inline-block px-4 py-2 rounded-full text-sm font-bold mb-6" style={{ background: SBS_COLORS.popYellow, color: SBS_COLORS.darkBase }}>
                 Official ABR Data Engine
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={headingStyle()}>
                 Bulk ABN verification in seconds.
               </h1>
 
-              <p className="text-xl mb-8" style={{ color: '#4b4b4b' }}>
+              <p className="text-xl mb-8" style={{ color: SBS_COLORS.midCharcoal }}>
                 Upload and verify up to 15,000 ABNs at once — powered by official ABR data.
               </p>
 
-              <p className="text-lg mb-8 font-semibold" style={{ color: '#2e2e2e' }}>
+              <p className="text-lg mb-8 font-semibold" style={headingStyle()}>
                 The only bulk ABR verification engine designed for accuracy, compliance, and scale.
               </p>
 
@@ -81,17 +79,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                 <button
                   onClick={onGetStarted}
                   className="px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
-                  style={{
-                    background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                    color: '#2e2e2e'
-                  }}
+                  style={yellowButtonStyle}
                 >
                   Start Free Test
                   <ArrowRight size={20} />
                 </button>
               </div>
 
-              <div className="mt-8 flex items-center gap-6 text-sm" style={{ color: '#4b4b4b' }}>
+              <div className="mt-8 flex items-center gap-6 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                 <div className="flex items-center gap-2">
                   <Check size={16} className="text-green-600" />
                   No credit card required
@@ -105,19 +100,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
 
             {/* Right: Demo Visual */}
             <div className="relative">
-              <div className="bg-white rounded-3xl shadow-2xl border p-6" style={{ borderColor: '#828282' }}>
-                <div className="flex items-center gap-3 mb-4 pb-4 border-b" style={{ borderColor: '#e5e5e5' }}>
+              <div className="bg-white rounded-3xl shadow-2xl border p-6" style={{ borderColor: SBS_COLORS.lightCharcoal }}>
+                <div className="flex items-center gap-3 mb-4 pb-4 border-b" style={{ borderColor: SBS_COLORS.gray200 }}>
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#fdb717' }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: SBS_COLORS.standardYellow }}></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-2 text-sm" style={{ color: '#828282' }}>abnverify.com</span>
+                  <span className="ml-2 text-sm" style={{ color: SBS_COLORS.lightCharcoal }}>abnverify.com</span>
                 </div>
 
                 {/* Upload Area */}
-                <div className="border-2 border-dashed rounded-2xl p-8 text-center mb-4" style={{ backgroundColor: '#fff9e6', borderColor: '#fdb717' }}>
-                  <Upload className="mx-auto mb-3" style={{ color: '#fdb717' }} size={40} />
-                  <p className="text-sm font-bold" style={{ color: '#2e2e2e' }}>Drop CSV file here</p>
-                  <p className="text-xs mt-1" style={{ color: '#828282' }}>or click to browse</p>
+                <div className="border-2 border-dashed rounded-2xl p-8 text-center mb-4" style={{ backgroundColor: '#fff9e6', borderColor: SBS_COLORS.standardYellow }}>
+                  <Upload className="mx-auto mb-3" style={{ color: SBS_COLORS.standardYellow }} size={40} />
+                  <p className="text-sm font-bold" style={headingStyle()}>Drop CSV file here</p>
+                  <p className="text-xs mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>or click to browse</p>
                 </div>
 
                 {/* Results Preview */}
@@ -125,30 +120,30 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                   <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-2xl">
                     <Check className="text-green-600" size={18} />
                     <div className="flex-1 text-left">
-                      <p className="text-sm font-bold" style={{ color: '#2e2e2e' }}>51824753556</p>
-                      <p className="text-xs" style={{ color: '#4b4b4b' }}>Active • GST Registered</p>
+                      <p className="text-sm font-bold" style={headingStyle()}>51824753556</p>
+                      <p className="text-xs" style={{ color: SBS_COLORS.midCharcoal }}>Active • GST Registered</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-2xl">
                     <Check className="text-green-600" size={18} />
                     <div className="flex-1 text-left">
-                      <p className="text-sm font-bold" style={{ color: '#2e2e2e' }}>33102417032</p>
-                      <p className="text-xs" style={{ color: '#4b4b4b' }}>Active • GST Registered</p>
+                      <p className="text-sm font-bold" style={headingStyle()}>33102417032</p>
+                      <p className="text-xs" style={{ color: SBS_COLORS.midCharcoal }}>Active • GST Registered</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t flex justify-between text-sm" style={{ borderColor: '#e5e5e5' }}>
-                  <span style={{ color: '#828282' }}>2,847 verified</span>
+                <div className="mt-4 pt-4 border-t flex justify-between text-sm" style={{ borderColor: SBS_COLORS.gray200 }}>
+                  <span style={{ color: SBS_COLORS.lightCharcoal }}>2,847 verified</span>
                   <span className="font-bold text-green-600">100% complete</span>
                 </div>
               </div>
 
               {/* Floating badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl border px-4 py-3" style={{ borderColor: '#fee045' }}>
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl border px-4 py-3" style={{ borderColor: SBS_COLORS.popYellow }}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                  <span className="text-sm font-bold" style={{ color: '#2e2e2e' }}>Real-time verification</span>
+                  <span className="text-sm font-bold" style={headingStyle()}>Real-time verification</span>
                 </div>
               </div>
             </div>
@@ -162,26 +157,26 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
-                <Zap style={{ color: '#fdb717' }} size={32} />
+                <Zap style={{ color: SBS_COLORS.standardYellow }} size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Bulk Verification</h3>
-              <p style={{ color: '#4b4b4b' }}>Process up to 15,000 ABNs at once. Fast, accurate, and reliable.</p>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Bulk Verification</h3>
+              <p style={{ color: SBS_COLORS.midCharcoal }}>Process up to 15,000 ABNs at once. Fast, accurate, and reliable.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
-                <Shield style={{ color: '#fdb717' }} size={32} />
+                <Shield style={{ color: SBS_COLORS.standardYellow }} size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Official ABR Data</h3>
-              <p style={{ color: '#4b4b4b' }}>Powered by the Australian Business Register. Always up-to-date.</p>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Official ABR Data</h3>
+              <p style={{ color: SBS_COLORS.midCharcoal }}>Powered by the Australian Business Register. Always up-to-date.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#fff9e6' }}>
-                <Server style={{ color: '#fdb717' }} size={32} />
+                <Server style={{ color: SBS_COLORS.standardYellow }} size={32} />
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Secure & Compliant</h3>
-              <p style={{ color: '#4b4b4b' }}>Australian servers. No file storage. GDPR & privacy compliant.</p>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Secure & Compliant</h3>
+              <p style={{ color: SBS_COLORS.midCharcoal }}>Australian servers. No file storage. GDPR & privacy compliant.</p>
             </div>
           </div>
         </div>
@@ -191,10 +186,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
       <section className="py-16" style={{ backgroundColor: '#f9f9f9' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={headingStyle()}>
               Built for professionals
             </h2>
-            <p className="text-xl" style={{ color: '#4b4b4b' }}>
+            <p className="text-xl" style={{ color: SBS_COLORS.midCharcoal }}>
               Trusted by accounting firms, bookkeepers, and compliance teams across Australia
             </p>
           </div>
@@ -209,9 +204,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               { icon: Check, title: 'Data Integrity', desc: 'Maintain accurate business records' },
             ].map((useCase, i) => (
               <div key={i} className="bg-white p-6 rounded-2xl border hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-                <useCase.icon style={{ color: '#fdb717' }} className="mb-3" size={28} />
-                <h3 className="font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>{useCase.title}</h3>
-                <p className="text-sm" style={{ color: '#4b4b4b' }}>{useCase.desc}</p>
+                <useCase.icon style={{ color: SBS_COLORS.standardYellow }} className="mb-3" size={28} />
+                <h3 className="font-bold mb-2" style={headingStyle()}>{useCase.title}</h3>
+                <p className="text-sm" style={{ color: SBS_COLORS.midCharcoal }}>{useCase.desc}</p>
               </div>
             ))}
           </div>
@@ -222,13 +217,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={headingStyle()}>
               Simple, transparent pricing
             </h2>
-            <p className="text-xl" style={{ color: '#4b4b4b' }}>
+            <p className="text-xl" style={{ color: SBS_COLORS.midCharcoal }}>
               Choose the plan that fits your verification needs
             </p>
-            <p className="text-sm mt-2" style={{ color: '#828282' }}>
+            <p className="text-sm mt-2" style={{ color: SBS_COLORS.lightCharcoal }}>
               Overage charges apply: $0.01 per additional verification
             </p>
           </div>
@@ -236,24 +231,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* Starter Plan */}
             <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Starter</h3>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Starter</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$29</span>
-                <span style={{ color: '#828282' }}>/month</span>
+                <span className="text-4xl font-bold" style={headingStyle()}>$29</span>
+                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
               </div>
               <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
                 3,000 ABN verifications
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Official ABR data</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>CSV upload & export</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Email support</span>
                 </li>
@@ -272,24 +267,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
                 Most Popular
               </div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Growth</h3>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Growth</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$79</span>
-                <span style={{ color: '#828282' }}>/month</span>
+                <span className="text-4xl font-bold" style={headingStyle()}>$79</span>
+                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
               </div>
               <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fee045', color: '#2e2e2e' }}>
                 10,000 ABN verifications
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Everything in Starter</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Priority processing</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Priority support</span>
                 </li>
@@ -308,24 +303,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
 
             {/* Pro Plan */}
             <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>Pro</h3>
+              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Pro</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$149</span>
-                <span style={{ color: '#828282' }}>/month</span>
+                <span className="text-4xl font-bold" style={headingStyle()}>$149</span>
+                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
               </div>
               <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
                 25,000 ABN verifications
               </div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Everything in Growth</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Faster queue</span>
                 </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: '#4b4b4b' }}>
+                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
                   <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Priority support</span>
                 </li>
@@ -347,10 +342,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                 <Package size={18} />
                 Pay-as-you-go Packs
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-2" style={headingStyle()}>
                 One-time credit packs
               </h3>
-              <p style={{ color: '#4b4b4b' }}>
+              <p style={{ color: SBS_COLORS.midCharcoal }}>
                 No monthly commitment. Credits never expire.
               </p>
             </div>
@@ -359,19 +354,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               {/* Pack 1 */}
               <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
                 <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>2,000 Credits</h4>
+                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>2,000 Credits</h4>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$24.99</span>
+                    <span className="text-3xl font-bold" style={headingStyle()}>$24.99</span>
                   </div>
-                  <p className="text-sm mt-1" style={{ color: '#828282' }}>$0.0125/row</p>
+                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.0125/row</p>
                 </div>
                 <button
                   onClick={onGetStarted}
                   className="w-full py-3 rounded-full font-bold transition-all shadow-md hover:shadow-lg"
-                  style={{
-                    background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                    color: '#2e2e2e'
-                  }}
+                  style={yellowButtonStyle}
                 >
                   Buy Pack
                 </button>
@@ -380,19 +372,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               {/* Pack 2 - Highlighted */}
               <div className="rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ background: 'linear-gradient(135deg, #fff9e6 0%, #ffffff 100%)', borderColor: '#fee045' }}>
                 <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>5,000 Credits</h4>
+                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>5,000 Credits</h4>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$54.99</span>
+                    <span className="text-3xl font-bold" style={headingStyle()}>$54.99</span>
                   </div>
-                  <p className="text-sm mt-1" style={{ color: '#828282' }}>$0.011/row</p>
+                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.011/row</p>
                 </div>
                 <button
                   onClick={onGetStarted}
                   className="w-full py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                    color: '#2e2e2e'
-                  }}
+                  style={yellowButtonStyle}
                 >
                   Buy Pack
                 </button>
@@ -401,19 +390,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               {/* Pack 3 */}
               <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
                 <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>15,000 Credits</h4>
+                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>15,000 Credits</h4>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>$149.00</span>
+                    <span className="text-3xl font-bold" style={headingStyle()}>$149.00</span>
                   </div>
-                  <p className="text-sm mt-1" style={{ color: '#828282' }}>$0.0099/row</p>
+                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.0099/row</p>
                 </div>
                 <button
                   onClick={onGetStarted}
                   className="w-full py-3 rounded-full font-bold transition-all shadow-md hover:shadow-lg"
-                  style={{
-                    background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                    color: '#2e2e2e'
-                  }}
+                  style={yellowButtonStyle}
                 >
                   Buy Pack
                 </button>
@@ -426,16 +412,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
       {/* CTA Section */}
       <section className="py-16" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Ubuntu, sans-serif', color: '#2e2e2e' }}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={headingStyle()}>
             Ready to verify your ABN database?
           </h2>
-          <p className="text-xl mb-8" style={{ color: '#4b4b4b' }}>
+          <p className="text-xl mb-8" style={{ color: SBS_COLORS.midCharcoal }}>
             Start with 10 free credits. No credit card required.
           </p>
           <button
             onClick={onGetStarted}
             className="px-8 py-4 bg-white hover:opacity-90 rounded-full font-bold text-lg transition-all shadow-2xl inline-flex items-center gap-2"
-            style={{ color: '#2e2e2e' }}
+            style={{ color: SBS_COLORS.darkBase }}
           >
             Get Started Free
             <ArrowRight size={20} />
@@ -450,11 +436,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-2xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
-                  <TrendingUp size={20} style={{ color: '#2e2e2e' }} />
+                  <TrendingUp size={20} style={{ color: SBS_COLORS.darkBase }} />
                 </div>
                 <span className="text-white font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif' }}>ABNVerify</span>
               </div>
-              <p className="text-sm" style={{ color: '#828282' }}>
+              <p className="text-sm" style={{ color: SBS_COLORS.lightCharcoal }}>
                 The bulk ABR verification engine for Australian businesses.
               </p>
             </div>
@@ -462,19 +448,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <div>
               <h4 className="text-white font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif' }}>Product</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors" style={{ color: '#828282' }}>Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors" style={{ color: '#828282' }}>Pricing</a></li>
-                <li><a href="#demo" className="hover:text-white transition-colors" style={{ color: '#828282' }}>Try Free</a></li>
+                <li><a href="#" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Features</a></li>
+                <li><a href="#pricing" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Pricing</a></li>
+                <li><a href="#demo" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Try Free</a></li>
                 {onArticlesClick && (
                   <li>
-                    <button onClick={onArticlesClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                    <button onClick={onArticlesClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                       Articles
                     </button>
                   </li>
                 )}
                 {onHelpClick && (
                   <li>
-                    <button onClick={onHelpClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                    <button onClick={onHelpClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                       Help Center
                     </button>
                   </li>
@@ -486,17 +472,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               <h4 className="text-white font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif' }}>Company</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button onClick={onAboutClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                  <button onClick={onAboutClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                     About
                   </button>
                 </li>
                 <li>
-                  <button onClick={onContactClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                  <button onClick={onContactClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                     Contact
                   </button>
                 </li>
                 <li>
-                  <button onClick={onContactClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                  <button onClick={onContactClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                     Support
                   </button>
                 </li>
@@ -507,12 +493,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
               <h4 className="text-white font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif' }}>Legal</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <button onClick={onPrivacyClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                  <button onClick={onPrivacyClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                     Privacy Policy
                   </button>
                 </li>
                 <li>
-                  <button onClick={onTermsClick} className="hover:text-white transition-colors" style={{ color: '#828282' }}>
+                  <button onClick={onTermsClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
                     Terms of Use
                   </button>
                 </li>
@@ -522,14 +508,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
 
           <div className="border-t pt-8" style={{ borderColor: '#4b4b4b' }}>
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: '#828282' }}>
+              <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: SBS_COLORS.lightCharcoal }}>
                 <div className="flex items-center gap-2">
                   <Shield size={16} className="text-green-500" />
                   <span>Powered by Australian Business Register (ABR)</span>
                 </div>
                 <div className="hidden md:block">•</div>
                 <div className="flex items-center gap-2">
-                  <Server size={16} style={{ color: '#fdb717' }} />
+                  <Server size={16} style={{ color: SBS_COLORS.standardYellow }} />
                   <span>Australian servers only</span>
                 </div>
                 <div className="hidden md:block">•</div>
@@ -538,7 +524,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
                   <span>Files not stored</span>
                 </div>
               </div>
-              <p className="text-sm" style={{ color: '#828282' }}>© 2025 ABNVerify. All rights reserved.</p>
+              <p className="text-sm" style={{ color: SBS_COLORS.lightCharcoal }}>© 2025 ABNVerify. All rights reserved.</p>
             </div>
           </div>
         </div>
