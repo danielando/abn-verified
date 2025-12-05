@@ -5,7 +5,7 @@ import {
   Cell, PieChart, Pie, Legend
 } from 'recharts';
 import { AbnRecord, ChartDataState, UploadStatus, UploadProgress } from '../types';
-import { ArrowUpRight, Upload, Download, Briefcase, Info, MapPin, ReceiptText, Eye, Heart, Building2, ChevronLeft, ChevronRight, Ban, FilterX, XCircle, Activity, Loader2, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, Upload, Download, Briefcase, Info, MapPin, ReceiptText, Eye, Heart, Building2, ChevronLeft, ChevronRight, Ban, FilterX, XCircle, Activity, Loader2, CheckCircle, Sparkles } from 'lucide-react';
 import EntityDetailsModal from './EntityDetailsModal';
 import { SBS_COLORS, headingStyle, bodyStyle, yellowButtonStyle, CHART_COLORS } from '../config/branding';
 
@@ -45,6 +45,10 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
     const cancelled = total - active;
     const gstCount = data.filter(r => r.gstRegistered).length;
     const nonGstCount = total - gstCount;
+
+    // Industry Classification Stats
+    const unclassifiedCount = data.filter(r => !r.industryCode || (r.classificationConfidence && r.classificationConfidence < 50)).length;
+    const classifiedCount = total - unclassifiedCount;
     
     // Group by Year for Pie Chart
     const yearMap = new Map<string, number>();
@@ -94,15 +98,17 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
         }
     });
 
-    return { 
-      total, 
-      active, 
-      cancelled, 
-      yearData, 
+    return {
+      total,
+      active,
+      cancelled,
+      yearData,
       stateData,
       gstCount,
       nonGstCount,
-      topType
+      topType,
+      unclassifiedCount,
+      classifiedCount
     };
   }, [data]);
 
@@ -264,15 +270,38 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
           </div>
           <p className="mt-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Real-time ABR verification status</p>
         </div>
-        <button
-          onClick={onUploadClick}
-          disabled={uploadStatus === UploadStatus.PROCESSING}
-          className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all shadow-lg ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
-          style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
-        >
-          <Upload size={18} />
-          {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Classify Industries Button - Only show if there's data */}
+          {data.length > 0 && onClassifyClick && (
+            <button
+              onClick={onClassifyClick}
+              disabled={uploadStatus === UploadStatus.PROCESSING || stats.unclassifiedCount === 0}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all shadow-lg ${uploadStatus === UploadStatus.PROCESSING || stats.unclassifiedCount === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
+              style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', color: 'white' }}
+              title={stats.unclassifiedCount === 0 ? 'All companies are classified' : `Classify ${stats.unclassifiedCount} companies`}
+            >
+              <Sparkles size={18} />
+              <span className="hidden sm:inline">Classify Industries</span>
+              <span className="sm:hidden">Classify</span>
+              {stats.unclassifiedCount > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-white/20">
+                  {stats.unclassifiedCount}
+                </span>
+              )}
+            </button>
+          )}
+
+          {/* Upload Button */}
+          <button
+            onClick={onUploadClick}
+            disabled={uploadStatus === UploadStatus.PROCESSING}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all shadow-lg ${uploadStatus === UploadStatus.PROCESSING ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl'}`}
+            style={{ background: 'linear-gradient(135deg, SBS_COLORS.standardYellow 0%, SBS_COLORS.popYellow 100%)', color: 'SBS_COLORS.darkBase' }}
+          >
+            <Upload size={18} />
+            {uploadStatus === UploadStatus.PROCESSING ? 'Processing...' : 'Verify New Batch'}
+          </button>
+        </div>
       </div>
 
       {/* Main Grid */}
