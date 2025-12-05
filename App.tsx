@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Dashboard from './components/Dashboard';
 import FileUploadModal from './components/FileUploadModal';
+import ClassificationModal from './components/ClassificationModal';
 import AuthPage from './components/AuthPage';
 import PricingPage from './components/PricingPage';
 import LandingPage from './components/LandingPage';
@@ -46,6 +47,7 @@ const App: React.FC = () => {
   // App State
   const [data, setData] = useState<AbnRecord[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isClassificationOpen, setIsClassificationOpen] = useState(false);
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -684,9 +686,10 @@ const App: React.FC = () => {
               </div>
            </div>
         ) : (
-          <Dashboard 
-            data={data} 
-            onUploadClick={handleUploadClick} 
+          <Dashboard
+            data={data}
+            onUploadClick={handleUploadClick}
+            onClassifyClick={() => setIsClassificationOpen(true)}
             uploadStatus={uploadStatus}
             uploadProgress={uploadProgress}
           />
@@ -706,6 +709,13 @@ const App: React.FC = () => {
           onPricingClick={() => setIsPricingOpen(true)}
         />
       )}
+
+      <ClassificationModal
+        isOpen={isClassificationOpen}
+        onClose={() => setIsClassificationOpen(false)}
+        records={data}
+        onClassificationComplete={(updatedRecords: AbnRecord[]) => setData(updatedRecords)}
+      />
 
       <FileUploadModal
         isOpen={isModalOpen}

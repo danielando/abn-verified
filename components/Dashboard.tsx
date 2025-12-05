@@ -12,6 +12,7 @@ import { SBS_COLORS, headingStyle, bodyStyle, yellowButtonStyle, CHART_COLORS } 
 interface DashboardProps {
   data: AbnRecord[];
   onUploadClick: () => void;
+  onClassifyClick?: () => void;
   uploadStatus: UploadStatus;
   uploadProgress: UploadProgress;
 }
@@ -21,7 +22,7 @@ const YEAR_COLORS = CHART_COLORS.yellow;
 
 type FilterMode = 'ALL' | 'GST_YES' | 'GST_NO' | 'STATUS_ACTIVE' | 'STATUS_CANCELLED';
 
-const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, uploadStatus, uploadProgress }) => {
+const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyClick, uploadStatus, uploadProgress }) => {
   const [selectedRecord, setSelectedRecord] = useState<AbnRecord | null>(null);
   
   // Filtering & Pagination State

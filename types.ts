@@ -12,14 +12,22 @@ export interface AbnRecord {
   statusDate: string; // ISO date string
   entityType: string;
   entityTypeCode: string; // New: e.g. PRV, TRT
-  // Enrichment Fields (Optional for Phase 1 Bulk)
+  // Industry Classification Fields
+  industryCode?: string;                    // Grant Thornton category code (e.g., "4601")
+  industryName?: string;                    // Category name (e.g., "Applied computing")
+  industryGroup?: string;                   // Group name (e.g., "INFORMATION AND COMPUTING SCIENCES")
+  classificationSource?: 'AI' | 'MANUAL';   // How was it classified?
+  classificationConfidence?: number;        // 0-100% confidence score
+  classificationReason?: string;            // Brief AI explanation
+  classificationReviewed?: boolean;         // Has user reviewed this?
+  classificationDate?: string;              // When was it classified?
+
+  // Legacy/Deprecated (kept for backward compatibility)
   anzsicCode?: string;
   anzsicDescription?: string;
-  businessSummary?: string; 
-  industryGroup?: string; 
+  businessSummary?: string;
   website?: string;
-  // Deep Enrichment
-  confidence?: number; 
+  confidence?: number;
   evidence?: string; 
   email?: string; 
   socials?: {

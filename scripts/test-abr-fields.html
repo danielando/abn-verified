@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABR API Field Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        input { padding: 8px; margin: 10px 5px; }
+        button { padding: 8px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .highlight { background: yellow; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>ABR API Response Field Inspector</h1>
+    <p>Test what fields the ABR API actually returns for an ABN</p>
+
+    <div>
+        <label>ABN GUID: <input type="text" id="guid" placeholder="Enter your ABR GUID" size="40"></label><br>
+        <label>Test ABN: <input type="text" id="abn" value="51824753556" placeholder="51824753556"></label>
+        <button onclick="testAPI()">Test API</button>
+    </div>
+
+    <h2>Response Fields:</h2>
+    <div id="results"></div>
+
+    <script>
+        function testAPI() {
+            const guid = document.getElementById('guid').value;
+            const abn = document.getElementById('abn').value;
+
+            if (!guid) {
+                alert('Please enter your ABR GUID');
+                return;
+            }
+
+            const callbackName = 'abnCallback_' + Date.now();
+            const url = `https://abr.business.gov.au/json/AbnDetails.aspx?abn=${abn}&guid=${guid}&callback=${callbackName}`;
+
+            window[callbackName] = function(data) {
+                displayResults(data);
+                delete window[callbackName];
+            };
+
+            const script = document.createElement('script');
+            script.src = url;
+            script.onerror = () => {
+                document.getElementById('results').innerHTML = '<p style="color: red;">Error loading ABR API</p>';
+            };
+            document.body.appendChild(script);
+        }
+
+        function displayResults(data) {
+            const results = document.getElementById('results');
+
+            // Check for ANZSIC or industry-related fields
+            const industryKeywords = ['anzsic', 'industry', 'principal', 'activity', 'business', 'classification', 'code'];
+
+            let html = '<h3>All Fields:</h3>';
+            html += '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+
+            html += '<h3>Industry-Related Fields Found:</h3>';
+            const industryFields = findIndustryFields(data, industryKeywords);
+
+            if (industryFields.length > 0) {
+                html += '<ul style="color: green; font-weight: bold;">';
+                industryFields.forEach(field => {
+                    html += `<li>${field.path}: <span class="highlight">${JSON.stringify(field.value)}</span></li>`;
+                });
+                html += '</ul>';
+            } else {
+                html += '<p style="color: orange;">❌ No ANZSIC or industry classification fields found in ABR response</p>';
+                html += '<p>This means we\'ll need to use AI classification instead.</p>';
+            }
+
+            results.innerHTML = html;
+        }
+
+        function findIndustryFields(obj, keywords, path = '') {
+            let found = [];
+
+            for (let key in obj) {
+                const currentPath = path ? `${path}.${key}` : key;
+                const value = obj[key];
+
+                // Check if key matches any industry keyword
+                const keyLower = key.toLowerCase();
+                const matches = keywords.some(kw => keyLower.includes(kw));
+
+                if (matches) {
+                    found.push({ path: currentPath, value: value });
+                }
+
+                // Recursively search objects and arrays
+                if (typeof value === 'object' && value !== null) {
+                    found = found.concat(findIndustryFields(value, keywords, currentPath));
+                }
+            }
+
+            return found;
+        }
+    </script>
+
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Enter your ABR GUID (from Settings in your app)</li>
+        <li>Click "Test API" to see what fields ABR returns</li>
+        <li>Check if any ANZSIC or industry classification fields exist</li>
+        <li>If found: We can use official ABR data (free & accurate!)</li>
+        <li>If not found: We'll need AI classification</li>
+    </ol>
+
+    <h2>Common Test ABNs:</h2>
+    <ul>
+        <li>51824753556 - Tech Solutions Pty Ltd</li>
+        <li>33102417032 - Larger company</li>
+        <li>53004085616 - Telstra Corporation Limited</li>
+    </ul>
+</body>
+</html>
