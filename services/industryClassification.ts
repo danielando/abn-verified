@@ -114,7 +114,7 @@ export const classifyCompany = async (record: AbnRecord): Promise<Classification
 };
 
 /**
- * Classify multiple companies in batch
+ * Classify multiple companies in batch with adaptive rate limiting
  */
 export const classifyBatch = async (
   records: AbnRecord[],
@@ -123,7 +123,13 @@ export const classifyBatch = async (
   console.log('🚀 Starting batch classification for', records.length, 'records');
   const results = new Map<string, ClassificationResult>();
 
-  // Process sequentially to avoid rate limits (can optimize later)
+  // Adaptive delay: starts at 500ms, increases on rate limits
+  let currentDelay = 500;
+  const MIN_DELAY = 500;
+  const MAX_DELAY = 5000;
+  let consecutiveRateLimits = 0;
+
+  // Process sequentially to avoid rate limits
   for (let i = 0; i < records.length; i++) {
     const record = records[i];
 
@@ -139,13 +145,31 @@ export const classifyBatch = async (
         success: true
       });
     } else {
-      console.log('🎯 Classifying:', record.entityName);
+      console.log(`🎯 Classifying (${i + 1}/${records.length}):`, record.entityName, `[delay: ${currentDelay}ms]`);
       const result = await classifyCompany(record);
+
+      // Adaptive delay adjustment based on results
+      if (!result.success && result.error?.includes('Rate limit')) {
+        consecutiveRateLimits++;
+        // Increase delay exponentially on rate limits
+        currentDelay = Math.min(currentDelay * 2, MAX_DELAY);
+        console.log(`⚠️ Rate limit hit. Increasing delay to ${currentDelay}ms (${consecutiveRateLimits} consecutive)`);
+
+        // Add extra wait after rate limit
+        await new Promise(resolve => setTimeout(resolve, currentDelay * 2));
+      } else if (result.success) {
+        consecutiveRateLimits = 0;
+        // Gradually decrease delay on success
+        currentDelay = Math.max(currentDelay * 0.9, MIN_DELAY);
+      }
+
       console.log('✨ Result for', record.entityName, ':', result);
       results.set(record.id, result);
 
-      // Delay to avoid rate limits (250ms for paid tier)
-      await new Promise(resolve => setTimeout(resolve, 250));
+      // Standard delay between requests
+      if (i < records.length - 1) { // Don't delay after last item
+        await new Promise(resolve => setTimeout(resolve, currentDelay));
+      }
     }
 
     if (onProgress) {
@@ -154,6 +178,7 @@ export const classifyBatch = async (
   }
 
   console.log('📦 Batch complete. Results:', results.size);
+  console.log(`📈 Final delay: ${currentDelay}ms, Rate limits encountered: ${consecutiveRateLimits > 0 ? 'Yes' : 'No'}`);
   return results;
 };
 
