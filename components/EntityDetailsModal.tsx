@@ -95,9 +95,9 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                             
                             {/* Charity Types Display if available */}
                             {record.charityType && record.charityType.length > 0 && (
-                                <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
-                                    <label className="text-xs font-bold text-blue-500 uppercase block mb-2">Charity Endorsements</label>
-                                    <ul className="list-disc list-inside text-sm text-blue-800 space-y-1">
+                                <div className="bg-[#fffbf0] border border-[#fffbf0] p-4 rounded-xl">
+                                    <label className="text-xs font-bold text-[#fdb717] uppercase block mb-2">Charity Endorsements</label>
+                                    <ul className="list-disc list-inside text-sm text-[#4b4b4b] space-y-1">
                                         {record.charityType.map((type, idx) => (
                                             <li key={idx}>{type}</li>
                                         ))}

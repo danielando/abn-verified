@@ -231,8 +231,8 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
-                <Users className="text-blue-600" size={20} />
+              <div className="w-10 h-10 bg-[#fffbf0] rounded-xl flex items-center justify-center">
+                <Users className="text-[#fdb717]" size={20} />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Total Users</p>
@@ -441,7 +441,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack, currentUserId }) => {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setEditingUserId(user.id)}
-                            className="px-4 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg text-sm font-medium transition-colors"
+                            className="px-4 py-1.5 bg-[#fffbf0] hover:bg-[#fff9e6] text-[#e5a616] rounded-lg text-sm font-medium transition-colors"
                           >
                             Adjust Credits
                           </button>

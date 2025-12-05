@@ -200,7 +200,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onSuccess, onBack }) => {
             {onBack && (
               <button
                 onClick={onBack}
-                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors mb-4"
+                className="flex items-center gap-2 text-gray-600 hover:text-[#fdb717] transition-colors mb-4"
               >
                 <ArrowLeft size={20} />
                 <span className="text-sm font-medium">Back to Home</span>

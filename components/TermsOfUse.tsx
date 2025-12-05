@@ -223,7 +223,7 @@ const TermsOfUse: React.FC<TermsOfUseProps> = ({ onBack, onHelpClick, onAboutCli
               Questions about these Terms? Contact us:
             </p>
             <p className="text-gray-700">
-              <strong>Email:</strong> <a href="mailto:support@abnverify.com" className="text-blue-600 hover:underline">support@abnverify.com</a>
+              <strong>Email:</strong> <a href="mailto:support@abnverify.com" className="text-[#fdb717] hover:underline">support@abnverify.com</a>
             </p>
           </section>
         </div>

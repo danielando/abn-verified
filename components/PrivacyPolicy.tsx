@@ -143,7 +143,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
               <li>Opt-out of marketing communications</li>
             </ul>
             <p className="text-gray-700 mb-4">
-              To exercise these rights, contact us at <a href="mailto:support@abnverify.com" className="text-blue-600 hover:underline">support@abnverify.com</a>
+              To exercise these rights, contact us at <a href="mailto:support@abnverify.com" className="text-[#fdb717] hover:underline">support@abnverify.com</a>
             </p>
           </section>
 
@@ -167,7 +167,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
               If you have questions about this Privacy Policy, please contact us:
             </p>
             <p className="text-gray-700">
-              <strong>Email:</strong> <a href="mailto:support@abnverify.com" className="text-blue-600 hover:underline">support@abnverify.com</a>
+              <strong>Email:</strong> <a href="mailto:support@abnverify.com" className="text-[#fdb717] hover:underline">support@abnverify.com</a>
             </p>
           </section>
         </div>

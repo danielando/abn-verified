@@ -43,7 +43,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-4 py-2 bg-[#fdb717] hover:bg-[#e5a616] text-white rounded-full font-medium text-sm transition-all"
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -68,7 +68,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-6">
-            <Target className="text-blue-600" size={32} />
+            <Target className="text-[#fdb717]" size={32} />
             <h3 className="text-3xl font-bold text-gray-900">Our Mission</h3>
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -91,8 +91,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
           <div className="grid md:grid-cols-3 gap-8">
             {/* Accuracy */}
             <div className="bg-white rounded-2xl p-6 border border-gray-200">
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                <CheckCircle className="text-blue-600" size={24} />
+              <div className="w-12 h-12 bg-[#fff9e6] rounded-xl flex items-center justify-center mb-4">
+                <CheckCircle className="text-[#fdb717]" size={24} />
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-3">Accuracy First</h4>
               <p className="text-gray-600">
@@ -132,7 +132,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-6">
-            <Users className="text-blue-600" size={32} />
+            <Users className="text-[#fdb717]" size={32} />
             <h3 className="text-3xl font-bold text-gray-900">Who We Serve</h3>
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -140,29 +140,29 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
             and businesses across Australia who need to verify ABN data at scale.
           </p>
 
-          <div className="bg-blue-50 rounded-2xl p-8 border border-blue-100">
+          <div className="bg-[#fffbf0] rounded-2xl p-8 border border-[#fffbf0]">
             <h4 className="text-xl font-bold text-gray-900 mb-4">Common Use Cases</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-[#fdb717] mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-700">
                   <strong>Accounting Firms:</strong> Verify client ABNs before filing tax returns and BAS statements
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-[#fdb717] mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-700">
                   <strong>Procurement Teams:</strong> Validate supplier ABNs and GST registration status
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-[#fdb717] mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-700">
                   <strong>Compliance Officers:</strong> Audit vendor databases and ensure regulatory compliance
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
+                <CheckCircle className="text-[#fdb717] mt-1 flex-shrink-0" size={20} />
                 <span className="text-gray-700">
                   <strong>Data Teams:</strong> Clean and enrich CRM databases with official business information
                 </span>
@@ -176,7 +176,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-6">
-            <TrendingUp className="text-blue-600" size={32} />
+            <TrendingUp className="text-[#fdb717]" size={32} />
             <h3 className="text-3xl font-bold text-gray-900">Our Technology</h3>
           </div>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -218,18 +218,18 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBack, onHelpClick, onAboutClick
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600">
+      <section className="py-16 bg-[#fdb717]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to streamline your ABN verification?
           </h3>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-[#fff9e6] mb-8">
             Join hundreds of Australian businesses using ABNVerify to maintain accurate,
             compliant business records.
           </p>
           <button
             onClick={onBack}
-            className="px-8 py-4 bg-white hover:bg-gray-100 text-blue-600 rounded-full font-bold text-lg transition-all shadow-xl"
+            className="px-8 py-4 bg-white hover:bg-gray-100 text-[#fdb717] rounded-full font-bold text-lg transition-all shadow-xl"
           >
             Get Started Free
           </button>

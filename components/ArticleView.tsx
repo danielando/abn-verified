@@ -164,7 +164,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-4 py-2 bg-[#fdb717] hover:bg-[#e5a616] text-white rounded-full font-medium text-sm transition-all"
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -177,8 +177,8 @@ const ArticleView: React.FC<ArticleViewProps> = ({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Article Header */}
           <header className="mb-8">
-            <div className="flex items-center gap-2 text-sm text-blue-600 font-semibold mb-4">
-              <span className="bg-blue-100 px-3 py-1 rounded-full">{article.category}</span>
+            <div className="flex items-center gap-2 text-sm text-[#fdb717] font-semibold mb-4">
+              <span className="bg-[#fff9e6] px-3 py-1 rounded-full">{article.category}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -292,7 +292,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({
               </p>
               <button
                 onClick={onBack}
-                className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold text-lg transition-all shadow-lg"
+                className="px-8 py-3 bg-[#fdb717] hover:bg-[#e5a616] text-white rounded-full font-bold text-lg transition-all shadow-lg"
               >
                 Try ABNVerify Free
               </button>

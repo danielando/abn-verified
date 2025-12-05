@@ -569,7 +569,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
                                 {record.tradingName && record.tradingName !== record.entityName ? (
                                     <>
                                         <div className="flex items-center gap-2">
-                                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200 tracking-wide">TRADING</span>
+                                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#fff9e6] text-[#e5a616] border border-[#fff9e6] tracking-wide">TRADING</span>
                                             <span className="font-bold text-gray-800 text-sm truncate max-w-[280px]" title={record.tradingName}>
                                                 {record.tradingName}
                                             </span>
@@ -599,7 +599,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
                   <td className="py-4 px-6">
                      <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
-                           <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200 tracking-wide">ABN</span>
+                           <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#fff9e6] text-[#e5a616] border border-[#fff9e6] tracking-wide">ABN</span>
                            <span className="text-sm text-gray-800 font-mono font-semibold">
                                {record.abn}
                            </span>

@@ -30,13 +30,13 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
     {
       id: 'prepare-csv',
       title: 'How to Prepare Your CSV File',
-      icon: <FileSpreadsheet className="text-blue-600" size={24} />,
+      icon: <FileSpreadsheet className="text-[#fdb717]" size={24} />,
       content: (
         <div className="prose max-w-none">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">How to Prepare Your CSV File</h2>
 
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
-            <p className="text-sm text-blue-800">
+          <div className="bg-[#fffbf0] border-l-4 border-[#fdb717] p-4 mb-6">
+            <p className="text-sm text-[#4b4b4b]">
               <strong>Quick Tip:</strong> ABNVerify accepts any CSV file with an ABN column. We'll automatically detect it!
             </p>
           </div>
@@ -133,8 +133,8 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
         <div className="prose max-w-none">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Understanding Your Verification Results</h2>
 
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
-            <p className="text-sm text-blue-800">
+          <div className="bg-[#fffbf0] border-l-4 border-[#fdb717] p-4 mb-6">
+            <p className="text-sm text-[#4b4b4b]">
               <strong>All data is sourced directly from the Australian Business Register (ABR)</strong> - the official government database.
             </p>
           </div>
@@ -169,7 +169,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
               </ul>
             </div>
 
-            <div className="border-l-4 border-blue-500 pl-4">
+            <div className="border-l-4 border-[#fdb717] pl-4">
               <h4 className="font-semibold text-gray-800 mb-1">Identity (Legal vs Trading Name)</h4>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li><strong>TRADING:</strong> The business name the company uses publicly</li>
@@ -247,8 +247,8 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
         <div className="prose max-w-none">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Pricing & Credit System Guide</h2>
 
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
-            <p className="text-sm text-blue-800">
+          <div className="bg-[#fffbf0] border-l-4 border-[#fdb717] p-4 mb-6">
+            <p className="text-sm text-[#4b4b4b]">
               <strong>Every ABN verification costs 1 credit.</strong> Choose between monthly subscriptions or pay-as-you-go packs.
             </p>
           </div>
@@ -280,16 +280,16 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
             <div className="bg-white border-2 border-gray-200 rounded-lg p-5">
               <h4 className="font-bold text-gray-800 mb-2">Starter</h4>
               <p className="text-3xl font-bold text-gray-900 mb-1">$29<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-blue-700 font-semibold mb-4">3,000 lookups</p>
+              <p className="text-sm text-[#e5a616] font-semibold mb-4">3,000 lookups</p>
               <p className="text-xs text-gray-500">$0.0097 per verification</p>
               <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
             </div>
 
-            <div className="bg-blue-50 border-2 border-blue-400 rounded-lg p-5">
-              <div className="text-xs font-bold text-blue-700 bg-blue-200 px-2 py-1 rounded-full inline-block mb-2">MOST POPULAR</div>
+            <div className="bg-[#fffbf0] border-2 border-[#fee045] rounded-lg p-5">
+              <div className="text-xs font-bold text-[#e5a616] bg-blue-200 px-2 py-1 rounded-full inline-block mb-2">MOST POPULAR</div>
               <h4 className="font-bold text-gray-800 mb-2">Growth</h4>
               <p className="text-3xl font-bold text-gray-900 mb-1">$79<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-blue-700 font-semibold mb-4">10,000 lookups</p>
+              <p className="text-sm text-[#e5a616] font-semibold mb-4">10,000 lookups</p>
               <p className="text-xs text-gray-500">$0.0079 per verification</p>
               <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
             </div>
@@ -297,7 +297,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
             <div className="bg-white border-2 border-gray-200 rounded-lg p-5">
               <h4 className="font-bold text-gray-800 mb-2">Pro</h4>
               <p className="text-3xl font-bold text-gray-900 mb-1">$149<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-blue-700 font-semibold mb-4">25,000 lookups</p>
+              <p className="text-sm text-[#e5a616] font-semibold mb-4">25,000 lookups</p>
               <p className="text-xs text-gray-500">$0.0060 per verification</p>
               <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
             </div>
@@ -313,7 +313,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
               <p className="text-xs text-gray-500 mt-1">$0.0125 per verification</p>
             </div>
 
-            <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
+            <div className="bg-[#fffbf0] border-2 border-[#ffe680] rounded-lg p-4">
               <h4 className="font-semibold text-gray-800 mb-1">5,000 Credits</h4>
               <p className="text-2xl font-bold text-gray-900">$54.99</p>
               <p className="text-xs text-gray-500 mt-1">$0.0110 per verification</p>
@@ -385,9 +385,9 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
             </div>
           </div>
 
-          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mt-6">
-            <h4 className="font-semibold text-blue-800 mb-2">Need Help Choosing?</h4>
-            <p className="text-sm text-blue-700">
+          <div className="bg-[#fffbf0] border-l-4 border-[#fdb717] p-4 mt-6">
+            <h4 className="font-semibold text-[#4b4b4b] mb-2">Need Help Choosing?</h4>
+            <p className="text-sm text-[#e5a616]">
               Contact us at <a href="mailto:support@abnverify.com" className="underline font-semibold">support@abnverify.com</a> and we'll help you find the perfect plan for your needs.
             </p>
           </div>
@@ -426,7 +426,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
               )}
               <button
                 onClick={onBack}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+                className="px-4 py-2 bg-[#fdb717] hover:bg-[#e5a616] text-white rounded-full font-medium text-sm transition-all"
               >
                 {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
               </button>

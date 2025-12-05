@@ -122,7 +122,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutC
             )}
             <button
               onClick={onBack}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium text-sm transition-all"
+              className="px-4 py-2 bg-[#fdb717] hover:bg-[#e5a616] text-white rounded-full font-medium text-sm transition-all"
             >
               {isLoggedIn ? 'Go to Dashboard' : 'Sign In'}
             </button>
@@ -145,12 +145,12 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutC
             <div className="space-y-6">
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="text-blue-600" size={24} />
+                <div className="w-12 h-12 bg-[#fff9e6] rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Mail className="text-[#fdb717]" size={24} />
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                  <a href="mailto:support@abnverify.com" className="text-blue-600 hover:underline">
+                  <a href="mailto:support@abnverify.com" className="text-[#fdb717] hover:underline">
                     support@abnverify.com
                   </a>
                   <p className="text-sm text-gray-500 mt-1">
