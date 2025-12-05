@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, Building2, MapPin, Tag, CheckCircle, XCircle, Heart, Info, FileText } from 'lucide-react';
+import { X, Building2, MapPin, Tag, CheckCircle, XCircle, Heart, Info, FileText, Briefcase, Sparkles } from 'lucide-react';
 import { AbnRecord } from '../types';
 import { SBS_COLORS, SBS_GRADIENTS, SBS_TYPOGRAPHY, headingStyle, bodyStyle, yellowButtonStyle, logoStyle, CHART_COLORS } from '../config/branding';
 
@@ -133,6 +133,53 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                             )}
                          </div>
                     </section>
+
+                    {/* 4. Industry Classification */}
+                    {record.industryCode && (
+                        <section>
+                            <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
+                                <Briefcase size={16} /> Industry Classification
+                            </h3>
+                            <div className="bg-gradient-to-br from-purple-50 to-white border border-purple-100 p-5 rounded-2xl shadow-sm space-y-4">
+                                <div>
+                                    <p className="text-xs font-semibold mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Industry Category</p>
+                                    <p className="font-bold text-lg" style={{ fontFamily: 'Ubuntu, sans-serif', color: 'SBS_COLORS.darkBase' }}>{record.industryName}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Industry Group</p>
+                                    <p className="text-sm" style={{ color: 'SBS_COLORS.midCharcoal' }}>{record.industryGroup}</p>
+                                </div>
+                                <div className="pt-3 border-t border-purple-100 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        {record.classificationSource === 'AI' && (
+                                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-700">
+                                                <Sparkles size={12} /> AI Classified
+                                            </span>
+                                        )}
+                                        {record.classificationSource === 'MANUAL' && (
+                                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
+                                                Manual
+                                            </span>
+                                        )}
+                                    </div>
+                                    {record.classificationConfidence !== undefined && (
+                                        <div className="text-right">
+                                            <p className="text-xs" style={{ color: 'SBS_COLORS.lightCharcoal' }}>Confidence</p>
+                                            <p className={`text-sm font-bold ${record.classificationConfidence >= 80 ? 'text-green-600' : record.classificationConfidence >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                                                {record.classificationConfidence}%
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                                {record.classificationReason && (
+                                    <div className="bg-white/50 p-3 rounded-lg">
+                                        <p className="text-xs font-semibold mb-1" style={{ color: 'SBS_COLORS.lightCharcoal' }}>AI Reasoning</p>
+                                        <p className="text-xs italic" style={{ color: 'SBS_COLORS.midCharcoal' }}>{record.classificationReason}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                    )}
                 </div>
 
             </div>

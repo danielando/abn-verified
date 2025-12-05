@@ -163,12 +163,13 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
 
     const verificationHeaders = [
         'ABN Verification Status', // Separator
-        'Entity Name (Verified)', 'Trading Name (Verified)', 'ABN (Verified)', 'ACN', 
+        'Entity Name (Verified)', 'Trading Name (Verified)', 'ABN (Verified)', 'ACN',
         'State', 'Postcode', 'Address Updated Date',
-        'Entity Type', 'Type Code', 'Status', 'Status Date', 
-        'GST Registered', 'GST Date', 'DGR Status', 'DGR Date', 'Charity Type'
+        'Entity Type', 'Type Code', 'Status', 'Status Date',
+        'GST Registered', 'GST Date', 'DGR Status', 'DGR Date', 'Charity Type',
+        'Industry Code', 'Industry Name', 'Industry Group', 'Classification Source', 'Confidence %', 'AI Reasoning'
     ];
-    
+
     const allHeaders = [...metaHeaders, ...verificationHeaders];
     
     const csvContent = [
@@ -187,7 +188,15 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
         const gst = record.gstRegistered ? 'Yes' : 'No';
         const dgr = record.dgr?.isDgr ? 'Yes' : 'No';
         const charity = record.charityType ? `"${record.charityType.join('; ')}"` : '';
-        
+
+        // Industry Classification fields
+        const industryCode = record.industryCode || '';
+        const industryName = record.industryName ? `"${record.industryName.replace(/"/g, '""')}"` : '';
+        const industryGroup = record.industryGroup ? `"${record.industryGroup.replace(/"/g, '""')}"` : '';
+        const classificationSource = record.classificationSource || '';
+        const confidence = record.classificationConfidence !== undefined ? record.classificationConfidence : '';
+        const reasoning = record.classificationReason ? `"${record.classificationReason.replace(/"/g, '""')}"` : '';
+
         const verifValues = [
             '', // Spacer
             name,
@@ -205,7 +214,13 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onUploadClick, onClassifyCl
             record.gst || '',
             dgr,
             record.dgr?.from || '',
-            charity
+            charity,
+            industryCode,
+            industryName,
+            industryGroup,
+            classificationSource,
+            confidence,
+            reasoning
         ];
 
         return [...metaValues, ...verifValues].join(',');
