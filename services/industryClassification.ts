@@ -43,42 +43,61 @@ export const classifyCompany = async (record: AbnRecord): Promise<Classification
     const prompt = buildClassificationPrompt(record);
     console.log('📝 Built prompt for:', record.entityName);
 
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: prompt
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.1, // Low temperature for consistent results
-          maxOutputTokens: 200,
-        }
-      })
-    });
+    // Retry logic with exponential backoff for rate limits
+    let lastError: Error | null = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (attempt > 0) {
+        const delay = Math.pow(2, attempt) * 1000; // 2s, 4s
+        console.log(`⏳ Rate limited. Retrying in ${delay/1000}s (attempt ${attempt + 1}/3)...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
 
-    if (!response.ok) {
-      throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.1, // Low temperature for consistent results
+            maxOutputTokens: 200,
+          }
+        })
+      });
+
+      if (response.status === 429) {
+        lastError = new Error('Rate limit exceeded');
+        continue; // Retry
+      }
+
+      if (!response.ok) {
+        throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      }
+
+      // Success! Process the response
+      const data = await response.json();
+      const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
+      console.log('🤖 Gemini API Response for', record.entityName, ':', textResponse.substring(0, 200));
+
+      // Parse JSON response from AI
+      const result = parseAIResponse(textResponse);
+
+      console.log('📋 Parsed result:', result.industryName, `(${result.confidence}%)`);
+
+      return {
+        ...result,
+        success: true
+      };
     }
 
-    const data = await response.json();
-    const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-
-    console.log('🤖 Gemini API Response for', record.entityName, ':', textResponse.substring(0, 200));
-
-    // Parse JSON response from AI
-    const result = parseAIResponse(textResponse);
-
-    console.log('📋 Parsed result:', result.industryName, `(${result.confidence}%)`);
-
-    return {
-      ...result,
-      success: true
-    };
+    // All retries failed
+    throw lastError || new Error('Max retries exceeded');
 
   } catch (error) {
     console.error('Classification error:', error);
