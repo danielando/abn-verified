@@ -25,6 +25,7 @@ export interface ClassificationResult {
  */
 export const classifyCompany = async (record: AbnRecord): Promise<ClassificationResult> => {
   if (!GEMINI_API_KEY) {
+    console.error('❌ No Gemini API key found!');
     return {
       success: false,
       error: 'Gemini API key not configured. Please add VITE_GEMINI_API_KEY to your .env file',
@@ -36,8 +37,11 @@ export const classifyCompany = async (record: AbnRecord): Promise<Classification
     };
   }
 
+  console.log('🔑 API Key exists:', GEMINI_API_KEY ? 'YES' : 'NO');
+
   try {
     const prompt = buildClassificationPrompt(record);
+    console.log('📝 Built prompt for:', record.entityName);
 
     const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
       method: 'POST',
@@ -97,6 +101,7 @@ export const classifyBatch = async (
   records: AbnRecord[],
   onProgress?: (processed: number, total: number) => void
 ): Promise<Map<string, ClassificationResult>> => {
+  console.log('🚀 Starting batch classification for', records.length, 'records');
   const results = new Map<string, ClassificationResult>();
 
   // Process sequentially to avoid rate limits (can optimize later)
@@ -105,6 +110,7 @@ export const classifyBatch = async (
 
     // Skip already classified
     if (record.industryCode && record.classificationConfidence && record.classificationConfidence > 50) {
+      console.log('⏭️ Skipping already classified:', record.entityName);
       results.set(record.id, {
         industryCode: record.industryCode,
         industryName: record.industryName || '',
@@ -114,7 +120,9 @@ export const classifyBatch = async (
         success: true
       });
     } else {
+      console.log('🎯 Classifying:', record.entityName);
       const result = await classifyCompany(record);
+      console.log('✨ Result for', record.entityName, ':', result);
       results.set(record.id, result);
 
       // Small delay to avoid rate limits
@@ -126,6 +134,7 @@ export const classifyBatch = async (
     }
   }
 
+  console.log('📦 Batch complete. Results:', results.size);
   return results;
 };
 
