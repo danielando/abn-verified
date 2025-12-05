@@ -125,8 +125,8 @@ export const classifyBatch = async (
       console.log('✨ Result for', record.entityName, ':', result);
       results.set(record.id, result);
 
-      // Delay to avoid rate limits (1 second between requests)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Delay to avoid rate limits (250ms for paid tier)
+      await new Promise(resolve => setTimeout(resolve, 250));
     }
 
     if (onProgress) {
