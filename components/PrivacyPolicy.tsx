@@ -11,12 +11,10 @@ interface PrivacyPolicyProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
-  onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
-  isLoggedIn?: boolean;
+  onFeaturesClick?: () => void;isLoggedIn?: boolean;
 }
 
-const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
+const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, isLoggedIn }) => {
   return (
     <div className="min-h-screen bg-white flex flex-col" style={{ fontFamily: 'Raleway, sans-serif' }}>
       {/* Header */}
@@ -182,9 +180,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack, onHelpClick, onAb
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
-        onFeaturesClick={onFeaturesClick}
-        onPricingClick={onPricingClick}
-      />
+        onFeaturesClick={onFeaturesClick} />
     </div>
   );
 };

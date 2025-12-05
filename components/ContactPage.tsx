@@ -10,12 +10,10 @@ interface ContactPageProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
-  onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
-  isLoggedIn?: boolean;
+  onFeaturesClick?: () => void;isLoggedIn?: boolean;
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
+const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, isLoggedIn }) => {
   useEffect(() => {
     // Load Tally embed script
     const script = document.createElement('script');
@@ -222,9 +220,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBack, onHelpClick, onAboutC
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
-        onFeaturesClick={onFeaturesClick}
-        onPricingClick={onPricingClick}
-      />
+        onFeaturesClick={onFeaturesClick} />
     </div>
   );
 };

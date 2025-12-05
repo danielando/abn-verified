@@ -11,9 +11,7 @@ interface HelpCenterProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
-  onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
-  isLoggedIn?: boolean;
+  onFeaturesClick?: () => void;isLoggedIn?: boolean;
 }
 
 type Article = {
@@ -23,7 +21,7 @@ type Article = {
   content: React.ReactNode;
 };
 
-const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, onPricingClick, isLoggedIn }) => {
+const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onArticlesClick, onFeaturesClick, isLoggedIn }) => {
   const [selectedArticle, setSelectedArticle] = useState<string | null>(null);
 
   const articles: Article[] = [
@@ -458,9 +456,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
           onPrivacyClick={onPrivacyClick}
           onTermsClick={onTermsClick}
           onArticlesClick={onArticlesClick}
-          onFeaturesClick={onFeaturesClick}
-          onPricingClick={onPricingClick}
-        />
+          onFeaturesClick={onFeaturesClick} />
       </div>
     );
   }
@@ -562,9 +558,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
-        onFeaturesClick={onFeaturesClick}
-        onPricingClick={onPricingClick}
-      />
+        onFeaturesClick={onFeaturesClick} />
     </div>
   );
 };

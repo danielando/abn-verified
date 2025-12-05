@@ -10,10 +10,9 @@ interface FooterProps {
   onHelpClick?: () => void;
   onArticlesClick?: () => void;
   onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onHelpClick, onArticlesClick, onFeaturesClick, onPricingClick }) => {
+const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacyClick, onTermsClick, onHelpClick, onArticlesClick, onFeaturesClick }) => {
   return (
     <footer className="text-gray-300 py-12" style={{ backgroundColor: 'SBS_COLORS.darkBase', fontFamily: 'Raleway, sans-serif' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,13 +36,6 @@ const Footer: React.FC<FooterProps> = ({ onAboutClick, onContactClick, onPrivacy
                 <li>
                   <button onClick={onFeaturesClick} className="hover:text-white transition-colors" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
                     Features
-                  </button>
-                </li>
-              )}
-              {onPricingClick && (
-                <li>
-                  <button onClick={onPricingClick} className="hover:text-white transition-colors" style={{ color: 'SBS_COLORS.lightCharcoal' }}>
-                    Pricing
                   </button>
                 </li>
               )}

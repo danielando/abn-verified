@@ -11,9 +11,7 @@ interface FeaturesPageProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
-  onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
-  isLoggedIn?: boolean;
+  onFeaturesClick?: () => void;isLoggedIn?: boolean;
 }
 
 const FeaturesPage: React.FC<FeaturesPageProps> = ({
@@ -25,7 +23,6 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
   onTermsClick,
   onArticlesClick,
   onFeaturesClick,
-  onPricingClick,
   isLoggedIn
 }) => {
   return (
@@ -268,9 +265,7 @@ const FeaturesPage: React.FC<FeaturesPageProps> = ({
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
-        onFeaturesClick={onFeaturesClick}
-        onPricingClick={onPricingClick}
-      />
+        onFeaturesClick={onFeaturesClick} />
     </div>
   );
 };

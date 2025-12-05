@@ -12,9 +12,7 @@ interface ArticleViewProps {
   onPrivacyClick?: () => void;
   onTermsClick?: () => void;
   onArticlesClick?: () => void;
-  onFeaturesClick?: () => void;
-  onPricingClick?: () => void;
-  isLoggedIn?: boolean;
+  onFeaturesClick?: () => void;isLoggedIn?: boolean;
 }
 
 const ArticleView: React.FC<ArticleViewProps> = ({
@@ -27,7 +25,6 @@ const ArticleView: React.FC<ArticleViewProps> = ({
   onTermsClick,
   onArticlesClick,
   onFeaturesClick,
-  onPricingClick,
   isLoggedIn
 }) => {
   // Update document title and meta tags for SEO
@@ -309,9 +306,7 @@ const ArticleView: React.FC<ArticleViewProps> = ({
         onPrivacyClick={onPrivacyClick}
         onTermsClick={onTermsClick}
         onArticlesClick={onArticlesClick}
-        onFeaturesClick={onFeaturesClick}
-        onPricingClick={onPricingClick}
-      />
+        onFeaturesClick={onFeaturesClick} />
 
       {/* Article-specific styles */}
       <style>{`
