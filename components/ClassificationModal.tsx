@@ -47,6 +47,7 @@ const ClassificationModal: React.FC<ClassificationModalProps> = ({
       const updated = records.map(record => {
         const result = results.get(record.id);
         if (result && result.success) {
+          console.log('✅ Classified:', record.entityName, '→', result.industryName, `(${result.confidence}%)`);
           return {
             ...record,
             industryCode: result.industryCode,
@@ -60,6 +61,12 @@ const ClassificationModal: React.FC<ClassificationModalProps> = ({
           };
         }
         return record;
+      });
+
+      console.log('📊 Classification Summary:', {
+        total: records.length,
+        classified: updated.filter(r => r.industryCode).length,
+        sampleResult: updated.find(r => r.industryCode)
       });
 
       onClassificationComplete(updated);

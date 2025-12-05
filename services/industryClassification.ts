@@ -64,8 +64,12 @@ export const classifyCompany = async (record: AbnRecord): Promise<Classification
     const data = await response.json();
     const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
+    console.log('🤖 Gemini API Response for', record.entityName, ':', textResponse.substring(0, 200));
+
     // Parse JSON response from AI
     const result = parseAIResponse(textResponse);
+
+    console.log('📋 Parsed result:', result.industryName, `(${result.confidence}%)`);
 
     return {
       ...result,

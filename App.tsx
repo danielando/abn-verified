@@ -651,7 +651,11 @@ const App: React.FC = () => {
         isOpen={isClassificationOpen}
         onClose={() => setIsClassificationOpen(false)}
         records={data}
-        onClassificationComplete={(updatedRecords: AbnRecord[]) => setData(updatedRecords)}
+        onClassificationComplete={(updatedRecords: AbnRecord[]) => {
+          console.log('🔄 App received classified records:', updatedRecords.length);
+          console.log('🔍 Sample classified record:', updatedRecords.find(r => r.industryCode));
+          setData(updatedRecords);
+        }}
       />
 
       <FileUploadModal
