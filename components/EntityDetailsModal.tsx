@@ -157,7 +157,7 @@ const EntityDetailsModal: React.FC<EntityDetailsModalProps> = ({ isOpen, onClose
                                             </span>
                                         )}
                                         {record.classificationSource === 'MANUAL' && (
-                                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
+                                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#fff9e6', color: SBS_COLORS.darkBase }}>
                                                 Manual
                                             </span>
                                         )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, Upload, FileSpreadsheet, Shield, Server, Zap, Building2, FileCheck, TrendingUp, ArrowRight, Package } from 'lucide-react';
+import { Check, Upload, FileSpreadsheet, Shield, Server, Zap, Building2, FileCheck, TrendingUp, ArrowRight } from 'lucide-react';
 import { SBS_COLORS, SBS_GRADIENTS, headingStyle, bodyStyle, yellowButtonStyle, logoStyle } from '../config/branding';
 
 interface LandingPageProps {
@@ -29,8 +29,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#pricing" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: SBS_COLORS.midCharcoal }}>Pricing</a>
-            <a href="#demo" className="hover:opacity-80 text-sm font-medium hidden sm:block transition-opacity" style={{ color: SBS_COLORS.midCharcoal }}>Try Free</a>
             {onHelpClick && (
               <button
                 onClick={onHelpClick}
@@ -211,201 +209,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={headingStyle()}>
-              Simple, transparent pricing
-            </h2>
-            <p className="text-xl" style={{ color: SBS_COLORS.midCharcoal }}>
-              Choose the plan that fits your verification needs
-            </p>
-            <p className="text-sm mt-2" style={{ color: SBS_COLORS.lightCharcoal }}>
-              Overage charges apply: $0.01 per additional verification
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {/* Starter Plan */}
-            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Starter</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold" style={headingStyle()}>$29</span>
-                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
-              </div>
-              <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
-                3,000 ABN verifications
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Official ABR data</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>CSV upload & export</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Email support</span>
-                </li>
-              </ul>
-              <button
-                onClick={onGetStarted}
-                className="w-full py-3 rounded-full font-bold transition-all"
-                style={{ backgroundColor: '#f3f3f3', color: '#2e2e2e' }}
-              >
-                Get Started
-              </button>
-            </div>
-
-            {/* Growth Plan - POPULAR */}
-            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-2xl transition-all relative" style={{ borderColor: '#fdb717' }}>
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)', color: '#2e2e2e' }}>
-                Most Popular
-              </div>
-              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Growth</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold" style={headingStyle()}>$79</span>
-                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
-              </div>
-              <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fee045', color: '#2e2e2e' }}>
-                10,000 ABN verifications
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Everything in Starter</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Priority processing</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
-              <button
-                onClick={onGetStarted}
-                className="w-full py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl"
-                style={{
-                  background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)',
-                  color: '#2e2e2e'
-                }}
-              >
-                Get Started
-              </button>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-              <h3 className="text-xl font-bold mb-2" style={headingStyle()}>Pro</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold" style={headingStyle()}>$149</span>
-                <span style={{ color: SBS_COLORS.lightCharcoal }}>/month</span>
-              </div>
-              <div className="px-3 py-2 rounded-2xl text-center font-bold mb-6" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
-                25,000 ABN verifications
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Everything in Growth</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Faster queue</span>
-                </li>
-                <li className="flex items-start gap-2 text-sm" style={{ color: SBS_COLORS.midCharcoal }}>
-                  <Check size={16} className="text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Priority support</span>
-                </li>
-              </ul>
-              <button
-                onClick={onGetStarted}
-                className="w-full py-3 rounded-full font-bold transition-all"
-                style={{ backgroundColor: '#f3f3f3', color: '#2e2e2e' }}
-              >
-                Get Started
-              </button>
-            </div>
-          </div>
-
-          {/* Pay-as-you-go Packs */}
-          <div className="mt-16 pt-16 border-t" style={{ borderColor: '#e5e5e5' }}>
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-4" style={{ backgroundColor: '#fff9e6', color: '#2e2e2e' }}>
-                <Package size={18} />
-                Pay-as-you-go Packs
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-2" style={headingStyle()}>
-                One-time credit packs
-              </h3>
-              <p style={{ color: SBS_COLORS.midCharcoal }}>
-                No monthly commitment. Credits never expire.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Pack 1 */}
-              <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-                <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>2,000 Credits</h4>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={headingStyle()}>$24.99</span>
-                  </div>
-                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.0125/row</p>
-                </div>
-                <button
-                  onClick={onGetStarted}
-                  className="w-full py-3 rounded-full font-bold transition-all shadow-md hover:shadow-lg"
-                  style={yellowButtonStyle}
-                >
-                  Buy Pack
-                </button>
-              </div>
-
-              {/* Pack 2 - Highlighted */}
-              <div className="rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ background: 'linear-gradient(135deg, #fff9e6 0%, #ffffff 100%)', borderColor: '#fee045' }}>
-                <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>5,000 Credits</h4>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={headingStyle()}>$54.99</span>
-                  </div>
-                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.011/row</p>
-                </div>
-                <button
-                  onClick={onGetStarted}
-                  className="w-full py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl"
-                  style={yellowButtonStyle}
-                >
-                  Buy Pack
-                </button>
-              </div>
-
-              {/* Pack 3 */}
-              <div className="bg-white rounded-3xl border-2 p-6 hover:shadow-xl transition-all" style={{ borderColor: '#e5e5e5' }}>
-                <div className="mb-4">
-                  <h4 className="text-lg font-bold mb-1" style={headingStyle()}>15,000 Credits</h4>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold" style={headingStyle()}>$149.00</span>
-                  </div>
-                  <p className="text-sm mt-1" style={{ color: SBS_COLORS.lightCharcoal }}>$0.0099/row</p>
-                </div>
-                <button
-                  onClick={onGetStarted}
-                  className="w-full py-3 rounded-full font-bold transition-all shadow-md hover:shadow-lg"
-                  style={yellowButtonStyle}
-                >
-                  Buy Pack
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16" style={{ background: 'linear-gradient(135deg, #fdb717 0%, #fee045 100%)' }}>
@@ -446,9 +249,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onPrivacyClick,
             <div>
               <h4 className="text-white font-bold mb-4" style={{ fontFamily: 'Ubuntu, sans-serif' }}>Product</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Pricing</a></li>
-                <li><a href="#demo" className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>Try Free</a></li>
+                {onFeaturesClick && (
+                  <li>
+                    <button onClick={onFeaturesClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>
+                      Features
+                    </button>
+                  </li>
+                )}
                 {onArticlesClick && (
                   <li>
                     <button onClick={onArticlesClick} className="hover:text-white transition-colors" style={{ color: SBS_COLORS.lightCharcoal }}>

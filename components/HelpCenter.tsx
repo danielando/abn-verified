@@ -247,7 +247,7 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
 
           <div className="bg-[#fffbf0] border-l-4 border-[#fdb717] p-4 mb-6">
             <p className="text-sm text-[#4b4b4b]">
-              <strong>Every ABN verification costs 1 credit.</strong> Choose between monthly subscriptions or pay-as-you-go packs.
+              <strong>Every ABN verification costs 1 credit.</strong> Contact our support team to purchase credits for your account.
             </p>
           </div>
 
@@ -259,100 +259,13 @@ const HelpCenter: React.FC<HelpCenterProps> = ({ onBack, onHelpClick, onAboutCli
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="text-green-500 mt-1 flex-shrink-0" size={18} />
-              <span><strong>Credits never expire</strong> - Use them at your own pace (PAYG packs)</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <CheckCircle className="text-green-500 mt-1 flex-shrink-0" size={18} />
-              <span><strong>Subscription credits reset monthly</strong> - Unused credits don't roll over</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <CheckCircle className="text-green-500 mt-1 flex-shrink-0" size={18} />
               <span><strong>Track balance in real-time</strong> - See your remaining credits in the top bar</span>
             </li>
+            <li className="flex items-start gap-3">
+              <CheckCircle className="text-green-500 mt-1 flex-shrink-0" size={18} />
+              <span><strong>Contact support to add credits</strong> - We'll help you get the credits you need</span>
+            </li>
           </ul>
-
-          <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Monthly Subscriptions</h3>
-          <p className="text-gray-600 mb-4">Best for regular, predictable verification needs:</p>
-
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white border-2 border-gray-200 rounded-lg p-5">
-              <h4 className="font-bold text-gray-800 mb-2">Starter</h4>
-              <p className="text-3xl font-bold text-gray-900 mb-1">$29<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-[#e5a616] font-semibold mb-4">3,000 lookups</p>
-              <p className="text-xs text-gray-500">$0.0097 per verification</p>
-              <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
-            </div>
-
-            <div className="bg-[#fffbf0] border-2 border-[#fee045] rounded-lg p-5">
-              <div className="text-xs font-bold text-[#e5a616] bg-blue-200 px-2 py-1 rounded-full inline-block mb-2">MOST POPULAR</div>
-              <h4 className="font-bold text-gray-800 mb-2">Growth</h4>
-              <p className="text-3xl font-bold text-gray-900 mb-1">$79<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-[#e5a616] font-semibold mb-4">10,000 lookups</p>
-              <p className="text-xs text-gray-500">$0.0079 per verification</p>
-              <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
-            </div>
-
-            <div className="bg-white border-2 border-gray-200 rounded-lg p-5">
-              <h4 className="font-bold text-gray-800 mb-2">Pro</h4>
-              <p className="text-3xl font-bold text-gray-900 mb-1">$149<span className="text-sm text-gray-500">/mo</span></p>
-              <p className="text-sm text-[#e5a616] font-semibold mb-4">25,000 lookups</p>
-              <p className="text-xs text-gray-500">$0.0060 per verification</p>
-              <p className="text-xs text-yellow-600 mt-2">+ $0.01/lookup overage</p>
-            </div>
-          </div>
-
-          <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Pay-as-you-go Packs</h3>
-          <p className="text-gray-600 mb-4">No monthly commitment. Credits never expire:</p>
-
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="font-semibold text-gray-800 mb-1">2,000 Credits</h4>
-              <p className="text-2xl font-bold text-gray-900">$24.99</p>
-              <p className="text-xs text-gray-500 mt-1">$0.0125 per verification</p>
-            </div>
-
-            <div className="bg-[#fffbf0] border-2 border-[#ffe680] rounded-lg p-4">
-              <h4 className="font-semibold text-gray-800 mb-1">5,000 Credits</h4>
-              <p className="text-2xl font-bold text-gray-900">$54.99</p>
-              <p className="text-xs text-gray-500 mt-1">$0.0110 per verification</p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="font-semibold text-gray-800 mb-1">15,000 Credits</h4>
-              <p className="text-2xl font-bold text-gray-900">$149.00</p>
-              <p className="text-xs text-gray-500 mt-1">$0.0099 per verification</p>
-            </div>
-          </div>
-
-          <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Which Plan is Right for You?</h3>
-
-          <div className="space-y-4 mb-6">
-            <div className="bg-green-50 border-l-4 border-green-500 p-4">
-              <h4 className="font-semibold text-green-800 mb-2">Choose Subscriptions if:</h4>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>✓ You verify ABNs regularly (weekly or monthly)</li>
-                <li>✓ You have predictable verification volumes</li>
-                <li>✓ You want the lowest per-verification cost</li>
-                <li>✓ You need priority support and processing</li>
-              </ul>
-            </div>
-
-            <div className="bg-purple-50 border-l-4 border-purple-500 p-4">
-              <h4 className="font-semibold text-purple-800 mb-2">Choose Pay-as-you-go if:</h4>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>✓ You verify ABNs occasionally or seasonally</li>
-                <li>✓ You don't want monthly commitments</li>
-                <li>✓ You prefer to pay only for what you use</li>
-                <li>✓ You want credits that never expire</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Subscription Overage</h3>
-          <p className="text-gray-600 mb-4">
-            If you exceed your monthly subscription limit, additional verifications are charged at <strong>$0.01 per lookup</strong>.
-            This ensures you're never blocked from verifying critical ABNs.
-          </p>
 
           <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Frequently Asked Questions</h3>
 
