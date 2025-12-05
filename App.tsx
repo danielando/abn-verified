@@ -4,7 +4,6 @@ import Dashboard from './components/Dashboard';
 import FileUploadModal from './components/FileUploadModal';
 import ClassificationModal from './components/ClassificationModal';
 import AuthPage from './components/AuthPage';
-import PricingPage from './components/PricingPage';
 import LandingPage from './components/LandingPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
@@ -22,7 +21,7 @@ import { AbnRecord, UploadStatus, UploadProgress, UserProfile } from './types';
 import { processCsvStream } from './services/abnService';
 import { LogOut, Menu, X, History, Shield, TrendingUp, HelpCircle } from 'lucide-react';
 import { supabase } from './services/supabaseClient';
-import { trackFileUpload, trackVerificationComplete, trackAddCreditsClick } from './utils/analytics';
+import { trackFileUpload, trackVerificationComplete } from './utils/analytics';
 import { SBS_COLORS, headingStyle, bodyStyle, yellowButtonStyle, logoStyle } from './config/branding';
 
 // Hardcoded Default GUID
@@ -35,7 +34,7 @@ const App: React.FC = () => {
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article' | 'features' | 'pricing'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'auth' | 'privacy' | 'terms' | 'about' | 'contact' | 'help' | 'articles' | 'article' | 'features'>('landing');
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   // Helper function to navigate and scroll to top
@@ -48,7 +47,6 @@ const App: React.FC = () => {
   const [data, setData] = useState<AbnRecord[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClassificationOpen, setIsClassificationOpen] = useState(false);
-  const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -139,9 +137,8 @@ const App: React.FC = () => {
     const lineCount = text.split(/\r\n|\n/).length - 1; // Minus header
 
     if (currentBalance < lineCount) {
-        alert(`Insufficient Credits. You have ${currentBalance} credits but this file has ${lineCount} rows.`);
+        alert(`Insufficient Credits. You have ${currentBalance} credits but this file has ${lineCount} rows. Please contact support to purchase more credits.`);
         setIsModalOpen(false);
-        setIsPricingOpen(true);
         return;
     }
 
@@ -242,7 +239,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -259,7 +255,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -276,7 +271,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -293,7 +287,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -310,26 +303,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
-          isLoggedIn={!!user}
-        />
-      );
-  }
-
-  if (currentPage === 'pricing') {
-      return (
-        <PricingPage
-          userId={user?.id || null}
-          onBack={() => navigateToPage('landing')}
-          onSuccess={() => user?.id && fetchProfile(user.id)}
-          onHelpClick={() => navigateToPage('help')}
-          onAboutClick={() => navigateToPage('about')}
-          onContactClick={() => navigateToPage('contact')}
-          onPrivacyClick={() => navigateToPage('privacy')}
-          onTermsClick={() => navigateToPage('terms')}
-          onArticlesClick={() => navigateToPage('articles')}
-          onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -350,7 +323,6 @@ const App: React.FC = () => {
           onPrivacyClick={() => navigateToPage('privacy')}
           onTermsClick={() => navigateToPage('terms')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -373,7 +345,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -390,7 +361,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -408,7 +378,6 @@ const App: React.FC = () => {
             onHelpClick={() => navigateToPage('help')}
             onArticlesClick={() => navigateToPage('articles')}
             onFeaturesClick={() => navigateToPage('features')}
-            onPricingClick={() => navigateToPage('pricing')}
             isLoggedIn={!!user}
           />
       );
@@ -417,26 +386,6 @@ const App: React.FC = () => {
   // Show full-page auth if not logged in and user clicked "Get Started"
   if (!user && currentPage === 'auth') {
       return <AuthPage onSuccess={() => setIsAuthModalOpen(false)} onBack={() => navigateToPage('landing')} />;
-  }
-
-  // Show full-page pricing if user clicked "Buy Credits"
-  if (isPricingOpen) {
-      return (
-          <PricingPage
-            userId={user.id}
-            onBack={() => setIsPricingOpen(false)}
-            onSuccess={() => fetchProfile(user.id)}
-            onHelpClick={() => setIsHelpOpen(true)}
-            onAboutClick={() => navigateToPage('about')}
-            onContactClick={() => navigateToPage('contact')}
-            onPrivacyClick={() => navigateToPage('privacy')}
-            onTermsClick={() => navigateToPage('terms')}
-            onArticlesClick={() => navigateToPage('articles')}
-            onFeaturesClick={() => navigateToPage('features')}
-            onPricingClick={() => navigateToPage('pricing')}
-            isLoggedIn={!!user}
-          />
-      );
   }
 
   // Show verification history if user clicked "History"
@@ -475,7 +424,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => navigateToPage('pricing')}
           isLoggedIn={!!user}
         />
       );
@@ -508,20 +456,15 @@ const App: React.FC = () => {
                {/* Desktop Menu */}
                <div className="hidden md:flex items-center gap-4">
                    {/* Credits Display */}
-                   <button
-                      onClick={() => {
-                        trackAddCreditsClick();
-                        setIsPricingOpen(true);
-                      }}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all group"
+                   <div
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full border"
                       style={{ backgroundColor: SBS_COLORS.gray50, borderColor: SBS_COLORS.gray200 }}
                    >
                       <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
                       <span className="text-sm font-semibold" style={bodyStyle(SBS_COLORS.midCharcoal)}>
                           {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                       </span>
-                      <span className="text-xs text-white px-1.5 py-0.5 rounded ml-1" style={yellowButtonStyle}>Add +</span>
-                   </button>
+                   </div>
 
                    {/* User Menu */}
                    <div className="flex items-center gap-3 border-l border-gray-200 pl-4">
@@ -587,20 +530,15 @@ const App: React.FC = () => {
                      </div>
 
                      {/* Credits */}
-                     <button
-                        onClick={() => {
-                           trackAddCreditsClick();
-                           setIsPricingOpen(true);
-                           setIsMobileMenuOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-full transition-all group"
+                     <div
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-full"
                         style={{ backgroundColor: SBS_COLORS.gray50 }}
                      >
                         <span className="text-sm font-semibold" style={bodyStyle(SBS_COLORS.midCharcoal)}>
                            {(profile?.credits_balance ?? 0).toLocaleString()} Credits
                         </span>
-                        <span className="text-xs text-white px-2 py-1 rounded" style={yellowButtonStyle}>Add +</span>
-                     </button>
+                        <div className={`w-2 h-2 rounded-full ${(profile?.credits_balance ?? 0) > 0 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                     </div>
 
                      {/* History */}
                      <button
@@ -706,7 +644,6 @@ const App: React.FC = () => {
           onTermsClick={() => navigateToPage('terms')}
           onArticlesClick={() => navigateToPage('articles')}
           onFeaturesClick={() => navigateToPage('features')}
-          onPricingClick={() => setIsPricingOpen(true)}
         />
       )}
 

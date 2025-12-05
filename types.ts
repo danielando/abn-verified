@@ -92,6 +92,5 @@ export interface UserProfile {
   email: string;
   full_name?: string;
   credits_balance: number;
-  subscription_tier: 'free' | 'starter' | 'growth' | 'pro' | 'enterprise';
   is_admin?: boolean;
 }
